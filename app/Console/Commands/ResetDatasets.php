@@ -21,7 +21,7 @@ class ResetDatasets extends Command
             }
         }
         
-        $this->info('🗑️ Truncating dataset tables...');
+        $this->info('Truncating dataset tables...');
         
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         
@@ -47,11 +47,11 @@ class ResetDatasets extends Command
         // Reset auto-increment
         DB::statement('ALTER TABLE datasets AUTO_INCREMENT = 1;');
         
-        $this->info('✅ Tables truncated successfully');
+        $this->info('Tables truncated successfully');
         
         // Optional: run seeder
         if ($this->option('seed')) {
-            $this->info('🌱 Running seeder...');
+            $this->info('Running seeder...');
             $this->call('db:seed', [
                 '--class' => 'UciOriginalDataSeeder',
                 '--force' => true,

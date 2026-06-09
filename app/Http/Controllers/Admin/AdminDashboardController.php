@@ -12,12 +12,9 @@ use Illuminate\Support\Facades\DB;
 
 class AdminDashboardController extends Controller
 {
-    /**
-     * Tampilan Utama Admin Dashboard
-     */
     public function index()
     {
-        // 1. STATISTIK UTAMA (Stats Cards)
+        
         $stats = [
             'total_datasets' => Dataset::count(),
             'pending_datasets' => Dataset::where('status', 'pending')->count(),
@@ -26,16 +23,13 @@ class AdminDashboardController extends Controller
             'total_users' => User::count(),
         ];
 
-        // 2. DAFTAR DATASET PENDING (Tabel di Kiri)
-        // Mengambil 10 dataset terbaru yang statusnya pending
-        // Menggunakan eager loading untuk menghindari N+1 query
-        $pendingDatasets = Dataset::with(['files']) // Load relasi files
+        $pendingDatasets = Dataset::with(['files']) 
             ->where('status', 'pending')
             ->orderBy('created_at', 'desc')
             ->take(10)
             ->get()
             ->map(function($dataset) {
-                // Ambil contributor pertama (donor) jika ada
+        
                 $donor = DB::table('dataset_contributors')
                     ->join('people', 'dataset_contributors.person_id', '=', 'people.person_id')
                     ->where('dataset_contributors.dataset_id', $dataset->dataset_id)
@@ -43,7 +37,7 @@ class AdminDashboardController extends Controller
                     ->select('people.*')
                     ->first();
                 
-                // Jika tidak ada donor, ambil contributor pertama
+
                 if (!$donor) {
                     $donor = DB::table('dataset_contributors')
                         ->join('people', 'dataset_contributors.person_id', '=', 'people.person_id')

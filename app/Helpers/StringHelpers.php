@@ -4,9 +4,6 @@ namespace App\Helpers;
 
 class StringHelper
 {
-    /**
-     * Safe limit: handle string, object, array, null
-     */
     public static function safeLimit($value, int $limit = 100, string $end = '...'): string
     {
         if ($value === null) return '';
@@ -16,10 +13,7 @@ class StringHelper
         }
         return \Illuminate\Support\Str::limit((string) $value, $limit, $end);
     }
-    
-    /**
-     * Safe empty check: handle string, object, array
-     */
+
     public static function isNotEmpty($value): bool
     {
         if ($value === null) return false;
