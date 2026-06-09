@@ -1,0 +1,334 @@
+@extends('layouts.auth')
+@section('title', 'Sign Up - DataSphere ML Repository')
+@section('meta_desc', 'Create your DataSphere Machine Learning Repository account')
+
+@section('content')
+<div class="min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-12 bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
+    
+    <!-- Background Decoration -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="relative w-full max-w-md">
+        
+        <!-- Auth Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-8 md:p-10">
+            
+            <!-- Logo & Header -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 to-sphere-secondary mb-4 shadow-lg">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                        <circle cx="20" cy="20" r="18" fill="white" opacity="0.2"/>
+                        <ellipse cx="20" cy="20" rx="18" ry="8" stroke="white" stroke-width="1.5" fill="none" opacity="0.6"/>
+                        <ellipse cx="20" cy="20" rx="8" ry="18" stroke="white" stroke-width="1.5" fill="none" opacity="0.6"/>
+                        <line x1="2" y1="20" x2="38" y2="20" stroke="white" stroke-width="1.5" opacity="0.6"/>
+                        <line x1="20" y1="2" x2="20" y2="38" stroke="white" stroke-width="1.5" opacity="0.6"/>
+                        <circle cx="12" cy="14" r="2" fill="white"/>
+                        <circle cx="28" cy="16" r="2" fill="white"/>
+                        <circle cx="20" cy="28" r="2" fill="white"/>
+                    </svg>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                    Join DataSphere
+                </h2>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                    Create your account to start exploring
+                </p>
+            </div>
+            
+            <!-- Registration Form -->
+            <form class="space-y-4" method="POST" action="{{ route('register') }}" id="registerForm">
+                @csrf
+                
+                <!-- Name -->
+                <div>
+                    <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <i class="bi bi-person me-1"></i>Full Name
+                    </label>
+                    <input type="text" 
+                           id="name" 
+                           name="name" 
+                           value="{{ old('name') }}" 
+                           required 
+                           autofocus
+                           autocomplete="name"
+                           placeholder="John Doe"
+                           class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all @error('name') border-red-500 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                    @error('name')
+                        <p class="mt-2 text-xs text-red-500 flex items-center gap-1">
+                            <i class="bi bi-exclamation-circle"></i>
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+                
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <i class="bi bi-envelope me-1"></i>Email Address
+                    </label>
+                    <input type="email" 
+                           id="email" 
+                           name="email" 
+                           value="{{ old('email') }}" 
+                           required
+                           autocomplete="email"
+                           placeholder="your@email.com"
+                           class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all @error('email') border-red-500 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                    @error('email')
+                        <p class="mt-2 text-xs text-red-500 flex items-center gap-1">
+                            <i class="bi bi-exclamation-circle"></i>
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+                
+                <!-- Password -->
+                <div>
+                    <label for="password" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <i class="bi bi-lock me-1"></i>Password
+                    </label>
+                    <div class="relative">
+                        <input type="password" 
+                               id="password" 
+                               name="password" 
+                               required
+                               autocomplete="new-password"
+                               placeholder="Minimum 8 characters"
+                               oninput="checkPasswordStrength(this.value)"
+                               class="w-full px-4 py-3 pr-12 rounded-xl bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all @error('password') border-red-500 focus:border-red-500 focus:ring-red-500/20 @enderror">
+                        <button type="button" 
+                                onclick="togglePassword('password', 'toggleIcon1')" 
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                            <i class="bi bi-eye" id="toggleIcon1"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Password Strength Indicator -->
+                    <div class="mt-2">
+                        <div class="flex gap-1 mb-1">
+                            <div id="strength-1" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></div>
+                            <div id="strength-2" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></div>
+                            <div id="strength-3" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></div>
+                            <div id="strength-4" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></div>
+                        </div>
+                        <p id="strengthText" class="text-xs text-gray-500 dark:text-gray-400">Password strength</p>
+                    </div>
+                    
+                    @error('password')
+                        <p class="mt-2 text-xs text-red-500 flex items-center gap-1">
+                            <i class="bi bi-exclamation-circle"></i>
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+                
+                <!-- Confirm Password -->
+                <div>
+                    <label for="password_confirmation" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        <i class="bi bi-lock-fill me-1"></i>Confirm Password
+                    </label>
+                    <div class="relative">
+                        <input type="password" 
+                               id="password_confirmation" 
+                               name="password_confirmation" 
+                               required
+                               autocomplete="new-password"
+                               placeholder="Re-enter your password"
+                               class="w-full px-4 py-3 pr-12 rounded-xl bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all">
+                        <button type="button" 
+                                onclick="togglePassword('password_confirmation', 'toggleIcon2')" 
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                            <i class="bi bi-eye" id="toggleIcon2"></i>
+                        </button>
+                    </div>
+                    <p id="matchError" class="mt-2 text-xs text-red-500 flex items-center gap-1 hidden">
+                        <i class="bi bi-exclamation-circle"></i>
+                        Passwords do not match
+                    </p>
+                </div>
+                
+                <!-- Terms and Conditions -->
+                <div class="pt-2">
+                    <label class="flex items-start gap-2 cursor-pointer">
+                        <input type="checkbox" 
+                               name="terms" 
+                               id="terms"
+                               required
+                               class="mt-0.5 w-4 h-4 rounded border-gray-300 dark:border-gray-600 text-brand-600 focus:ring-brand-500">
+                        <span class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                            I agree to the 
+                            <a href="#" class="font-semibold text-brand-600 dark:text-brand-400 hover:underline">Terms of Service</a> 
+                            and 
+                            <a href="#" class="font-semibold text-brand-600 dark:text-brand-400 hover:underline">Privacy Policy</a>
+                        </span>
+                    </label>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit" 
+                        id="submitBtn"
+                        class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 to-sphere-secondary text-white font-semibold shadow-lg hover:shadow-xl hover:shadow-brand-500/30 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0">
+                    <i class="bi bi-person-plus me-2"></i>
+                    Create Account
+                </button>
+            </form>
+            
+            <!-- Divider -->
+            <div class="relative my-8">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="px-4 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                        Or sign up with
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Social Signup Buttons -->
+            <div class="grid grid-cols-2 gap-3">
+                <!-- Google -->
+                <a href="{{ route('google.login') }}" 
+                   class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:-translate-y-0.5 transition-all">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    <span>Google</span>
+                </a>
+                
+                <!-- GitHub -->
+                <a href="{{ route('github.login') }}" 
+                   class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-900 dark:bg-gray-700 border border-gray-900 dark:border-gray-600 text-white font-semibold text-sm hover:bg-gray-800 dark:hover:bg-gray-600 hover:-translate-y-0.5 transition-all">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+            </div>
+            
+            <!-- Sign In Link -->
+            <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-8">
+                Already have an account? 
+                <a href="{{ route('login') }}" class="font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors">
+                    Sign in
+                </a>
+            </p>
+            
+        </div>
+        
+        <!-- Footer Info -->
+        <div class="text-center mt-6">
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+                <i class="bi bi-shield-check me-1"></i>
+                Your data is protected and secure
+            </p>
+        </div>
+        
+    </div>
+</div>
+
+@push('scripts')
+<script>
+    // Toggle Password Visibility
+    function togglePassword(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+        }
+    }
+    
+    // Password Strength Checker
+    function checkPasswordStrength(password) {
+        let strength = 0;
+        const strengthText = document.getElementById('strengthText');
+        const bars = [
+            document.getElementById('strength-1'),
+            document.getElementById('strength-2'),
+            document.getElementById('strength-3'),
+            document.getElementById('strength-4')
+        ];
+        
+        // Reset all bars
+        bars.forEach(bar => {
+            bar.className = 'h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors';
+        });
+        
+        if (password.length === 0) {
+            strengthText.textContent = 'Password strength';
+            strengthText.className = 'text-xs text-gray-500 dark:text-gray-400';
+            return;
+        }
+        
+        // Check password criteria
+        if (password.length >= 8) strength++;
+        if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+        if (password.match(/\d/)) strength++;
+        if (password.match(/[^a-zA-Z\d]/)) strength++;
+        
+        // Update bars and text
+        const colors = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500'];
+        const texts = ['Weak', 'Fair', 'Good', 'Strong'];
+        const textColors = ['text-red-500', 'text-orange-500', 'text-yellow-500', 'text-green-500'];
+        
+        for (let i = 0; i < strength; i++) {
+            bars[i].className = `h-1 flex-1 rounded-full ${colors[strength - 1]} transition-colors`;
+        }
+        
+        strengthText.textContent = texts[strength - 1] || 'Too short';
+        strengthText.className = `text-xs ${textColors[strength - 1] || 'text-gray-500'} font-semibold`;
+        
+        // Check password match
+        checkPasswordMatch();
+    }
+    
+    // Check Password Match
+    function checkPasswordMatch() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('password_confirmation').value;
+        const matchError = document.getElementById('matchError');
+        
+        if (confirmPassword.length > 0 && password !== confirmPassword) {
+            matchError.classList.remove('hidden');
+        } else {
+            matchError.classList.add('hidden');
+        }
+    }
+    
+    // Add event listener to confirm password
+    document.getElementById('password_confirmation').addEventListener('input', checkPasswordMatch);
+    
+    // Form submission validation
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('password_confirmation').value;
+        const terms = document.getElementById('terms').checked;
+        
+        if (password !== confirmPassword) {
+            e.preventDefault();
+            document.getElementById('matchError').classList.remove('hidden');
+            return false;
+        }
+        
+        if (!terms) {
+            e.preventDefault();
+            alert('Please agree to the Terms of Service and Privacy Policy');
+            return false;
+        }
+    });
+</script>
+@endpush
+@endsection
