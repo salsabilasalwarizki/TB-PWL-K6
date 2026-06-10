@@ -5,7 +5,6 @@
 @section('content')
 <div class="space-y-6">
 
-    <!-- Page Header -->
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
             <h2 class="text-2xl font-bold text-ink-900 dark:text-white">Users</h2>
@@ -23,7 +22,6 @@
         </div>
     </div>
 
-    <!-- Stats Cards -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 p-5 hover:-translate-y-0.5 hover:shadow-elev transition-all duration-300">
             <div class="flex items-center gap-4">
@@ -81,8 +79,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Charts (Only if data exists) -->
+    
     @if(isset($registrationData) && $registrationData->isNotEmpty())
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="lg:col-span-2 bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 overflow-hidden">
@@ -110,7 +107,6 @@
     </div>
     @endif
 
-    <!-- Filters -->
     <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 p-5">
         <form method="GET" class="grid grid-cols-1 sm:grid-cols-4 gap-4">
             <div>
@@ -146,7 +142,6 @@
         </form>
     </div>
 
-    <!-- Table -->
     <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 overflow-hidden">
         <form method="POST" action="{{ route('admin.users.bulk-action') }}">
             @csrf
@@ -280,7 +275,7 @@
 @if(isset($registrationData) && $registrationData->isNotEmpty())
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// Registration Trend Chart
+
 const regCtx = document.getElementById('registrationChart')?.getContext('2d');
 if (regCtx) {
     new Chart(regCtx, {
@@ -327,7 +322,6 @@ if (regCtx) {
     });
 }
 
-// Role Distribution Chart
 const roleCtx = document.getElementById('roleChart')?.getContext('2d');
 if (roleCtx && {!! json_encode($roleData->isNotEmpty()) !!}) {
     new Chart(roleCtx, {
@@ -357,14 +351,12 @@ if (roleCtx && {!! json_encode($roleData->isNotEmpty()) !!}) {
 @endif
 
 <script>
-// Select all checkbox
 document.getElementById('selectAll')?.addEventListener('change', function() {
     document.querySelectorAll('input[name="user_ids[]"]').forEach(cb => {
         if (!cb.disabled) cb.checked = this.checked;
     });
 });
 
-// Toggle active/inactive
 function toggleActive(userId) {
     fetch(`/admin/users/${userId}/toggle-active`, {
         method: 'POST',
@@ -388,7 +380,6 @@ function toggleActive(userId) {
     });
 }
 
-// Confirm delete
 function confirmDelete(url) {
     if (confirm('Are you sure you want to delete this user?')) {
         document.getElementById('deleteForm').action = url;
