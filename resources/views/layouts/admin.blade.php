@@ -6,12 +6,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin Dashboard') — DataSphere</title>
     
-    <!-- Preconnect & Fonts -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -67,7 +67,7 @@
         }
     </script>
     
-    <!-- Bootstrap Icons -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     
     <style>
@@ -80,7 +80,7 @@
         html, body { height: 100%; }
         body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
         
-        /* Scrollbar */
+        
         ::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgb(203 213 225 / 0.5); border-radius: 10px; border: 2px solid transparent; background-clip: padding-box; }
@@ -92,7 +92,7 @@
         .sidebar-scroll::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 0.15); background-clip: padding-box; border: 2px solid transparent; }
         .sidebar-scroll::-webkit-scrollbar-thumb:hover { background: rgb(255 255 255 / 0.3); background-clip: padding-box; border: 2px solid transparent; }
         
-        /* Sidebar */
+        
         .sidebar {
             position: fixed;
             inset: 0 auto 0 0;
@@ -109,7 +109,7 @@
             flex-direction: column;
         }
         
-        /* Grid background */
+        
         .bg-grid {
             background-image: radial-gradient(circle at 1px 1px, rgb(148 163 184 / 0.15) 1px, transparent 0);
             background-size: 24px 24px;
@@ -128,14 +128,14 @@
             pointer-events: none;
         }
         
-        /* Mobile */
+        
         @media (max-width: 1023px) {
             .sidebar { transform: translateX(-100%); }
             .sidebar.open { transform: translateX(0); }
             .main-wrapper { margin-left: 0; }
         }
         
-        /* Collapsed state */
+        
         @media (min-width: 1024px) {
             .sidebar.collapsed { width: var(--sidebar-w-collapsed); }
             .sidebar.collapsed .sidebar-label,
@@ -172,7 +172,7 @@
         .hover-lift { transition: transform .25s ease, box-shadow .25s ease; }
         .hover-lift:hover { transform: translateY(-2px); }
         
-        /* Loading Overlay */
+        
         .loading-overlay {
             position: fixed;
             inset: 0;
@@ -186,7 +186,7 @@
         .loading-overlay.active { display: flex; }
         .dark .loading-overlay { background: rgba(15, 23, 42, 0.8); }
         
-        /* Command Palette */
+        
         .cmd-palette {
             position: fixed;
             inset: 0;
@@ -200,7 +200,7 @@
         }
         .cmd-palette.active { display: flex; }
         
-        /* Toast Container */
+        
         .toast-container {
             position: fixed;
             top: calc(var(--header-h) + 1rem);
@@ -212,7 +212,7 @@
             max-width: 400px;
         }
         
-        /* Tooltip */
+        
         [data-tooltip] { position: relative; }
         [data-tooltip]:hover::after {
             content: attr(data-tooltip);
@@ -239,7 +239,7 @@
 
 <body class="bg-slate-50 dark:bg-ink-950 text-ink-900 dark:text-ink-100 antialiased">
 
-    <!-- ============== LOADING OVERLAY ============== -->
+    
     <div id="loadingOverlay" class="loading-overlay">
         <div class="text-center">
             <div class="relative w-16 h-16 mx-auto mb-4">
@@ -250,10 +250,10 @@
         </div>
     </div>
 
-    <!-- ============== COMMAND PALETTE ============== -->
+    
     <div id="cmdPalette" class="cmd-palette" onclick="if(event.target === this) closeCmdPalette()">
         <div class="w-full max-w-2xl bg-white dark:bg-ink-900 rounded-2xl shadow-float border border-slate-200 dark:border-ink-800 overflow-hidden animate-scale-in mx-4">
-            <!-- Search -->
+            
             <div class="p-4 border-b border-slate-200 dark:border-ink-800">
                 <div class="relative">
                     <i class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-ink-400"></i>
@@ -263,9 +263,9 @@
                 </div>
             </div>
             
-            <!-- Results -->
+            
             <div id="cmdResults" class="max-h-96 overflow-y-auto p-2">
-                <!-- Quick Actions -->
+                
                 <div class="cmd-section">
                     <p class="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">Quick Actions</p>
                     <a href="{{ route('admin.dashboard') }}" class="cmd-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-ink-800 transition-colors">
@@ -298,7 +298,7 @@
                     </a>
                 </div>
                 
-                <!-- Navigation -->
+                
                 <div class="cmd-section mt-2">
                     <p class="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">Navigation</p>
                     <a href="{{ route('home') }}" class="cmd-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-ink-800 transition-colors">
@@ -316,7 +316,7 @@
                     </a>
                 </div>
                 
-                <!-- Actions -->
+                
                 <div class="cmd-section mt-2">
                     <p class="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">Actions</p>
                     <button onclick="toggleTheme(); closeCmdPalette()" class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-ink-800 transition-colors text-left">
@@ -339,7 +339,7 @@
                 </div>
             </div>
             
-            <!-- Footer -->
+            
             <div class="p-3 border-t border-slate-200 dark:border-ink-800 bg-slate-50 dark:bg-ink-950/50 flex items-center justify-between text-[11px] text-ink-500">
                 <div class="flex items-center gap-3">
                     <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 bg-white dark:bg-ink-800 border border-slate-200 dark:border-ink-700 rounded">↑↓</kbd> Navigate</span>
@@ -351,13 +351,13 @@
         </div>
     </div>
 
-    <!-- ============== TOAST CONTAINER ============== -->
+    
     <div id="toastContainer" class="toast-container"></div>
 
-    <!-- ============== SIDEBAR ============== -->
+    
     <aside id="sidebar" class="sidebar bg-ink-900 dark:bg-ink-950 text-white sidebar-glow overflow-hidden border-r border-white/5 flex flex-col">
         
-        <!-- Brand -->
+        
         <div class="px-5 h-[var(--header-h)] flex items-center gap-3 border-b border-white/5 relative z-10 shrink-0">
             <div class="relative shrink-0">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-400 via-brand-500 to-sphere-500 flex items-center justify-center shadow-lg shadow-brand-500/30">
@@ -371,7 +371,7 @@
             </div>
         </div>
         
-        <!-- User mini card -->
+        
         @auth
         <div class="px-4 py-4 border-b border-white/5 shrink-0">
             <div class="flex items-center gap-3 p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
@@ -386,10 +386,10 @@
         </div>
         @endauth
         
-        <!-- Navigation -->
+        
         <nav class="flex-1 overflow-y-auto sidebar-scroll px-3 py-4 space-y-6">
             
-            <!-- Main Section -->
+            
             <div>
                 <p class="sidebar-section-title px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-white/40">Main</p>
                 
@@ -422,7 +422,7 @@
                 </a>
             </div>
             
-            <!-- Content Section -->
+            
             <div>
                 <p class="sidebar-section-title px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-white/40">Content</p>
                 
@@ -452,7 +452,7 @@
                 </a>
             </div>
             
-            <!-- System Section -->
+            
             <div>
                 <p class="sidebar-section-title px-3 mb-2 text-[10px] font-bold uppercase tracking-wider text-white/40">System</p>
                 
@@ -471,7 +471,7 @@
             </div>
         </nav>
         
-        <!-- Footer -->
+        
         <div class="px-3 py-3 border-t border-white/5 shrink-0">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -486,27 +486,27 @@
         </div>
     </aside>
     
-    <!-- Mobile overlay -->
+    
     <div id="sidebarOverlay" class="fixed inset-0 bg-ink-950/60 backdrop-blur-sm z-30 lg:hidden hidden"></div>
 
-    <!-- ============== MAIN ============== -->
+    
     <div id="mainWrapper" class="main-wrapper">
         
-        <!-- Topbar -->
+        
         <header class="sticky top-0 z-20 h-[var(--header-h)] bg-white/80 dark:bg-ink-900/80 backdrop-blur-xl border-b border-slate-200/60 dark:border-ink-800/60 px-4 sm:px-6 flex items-center justify-between gap-4 shrink-0">
             
             <div class="flex items-center gap-3 flex-1 min-w-0">
-                <!-- Sidebar toggle mobile -->
+                
                 <button id="sidebarToggle" class="lg:hidden p-2 -ml-2 rounded-lg hover:bg-slate-100 dark:hover:bg-ink-800 transition-colors focus-ring">
                     <i class="bi bi-list text-xl text-ink-700 dark:text-ink-300"></i>
                 </button>
                 
-                <!-- Desktop collapse -->
+                
                 <button id="sidebarCollapse" class="hidden lg:flex p-2 -ml-2 rounded-lg hover:bg-slate-100 dark:hover:bg-ink-800 transition-colors focus-ring">
                     <i class="bi bi-layout-sidebar-inset text-xl text-ink-700 dark:text-ink-300"></i>
                 </button>
                 
-                <!-- Breadcrumb / Title -->
+                
                 <div class="hidden sm:block min-w-0">
                     <h1 class="text-[15px] font-bold text-ink-900 dark:text-white truncate leading-tight">
                         @yield('page-title', 'Dashboard')
@@ -520,7 +520,7 @@
                 </div>
             </div>
             
-            <!-- Search Bar (Desktop) -->
+            
             <div class="hidden md:block flex-shrink-0">
                 <button onclick="openCmdPalette()" 
                         class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-ink-800 hover:bg-slate-200 dark:hover:bg-ink-700 transition-colors border border-transparent hover:border-slate-300 dark:hover:border-ink-700 group">
@@ -530,16 +530,16 @@
                 </button>
             </div>
             
-            <!-- Right actions -->
+            
             <div class="flex items-center gap-1.5">
                 
-                <!-- Theme Toggle -->
+                
                 <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-ink-800 transition-colors focus-ring" title="Toggle theme">
                     <i class="bi bi-moon-stars-fill text-[18px] text-ink-600 dark:text-ink-300 dark:hidden"></i>
                     <i class="bi bi-sun-fill text-[18px] text-amber-400 hidden dark:block"></i>
                 </button>
                 
-                <!-- Notifications -->
+                
                 @php $pendingCount = \App\Models\Dataset::where('status', 'pending')->count(); @endphp
                 <div class="relative">
                     <button id="notifBtn" class="relative p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-ink-800 transition-colors focus-ring">
@@ -591,7 +591,7 @@
                 
                 <div class="w-px h-6 bg-slate-200 dark:bg-ink-800 mx-1"></div>
                 
-                <!-- User menu -->
+                
                 @auth
                 <div class="relative">
                     <button id="userBtn" class="flex items-center gap-2 p-1 pr-2 rounded-lg hover:bg-slate-100 dark:hover:bg-ink-800 transition-colors focus-ring">
@@ -642,10 +642,10 @@
             </div>
         </header>
         
-        <!-- Page content -->
+        
         <main class="flex-1 p-4 sm:p-6 lg:p-8 bg-grid">
             
-            <!-- Flash messages -->
+            
             @if(session('success'))
             <div class="mb-6 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/50 rounded-xl p-4 flex items-start gap-3 animate-slide-up shadow-card">
                 <div class="flex-shrink-0 w-9 h-9 rounded-lg bg-emerald-500 flex items-center justify-center shadow-sm shadow-emerald-500/30">
@@ -679,7 +679,7 @@
             @yield('content')
         </main>
         
-        <!-- Footer -->
+        
         <footer class="border-t border-slate-200 dark:border-ink-800 bg-white/50 dark:bg-ink-900/50 backdrop-blur-sm px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-ink-500">
                 <p>© {{ date('Y') }} <span class="font-semibold gradient-text">DataSphere</span> ML Repository</p>
@@ -696,29 +696,22 @@
     </div>
     
     <script>
-        // ===== THEME TOGGLE =====
         function toggleTheme() {
             const html = document.documentElement;
             const isDark = html.classList.toggle('dark');
             localStorage.setItem('datasphere-admin-theme', isDark ? 'dark' : 'light');
         }
-        
-        // Init theme
         (function() {
             const theme = localStorage.getItem('datasphere-admin-theme') || 
                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             if (theme === 'dark') document.documentElement.classList.add('dark');
         })();
-        
-        // ===== LOADING OVERLAY =====
         function showLoading() {
             document.getElementById('loadingOverlay').classList.add('active');
         }
         function hideLoading() {
             document.getElementById('loadingOverlay').classList.remove('active');
         }
-        
-        // ===== TOAST NOTIFICATIONS =====
         function showToast(message, type = 'success') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
@@ -757,8 +750,6 @@
                 setTimeout(() => toast.remove(), 300);
             }, 4000);
         }
-        
-        // ===== COMMAND PALETTE =====
         function openCmdPalette() {
             document.getElementById('cmdPalette').classList.add('active');
             setTimeout(() => document.getElementById('cmdInput').focus(), 100);
@@ -767,8 +758,6 @@
             document.getElementById('cmdPalette').classList.remove('active');
             document.getElementById('cmdInput').value = '';
         }
-        
-        // ===== SIDEBAR TOGGLE (mobile) =====
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebarOverlay');
         const toggleBtn = document.getElementById('sidebarToggle');
@@ -785,8 +774,6 @@
                 overlay.classList.add('hidden');
             });
         }
-        
-        // ===== SIDEBAR COLLAPSE (desktop) =====
         const collapseBtn = document.getElementById('sidebarCollapse');
         const mainWrapper = document.getElementById('mainWrapper');
         if (collapseBtn) {
@@ -800,8 +787,6 @@
                 mainWrapper.classList.add('sidebar-collapsed');
             }
         }
-        
-        // ===== DROPDOWNS =====
         function setupDropdown(btnId, dropdownId) {
             const btn = document.getElementById(btnId);
             const dropdown = document.getElementById(dropdownId);
@@ -824,28 +809,19 @@
         document.addEventListener('click', () => {
             document.querySelectorAll('[id$="Dropdown"]').forEach(d => d.classList.add('hidden'));
         });
-        
-        // ===== KEYBOARD SHORTCUTS =====
         document.addEventListener('keydown', (e) => {
-            // Escape
             if (e.key === 'Escape') {
                 document.querySelectorAll('[id$="Dropdown"]').forEach(d => d.classList.add('hidden'));
                 closeCmdPalette();
             }
-            
-            // Cmd/Ctrl + K = Command Palette
             if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
                 e.preventDefault();
                 openCmdPalette();
             }
-            
-            // Cmd/Ctrl + D = Toggle Dark Mode
             if ((e.metaKey || e.ctrlKey) && e.key === 'd') {
                 e.preventDefault();
                 toggleTheme();
             }
-            
-            // Cmd/Ctrl + 1-4 = Quick navigation
             if ((e.metaKey || e.ctrlKey) && ['1','2','3','4'].includes(e.key)) {
                 e.preventDefault();
                 const routes = {
@@ -857,8 +833,6 @@
                 if (routes[e.key]) window.location.href = routes[e.key];
             }
         });
-        
-        // ===== COMMAND PALETTE SEARCH =====
         const cmdInput = document.getElementById('cmdInput');
         if (cmdInput) {
             cmdInput.addEventListener('input', (e) => {
@@ -867,8 +841,6 @@
                     const text = item.textContent.toLowerCase();
                     item.style.display = text.includes(query) ? 'flex' : 'none';
                 });
-                
-                // Hide empty sections
                 document.querySelectorAll('.cmd-section').forEach(section => {
                     const visibleItems = section.querySelectorAll('.cmd-item[style*="flex"], .cmd-item:not([style])');
                     const hasVisible = Array.from(section.querySelectorAll('.cmd-item')).some(item => item.style.display !== 'none');
@@ -876,8 +848,6 @@
                 });
             });
         }
-        
-        // ===== AUTO-HIDE FLASH MESSAGES =====
         document.querySelectorAll('[class*="animate-slide-up"]').forEach(msg => {
             if (msg.querySelector('.bi-check-lg, .bi-exclamation-lg')) {
                 setTimeout(() => {
@@ -888,13 +858,10 @@
                 }, 5000);
             }
         });
-        
-        // ===== FORM SUBMIT WITH LOADING =====
         document.querySelectorAll('form[method="POST"], form[method="post"]').forEach(form => {
             form.addEventListener('submit', function(e) {
                 const submitBtn = this.querySelector('button[type="submit"]');
                 if (submitBtn && !submitBtn.disabled) {
-                    // Optional: show loading for heavy operations
                 }
             });
         });

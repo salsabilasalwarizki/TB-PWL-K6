@@ -28,25 +28,17 @@ class DatasetDescription extends Model
     protected $casts = [
         'description_id' => 'integer',
         'dataset_id' => 'integer',
-        // ✅ PENTING: Jangan cast ke array/object jika kolom adalah TEXT/VARCHAR
-        // Hapus baris berikut jika ada:
-        // 'purpose' => 'array',
-        // 'instances_represent' => 'object',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
     
-    /**
-     * Relationship ke Dataset
-     */
+    
     public function dataset(): BelongsTo
     {
         return $this->belongsTo(Dataset::class, 'dataset_id', 'dataset_id');
     }
     
-    /**
-     * Accessor: Pastikan return string, bukan object
-     */
+   
     public function getPurposeAttribute($value): ?string
     {
         if ($value === null) return null;

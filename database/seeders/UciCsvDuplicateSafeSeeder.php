@@ -31,14 +31,13 @@ class UciCsvDuplicateSafeSeeder extends Seeder
         $fullPath = database_path($this->csvPath);
         
         if (!file_exists($fullPath)) {
-            $this->command->error("❌ File CSV tidak ditemukan: {$fullPath}");
+            $this->command->error("File CSV tidak ditemukan: {$fullPath}");
             return;
         }
 
-        $this->command->info("📦 Starting UCI CSV import (Duplicate-Safe Mode)...");
-        $this->command->info("📂 File: {$this->csvPath}");
+        $this->command->info("Starting UCI CSV import (Duplicate-Safe Mode)...");
+        $this->command->info("File: {$this->csvPath}");
         
-        // Read CSV
         $csv = Reader::createFromPath($fullPath, 'r');
         $csv->setHeaderOffset(0);
         $csv->setDelimiter(',');
@@ -48,22 +47,20 @@ class UciCsvDuplicateSafeSeeder extends Seeder
         $records = iterator_to_array((new Statement())->process($csv));
         $total = count($records);
         
-        $this->command->info("📊 Found {$total} records in CSV");
+        $this->command->info("Found {$total} records in CSV");
         
-        // Filter valid records
         $validRecords = array_filter($records, function($row) {
             return !empty(trim($row['item_page_title'] ?? ''));
         });
         
         $validTotal = count($validRecords);
-        $this->command->info("✅ {$validTotal} valid records to process");
+        $this->command->info("{$validTotal} valid records to process");
         
         if ($validTotal === 0) {
-            $this->command->error("❌ No valid records found!");
+            $this->command->error("No valid records found!");
             return;
         }
         
-        // Statistics
         $imported = 0;
         $skipped = 0;
         $updated = 0;
@@ -73,7 +70,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
         DB::beginTransaction();
         
         try {
-            // Get or create default license
             $defaultLicense = License::firstOrCreate(
                 ['license_name' => 'Creative Commons Attribution 4.0 International'],
                 [
@@ -94,17 +90,15 @@ class UciCsvDuplicateSafeSeeder extends Seeder
                         $updated++;
                     }
                     
-                    // Progress indicator
                     if (($index + 1) % 10 === 0) {
                         $elapsed = round((microtime(true) - $startTime) / 60, 2);
-                        $this->command->info("  ✓ Processed " . ($index + 1) . "/{$validTotal} (Created: {$imported}, Skipped: {$skipped}, Updated: {$updated}) - {$elapsed} mins");
+                        $this->command->info("  Processed " . ($index + 1) . "/{$validTotal} (Created: {$imported}, Skipped: {$skipped}, Updated: {$updated}) - {$elapsed} mins");
                     }
                     
-                    // Batch commit
                     if (($index + 1) % 50 === 0) {
                         DB::commit();
                         DB::beginTransaction();
-                        $this->command->info("  💾 Batch committed: " . ($index + 1) . " records");
+                        $this->command->info("  Batch committed: " . ($index + 1) . " records");
                     }
                     
                 } catch (\Exception $e) {
@@ -112,7 +106,7 @@ class UciCsvDuplicateSafeSeeder extends Seeder
                     $errors[] = "Row " . ($index + 2) . " [{$title}]: " . $e->getMessage();
                     
                     if ($this->command->getOutput()->isVerbose()) {
-                        $this->command->warn("  ⚠️ Error: {$title}");
+                        $this->command->warn("  Error: {$title}");
                     }
                 }
             }
@@ -122,7 +116,7 @@ class UciCsvDuplicateSafeSeeder extends Seeder
             $totalTime = round((microtime(true) - $startTime) / 60, 2);
             
             $this->command->newLine();
-            $this->command->info("✅ Import completed in {$totalTime} minutes!");
+            $this->command->info("Import completed in {$totalTime} minutes!");
             
             $this->command->table(
                 ['Metric', 'Value'],
@@ -138,26 +132,21 @@ class UciCsvDuplicateSafeSeeder extends Seeder
                 ]
             );
             
-            // Show errors if verbose
             if (!empty($errors) && $this->command->getOutput()->isVerbose()) {
                 $this->command->newLine();
-                $this->command->warn("📋 Errors (first 10):");
+                $this->command->warn("Errors (first 10):");
                 foreach (array_slice($errors, 0, 10) as $error) {
-                    $this->command->warn("  • {$error}");
+                    $this->command->warn("  {$error}");
                 }
             }
             
         } catch (\Exception $e) {
             DB::rollBack();
-            $this->command->error("❌ Import failed: " . $e->getMessage());
+            $this->command->error("Import failed: " . $e->getMessage());
             throw $e;
         }
     }
     
-    /**
-     * Import dataset safely (check for duplicates)
-     * Returns: 'created', 'skipped', or 'updated'
-     */
     protected function importDatasetSafe(array $row, License $defaultLicense): string
     {
         $name = $this->cleanString($row['item_page_title'] ?? '');
@@ -168,7 +157,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
         $slug = Str::slug($name);
         $uciId = $row['web_scraper_order'] ?? null;
         
-        // Check if dataset already exists
         $existingDataset = Dataset::where('slug', $slug)
             ->orWhere(function($query) use ($uciId) {
                 if ($uciId) {
@@ -178,11 +166,10 @@ class UciCsvDuplicateSafeSeeder extends Seeder
             ->first();
         
         if ($existingDataset) {
-            $this->command->warn("  ⏭️ Skipped (exists): {$name}");
+            $this->command->warn("  Skipped (exists): {$name}");
             return 'skipped';
         }
         
-        // Parse data
         $numInstances = $this->parseNumericValue($row['Total_Records'] ?? $row['data4'] ?? null);
         $numFeatures = $this->parseNumericValue($row['data5'] ?? null);
         $fileSizeBytes = $this->parseFileSize($row['download_size'] ?? null);
@@ -191,7 +178,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
         $dataType = $this->parseDataType($row['Data_File_Structure'] ?? $row['data3'] ?? null);
         $taskType = $this->parseTaskType($row['data2'] ?? null);
         
-        // Handle DOI
         $doiString = $this->cleanString($row['DOI'] ?? null);
         $doiId = null;
         if ($doiString && Str::startsWith($doiString, '10.')) {
@@ -202,7 +188,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
             $doiId = $doi->doi_id;
         }
         
-        // Create Dataset
         $dataset = Dataset::create([
             'uci_id' => $uciId,
             'slug' => $slug,
@@ -230,7 +215,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
             'doi_id' => $doiId,
         ]);
         
-        // Create related records
         $this->createDatasetDescription($dataset, $row);
         $this->attachKeywords($dataset, $row);
         $this->attachCreators($dataset, $row);
@@ -240,9 +224,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
         return 'created';
     }
     
-    /**
-     * Create dataset description
-     */
     protected function createDatasetDescription(Dataset $dataset, array $row): void
     {
         $data = array_filter([
@@ -256,9 +237,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
         }
     }
     
-    /**
-     * Attach keywords
-     */
     protected function attachKeywords(Dataset $dataset, array $row): void
     {
         $keywords = [];
@@ -286,16 +264,12 @@ class UciCsvDuplicateSafeSeeder extends Seeder
                 ['slug' => Str::slug($kwName)]
             );
             
-            // Check if already attached
             if (!$dataset->keywords()->where('keyword_id', $keyword->keyword_id)->exists()) {
                 $dataset->keywords()->attach($keyword->keyword_id);
             }
         }
     }
     
-    /**
-     * Attach creators
-     */
     protected function attachCreators(Dataset $dataset, array $row): void
     {
         $creators = [];
@@ -312,7 +286,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
                 ['affiliation' => null]
             );
             
-            // Check if already attached
             if (!$dataset->contributors()->where('person_id', $person->person_id)->exists()) {
                 $dataset->contributors()->attach($person->person_id, [
                     'contribution_role' => $index === 0 ? 'creator' : 'contributor',
@@ -322,9 +295,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
         }
     }
     
-    /**
-     * Create file record
-     */
     protected function createFileRecord(Dataset $dataset, array $row): void
     {
         $filename = Str::slug($dataset->name) . '.csv';
@@ -341,7 +311,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
             ]
         );
         
-        // Check if already attached
         if (!$dataset->files()->where('file_id', $file->file_id)->exists()) {
             $dataset->files()->attach($file->file_id, [
                 'file_role' => 'data',
@@ -351,9 +320,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
         }
     }
     
-    /**
-     * Create image record
-     */
     protected function createImageRecord(Dataset $dataset, array $row): void
     {
         $imageUrl = $this->cleanString($row['image_1'] ?? $row['image'] ?? null);
@@ -373,7 +339,6 @@ class UciCsvDuplicateSafeSeeder extends Seeder
             ]
         );
         
-        // Check if already attached
         if (!$dataset->images()->where('image_id', $image->image_id)->exists()) {
             $dataset->images()->attach($image->image_id, [
                 'role' => 'thumbnail',
@@ -381,13 +346,10 @@ class UciCsvDuplicateSafeSeeder extends Seeder
                 'display_order' => 0,
             ]);
             
-            // Update dataset thumbnail_url
             $dataset->thumbnail_url = $imageUrl;
             $dataset->saveQuietly();
         }
     }
-    
-    // === Helper Methods (same as before) ===
     
     protected function cleanString(?string $value): ?string
     {

@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->integer('download_count')->default(0);
             $table->integer('citation_count')->default(0);
             
-            // Foreign keys sebagai kolom biasa (constraint dipisah)
+           
             $table->unsignedBigInteger('task_id')->nullable();
             $table->unsignedBigInteger('subject_area_id')->nullable();
             $table->unsignedBigInteger('license_id')->nullable();
@@ -30,7 +30,7 @@ return new class extends Migration {
             
             $table->timestamps();
             
-            // Indexes
+            
             $table->index('name');
             $table->index('donated_date');
             $table->index('task_id');

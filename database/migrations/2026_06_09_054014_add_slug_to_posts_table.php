@@ -9,7 +9,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            // Tambah kolom slug jika belum ada
             if (!Schema::hasColumn('posts', 'slug')) {
                 $table->string('slug')->unique()->after('title');
             }

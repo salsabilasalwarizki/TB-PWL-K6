@@ -24,20 +24,20 @@ class Category extends Model
         'deleted_at' => 'datetime',
     ];
 
-    // Auto-generate slug dari name
+    
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
 
-    // Relationship ke posts
+    
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
     }
 
-    // Scope untuk category aktif saja
+    
     public function scopeActive($query)
     {
         return $query->where('active', 1);

@@ -49,24 +49,24 @@ class ContributeController extends Controller
             if ($response->successful()) {
                 $html = $response->body();
                 
-                // Extract title
+                
                 if (preg_match('/<title[^>]*>(.*?)<\/title>/si', $html, $matches)) {
                     $metadata['title'] = trim(strip_tags($matches[1]));
                 }
                 
-                // Extract description
+                
                 if (preg_match('/<meta[^>]+name=["\']description["\'][^>]+content=["\'](.*?)["\']/si', $html, $matches)) {
                     $metadata['description'] = trim(strip_tags($matches[1]));
                 } elseif (preg_match('/<meta[^>]+property=["\']og:description["\'][^>]+content=["\'](.*?)["\']/si', $html, $matches)) {
                     $metadata['description'] = trim(strip_tags($matches[1]));
                 }
 
-                // Try to extract num_instances from page content
+                
                 if (preg_match('/(\d+)\s*(instances?|rows?|samples?)/i', $html, $matches)) {
                     $metadata['num_instances'] = (int)$matches[1];
                 }
 
-                // Try to extract num_features from page content
+                
                 if (preg_match('/(\d+)\s*(features?|attributes?|columns?)/i', $html, $matches)) {
                     $metadata['num_features'] = (int)$matches[1];
                 }
@@ -394,7 +394,7 @@ class ContributeController extends Controller
             DB::beginTransaction();
             Log::info('=== SUBMIT DONATION: Start ===', ['user_id' => Auth::id(), 'dataset' => $data['name']]);
 
-            // ===== 1. LOOKUP FOREIGN KEYS =====
+            
             $task = Task::where('task_name', $data['associated_tasks'][0] ?? 'Other')->first();
             if (!$task) $task = Task::firstOrCreate(['task_name' => 'Other']);
             
@@ -404,7 +404,7 @@ class ContributeController extends Controller
             $license = License::where('license_name', 'CC BY 4.0')->first();
             if (!$license) $license = License::firstOrCreate(['license_name' => 'CC BY 4.0']);
 
-            // ===== 2. CREATE DATASET =====
+            
             $dataset = Dataset::create([
                 'user_id' => Auth::id(),
                 'name' => $data['name'],
@@ -428,7 +428,7 @@ class ContributeController extends Controller
             ]);
             Log::info('Dataset created', ['id' => $dataset->dataset_id]);
 
-            // ===== 3. DATASET DESCRIPTIONS =====
+            
             DB::table('dataset_descriptions')->insert([
                 'dataset_id' => $dataset->dataset_id,
                 'purpose' => $validated['purpose'] ?? null,
@@ -443,7 +443,7 @@ class ContributeController extends Controller
                 'updated_at' => now(),
             ]);
 
-            // ===== 4. DOI =====
+            
             if (!empty($data['doi'])) {
                 $doi = Doi::firstOrCreate(
                     ['doi_string' => $data['doi']],
@@ -452,7 +452,7 @@ class ContributeController extends Controller
                 $dataset->update(['doi_id' => $doi->doi_id]);
             }
 
-            // ===== 5. PAPER =====
+           
             if (!empty($data['paper']['title'])) {
                 $paper = Paper::create([
                     'title' => $data['paper']['title'],
@@ -472,7 +472,7 @@ class ContributeController extends Controller
                 ]);
             }
 
-            // ===== 6. CONTRIBUTORS =====
+            
             $user = Auth::user();
             $creators = $data['creators'] ?? [];
             
@@ -511,7 +511,7 @@ class ContributeController extends Controller
                 ]);
             }
 
-            // ===== 7. KEYWORDS =====
+            
             if (!empty($data['keywords']) && is_array($data['keywords'])) {
                 foreach ($data['keywords'] as $kw) {
                     if (empty($kw)) continue;
@@ -530,7 +530,7 @@ class ContributeController extends Controller
                 }
             }
 
-            // ===== 8. VARIABLES =====
+            
             if (!empty($data['variables']) && is_array($data['variables'])) {
                 foreach ($data['variables'] as $i => $var) {
                     if (empty($var['name'])) continue;
@@ -549,7 +549,7 @@ class ContributeController extends Controller
                         'is_visible' => true,
                     ]);
 
-                    // Handle variable categories if type is Categorical
+                    
                     if (($var['type'] ?? '') === 'Categorical' && !empty($var['categories'])) {
                         $categories = explode(',', $var['categories']);
                         foreach ($categories as $catIndex => $catValue) {
@@ -566,7 +566,7 @@ class ContributeController extends Controller
                 }
             }
 
-            // ===== 9. FILES =====
+            
             if (!empty($data['files']) && is_array($data['files'])) {
                 $uploadPath = "datasets/{$dataset->slug}";
                 Storage::disk('public')->makeDirectory($uploadPath);
@@ -831,7 +831,7 @@ class ContributeController extends Controller
         try {
             DB::beginTransaction();
             
-            // Lookup foreign keys
+            
             $task = Task::where('task_name', $data['associated_tasks'][0] ?? 'Other')->first();
             if (!$task) $task = Task::firstOrCreate(['task_name' => 'Other']);
             
@@ -841,7 +841,7 @@ class ContributeController extends Controller
             $license = License::where('license_name', 'CC BY 4.0')->first();
             if (!$license) $license = License::firstOrCreate(['license_name' => 'CC BY 4.0']);
             
-            // Create dataset
+            
             $dataset = Dataset::create([
                 'user_id' => auth()->id(),
                 'name' => $data['name'],
@@ -868,7 +868,7 @@ class ContributeController extends Controller
             
             Log::info('✅ Dataset created', ['dataset_id' => $dataset->dataset_id]);
             
-            // Insert dataset descriptions
+            
             DB::table('dataset_descriptions')->insert([
                 'dataset_id' => $dataset->dataset_id,
                 'purpose' => $validated['purpose'] ?? null,
@@ -883,7 +883,7 @@ class ContributeController extends Controller
                 'updated_at' => now(),
             ]);
             
-            // Handle DOI
+            
             if (!empty($data['doi'])) {
                 $doi = Doi::firstOrCreate(
                     ['doi_string' => $data['doi']],
@@ -892,7 +892,7 @@ class ContributeController extends Controller
                 $dataset->update(['doi_id' => $doi->doi_id]);
             }
             
-            // Handle paper
+           
             if (!empty($data['paper']['title'])) {
                 $paper = Paper::create([
                     'title' => $data['paper']['title'],
@@ -912,7 +912,7 @@ class ContributeController extends Controller
                 ]);
             }
             
-            // Handle creators
+           
             $user = auth()->user();
             $creators = $data['creators'] ?? [];
             
@@ -951,7 +951,7 @@ class ContributeController extends Controller
                 ]);
             }
             
-            // Handle keywords
+           
             if (!empty($data['keywords']) && is_array($data['keywords'])) {
                 foreach ($data['keywords'] as $kw) {
                     if (empty($kw)) continue;
@@ -970,7 +970,7 @@ class ContributeController extends Controller
                 }
             }
             
-            // Handle variable info
+            
             if (!empty($data['variable_info'])) {
                 $dataset->update(['add_var_information' => $data['variable_info']]);
             }

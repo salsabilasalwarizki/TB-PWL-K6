@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // Statistics
+        
         $stats = [
             'total_datasets' => Dataset::count(),
             'pending_datasets' => Dataset::where('status', 'pending')->count(),
@@ -21,20 +21,20 @@ class DashboardController extends Controller
             'total_admins' => User::whereIn('role', ['admin', 'superadmin'])->count(),
         ];
 
-        // Recent datasets pending review
+        
         $pendingDatasets = Dataset::with(['creators', 'subjectArea', 'task'])
             ->where('status', 'pending')
             ->orderBy('donated_date', 'desc')
             ->take(10)
             ->get();
 
-        // Recent activity
+        
         $recentActivity = Dataset::with('contributors')
     ->orderBy('created_at', 'desc')
     ->take(5)
     ->get();
 
-        // Monthly submissions chart data
+        
         $monthlySubmissions = Dataset::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as count')
             ->groupBy('month')
             ->orderBy('month', 'desc')

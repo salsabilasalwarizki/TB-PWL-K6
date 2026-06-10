@@ -5,15 +5,13 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
     </div>
     
     <div class="relative max-w-4xl mx-auto">
-        
-        <!-- Breadcrumb -->
+       
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
@@ -24,7 +22,6 @@
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Donate Dataset</span>
         </nav>
         
-        <!-- Header Card -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 p-8 md:p-10">
                 <div class="flex items-center gap-4 mb-4">
@@ -42,7 +39,6 @@
                 </div>
             </div>
             
-            <!-- Modern Progress Bar (100% Complete) -->
             <div class="p-6 md:p-8 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-gray-800 dark:to-gray-800">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
@@ -56,8 +52,7 @@
                         Complete
                     </span>
                 </div>
-                
-                <!-- Step indicators (all complete) -->
+              
                 <div class="hidden md:flex items-center gap-1 mb-3">
                     @for($i = 1; $i <= 7; $i++)
                         <div class="flex-1 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-green-500"></div>
@@ -67,7 +62,6 @@
                     <div class="h-full bg-gradient-to-r from-emerald-500 to-green-500" style="width: 100%"></div>
                 </div>
                 
-                <!-- Step labels (all complete) -->
                 <div class="hidden md:grid grid-cols-7 gap-1 mt-2 text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold">
                     <span class="text-center">Basic</span>
                     <span class="text-center">Paper</span>
@@ -80,7 +74,6 @@
             </div>
         </div>
         
-        <!-- Error Alert -->
         @if($errors->any())
         <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-5 mb-6 flex items-start gap-3">
             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
@@ -105,9 +98,6 @@
         <form action="{{ route('contribute.submit') }}" method="POST" enctype="multipart/form-data" id="donationForm">
             @csrf
             
-            <!-- ============================================ -->
-            <!-- SECTION 1: Descriptive Questions -->
-            <!-- ============================================ -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-emerald-50 to-green-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -122,8 +112,7 @@
                 </div>
                 
                 <div class="p-5 md:p-6 space-y-5">
-                    
-                    <!-- Purpose -->
+                   
                     <div>
                         <label for="purpose" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-bullseye me-1 text-emerald-500"></i>
@@ -145,8 +134,7 @@
                         <p class="mt-1 text-xs text-red-500 flex items-center gap-1"><i class="bi bi-exclamation-circle"></i>{{ $message }}</p>
                         @enderror
                     </div>
-                    
-                    <!-- Funding -->
+                  
                     <div>
                         <label for="funding" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-cash-stack me-1 text-emerald-500"></i>
@@ -165,7 +153,6 @@
                         </div>
                     </div>
                     
-                    <!-- Instances Representation -->
                     <div>
                         <label for="instances_represent" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-grid-3x3-gap me-1 text-emerald-500"></i>
@@ -187,8 +174,7 @@
                         <p class="mt-1 text-xs text-red-500 flex items-center gap-1"><i class="bi bi-exclamation-circle"></i>{{ $message }}</p>
                         @enderror
                     </div>
-                    
-                    <!-- Data Splits -->
+                   
                     <div>
                         <label for="data_splits" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-pie-chart me-1 text-emerald-500"></i>
@@ -206,8 +192,7 @@
                             <p class="text-xs text-gray-500 dark:text-gray-400 char-counter">0 / 1000</p>
                         </div>
                     </div>
-                    
-                    <!-- Sensitive Data -->
+                   
                     <div>
                         <label for="sensitive_data" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-shield-exclamation me-1 text-emerald-500"></i>
@@ -225,8 +210,7 @@
                             <p class="text-xs text-gray-500 dark:text-gray-400 char-counter">0 / 1500</p>
                         </div>
                     </div>
-                    
-                    <!-- Preprocessing -->
+                   
                     <div>
                         <label for="preprocessing" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-gear me-1 text-emerald-500"></i>
@@ -244,8 +228,7 @@
                             <p class="text-xs text-gray-500 dark:text-gray-400 char-counter">0 / 2000</p>
                         </div>
                     </div>
-                    
-                    <!-- Additional Information -->
+                   
                     <div>
                         <label for="additional_info" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-info-circle me-1 text-emerald-500"></i>
@@ -263,8 +246,7 @@
                             <p class="text-xs text-gray-500 dark:text-gray-400 char-counter">0 / 2000</p>
                         </div>
                     </div>
-                    
-                    <!-- Citation Requests -->
+                   
                     <div>
                         <label for="citation_requests" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-quote me-1 text-emerald-500"></i>
@@ -292,10 +274,7 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- ============================================ -->
-            <!-- SECTION 2: Submission Summary -->
-            <!-- ============================================ -->
+           
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border-2 border-emerald-300 dark:border-emerald-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-emerald-100 to-green-100 dark:from-emerald-900/40 dark:to-green-900/40 border-b border-emerald-200 dark:border-emerald-800 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -311,7 +290,6 @@
                 
                 <div class="p-5 md:p-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <!-- Dataset Name -->
                         <div class="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 border border-emerald-200 dark:border-emerald-800">
                             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center">
                                 <i class="bi bi-tag text-white"></i>
@@ -321,8 +299,7 @@
                                 <p class="text-sm font-bold text-gray-900 dark:text-white truncate">{{ $data['name'] ?? 'Not provided' }}</p>
                             </div>
                         </div>
-                        
-                        <!-- Instances -->
+            
                         <div class="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border border-blue-200 dark:border-blue-800">
                             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center">
                                 <i class="bi bi-table text-white"></i>
@@ -332,8 +309,7 @@
                                 <p class="text-sm font-bold text-gray-900 dark:text-white">{{ $data['num_instances'] ?? 'Not provided' }}</p>
                             </div>
                         </div>
-                        
-                        <!-- Features -->
+                       
                         <div class="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20 border border-purple-200 dark:border-purple-800">
                             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-purple-500 flex items-center justify-center">
                                 <i class="bi bi-grid-3x3-gap text-white"></i>
@@ -344,7 +320,6 @@
                             </div>
                         </div>
                         
-                        <!-- Subject Area -->
                         <div class="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800">
                             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center">
                                 <i class="bi bi-folder text-white"></i>
@@ -355,7 +330,6 @@
                             </div>
                         </div>
                         
-                        <!-- Associated Tasks -->
                         <div class="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-900/20 dark:to-pink-900/20 border border-rose-200 dark:border-rose-800">
                             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-rose-500 flex items-center justify-center">
                                 <i class="bi bi-bullseye text-white"></i>
@@ -368,7 +342,6 @@
                             </div>
                         </div>
                         
-                        <!-- Files -->
                         <div class="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/20 border border-teal-200 dark:border-teal-800">
                             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-teal-500 flex items-center justify-center">
                                 <i class="bi bi-file-earmark text-white"></i>
@@ -378,8 +351,7 @@
                                 <p class="text-sm font-bold text-gray-900 dark:text-white">{{ count($data['files'] ?? []) }} file(s)</p>
                             </div>
                         </div>
-                        
-                        <!-- Keywords -->
+                      
                         <div class="md:col-span-2 flex items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 border border-indigo-200 dark:border-indigo-800">
                             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-indigo-500 flex items-center justify-center">
                                 <i class="bi bi-tags text-white"></i>
@@ -393,7 +365,6 @@
                         </div>
                     </div>
                     
-                    <!-- Warning Alert -->
                     <div class="mt-5 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4 flex items-start gap-3">
                         <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
                             <i class="bi bi-exclamation-triangle text-lg text-amber-600 dark:text-amber-400"></i>
@@ -404,10 +375,7 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- ============================================ -->
-            <!-- Navigation -->
-            <!-- ============================================ -->
+           
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('contribute.variable-info') }}" 
@@ -430,16 +398,11 @@
     </div>
 </div>
 
-<!-- ============================================ -->
-<!-- Confirmation Modal (Tailwind) -->
-<!-- ============================================ -->
 <div id="confirmModal" class="fixed inset-0 z-[100] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0">
-        <!-- Backdrop -->
         <div class="fixed inset-0 bg-gray-900 bg-opacity-60 backdrop-blur-sm transition-opacity" onclick="closeConfirmModal()"></div>
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
         
-        <!-- Modal Content -->
         <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
             <div class="px-6 pt-6 pb-4">
                 <div class="flex items-start gap-4">
@@ -497,19 +460,12 @@
     </div>
 </div>
 
-<!-- ============================================ -->
-<!-- Success Modal (Tailwind) -->
-<!-- ============================================ -->
 <div id="successModal" class="fixed inset-0 z-[100] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0">
-        <!-- Backdrop -->
         <div class="fixed inset-0 bg-gray-900 bg-opacity-60 backdrop-blur-sm"></div>
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
-        
-        <!-- Modal Content -->
         <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full">
             <div class="px-6 pt-8 pb-6 text-center">
-                <!-- Success Animation -->
                 <div class="relative w-24 h-24 mx-auto mb-6">
                     <div class="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 animate-ping opacity-20"></div>
                     <div class="relative w-24 h-24 rounded-full bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center shadow-2xl">
@@ -523,8 +479,7 @@
                 <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
                     Your dataset has been submitted and is pending review by our team.
                 </p>
-                
-                <!-- Info Box -->
+               
                 <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl p-4 mb-6 text-left">
                     <div class="flex items-start gap-2">
                         <i class="bi bi-info-circle text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0"></i>
@@ -551,9 +506,6 @@
     </div>
 </div>
 
-<!-- ============================================ -->
-<!-- Loading Overlay (Modern) -->
-<!-- ============================================ -->
 <div id="loadingOverlay" class="fixed inset-0 z-[200] hidden items-center justify-center bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
     <div class="text-center">
         <div class="relative w-20 h-20 mx-auto mb-6">
@@ -582,7 +534,6 @@
         const loadingOverlay = document.getElementById('loadingOverlay');
         const confirmSubmitBtn = document.getElementById('confirmSubmitBtn');
         
-        // Character counter for textareas
         document.querySelectorAll('.desc-textarea').forEach(textarea => {
             const counter = textarea.parentElement.querySelector('.char-counter');
             if (counter) {
@@ -601,12 +552,10 @@
                 updateCount();
             }
         });
-        
-        // Show confirmation modal
+       
         submitBtn.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Basic validation
             const requiredFields = form.querySelectorAll('[required]');
             let isValid = true;
             let firstInvalid = null;
@@ -634,20 +583,16 @@
             document.body.style.overflow = 'hidden';
         });
         
-        // Handle confirmed submission
         confirmSubmitBtn.addEventListener('click', function() {
             closeConfirmModal();
             
-            // Show loading overlay
             loadingOverlay.classList.remove('hidden');
             loadingOverlay.classList.add('flex');
             submitBtn.disabled = true;
             
-            // Submit the form
             form.submit();
         });
         
-        // Show success modal if submission was successful
         @if(session('success'))
             setTimeout(function() {
                 successModal.classList.remove('hidden');
@@ -662,7 +607,6 @@
             showNotification('Error: {{ session('error') }}', 'error');
         @endif
         
-        // Auto-save to localStorage
         const inputs = form.querySelectorAll('.desc-textarea');
         inputs.forEach(input => {
             const saved = localStorage.getItem('descriptive_' + input.id);
@@ -675,14 +619,12 @@
             });
         });
         
-        // Clear localStorage after successful submit
         form.addEventListener('submit', function() {
             inputs.forEach(input => {
                 localStorage.removeItem('descriptive_' + input.id);
             });
         });
         
-        // Remove invalid state on input
         inputs.forEach(input => {
             input.addEventListener('input', function() {
                 this.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500/20');

@@ -8,7 +8,7 @@ return new class extends Migration {
         Schema::table('users', function (Blueprint $table) {
             $table->string('google_id')->nullable()->unique()->after('email');
             $table->string('github_id')->nullable()->unique()->after('google_id');
-            $table->string('avatar')->nullable()->after('github_id'); // Optional: save profile picture
+            $table->string('avatar')->nullable()->after('github_id'); 
         });
     }
 

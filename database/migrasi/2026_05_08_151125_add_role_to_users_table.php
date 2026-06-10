@@ -8,14 +8,13 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            // Hanya tambahkan jika kolom belum ada
             if (!Schema::hasColumn('users', 'role')) {
                 $table->enum('role', ['user', 'admin', 'superadmin'])
                       ->default('user')
                       ->after('password');
             }
             
-            // Tambahkan is_active jika perlu
+            
             if (!Schema::hasColumn('users', 'is_active')) {
                 $table->boolean('is_active')->default(true)->after('role');
             }

@@ -29,14 +29,14 @@ class Post extends Model
         'view_count' => 'integer',
     ];
 
-    // Auto-generate slug dari title
+    
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
 
-    // Relationships
+   
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -47,7 +47,7 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    // Scopes
+   
     public function scopePublished($query)
     {
         return $query->where('status', 'published')

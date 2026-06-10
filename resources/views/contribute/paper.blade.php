@@ -5,7 +5,7 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
+    
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,7 +13,7 @@
     
     <div class="relative max-w-4xl mx-auto">
         
-        <!-- Breadcrumb -->
+        
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
@@ -24,7 +24,7 @@
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Donate Dataset</span>
         </nav>
         
-        <!-- Header Card -->
+        
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-brand-600 to-sphere-secondary p-8 md:p-10">
                 <div class="flex items-center gap-4 mb-4">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             
-            <!-- Modern Progress Bar -->
+            
             <div class="p-6 md:p-8 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-800">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
@@ -56,7 +56,7 @@
                     </span>
                 </div>
                 
-                <!-- Step indicators -->
+                
                 <div class="hidden md:flex items-center gap-1 mb-3">
                     @for($i = 1; $i <= 7; $i++)
                         <div class="flex-1 h-2 rounded-full {{ $i <= 2 ? 'bg-gradient-to-r from-amber-500 to-orange-500' : 'bg-gray-200 dark:bg-gray-700' }}"></div>
@@ -66,7 +66,7 @@
                     <div class="h-full bg-gradient-to-r from-amber-500 to-orange-500" style="width: 28.5%"></div>
                 </div>
                 
-                <!-- Step labels -->
+                
                 <div class="hidden md:grid grid-cols-7 gap-1 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
                     <span class="text-center font-semibold text-amber-700 dark:text-amber-400">Basic</span>
                     <span class="text-center font-semibold text-amber-700 dark:text-amber-400">Paper</span>
@@ -79,7 +79,7 @@
             </div>
         </div>
         
-        <!-- Error Alert -->
+        
         @if($errors->any())
         <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-5 mb-6 flex items-start gap-3">
             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
@@ -104,9 +104,9 @@
         <form action="{{ route('contribute.paper.store') }}" method="POST" id="paperForm">
             @csrf
             
-            <!-- ============================================ -->
-            <!-- SECTION 1: Auto-fill Paper -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -121,7 +121,7 @@
                 </div>
                 
                 <div class="p-5 md:p-6">
-                    <!-- Info Box -->
+                    
                     <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-start gap-3 mb-5">
                         <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                             <i class="bi bi-lightbulb text-lg text-blue-600 dark:text-blue-400"></i>
@@ -131,9 +131,9 @@
                         </div>
                     </div>
                     
-                    <!-- Auto-fill Form -->
+                    
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
-                        <!-- ID Type -->
+                        
                         <div class="md:col-span-4">
                             <label for="paper_id_type" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 <i class="bi bi-tag me-1 text-cyan-500"></i>ID Type
@@ -148,7 +148,7 @@
                             </select>
                         </div>
                         
-                        <!-- Paper ID -->
+                        
                         <div class="md:col-span-5">
                             <label for="paper_id" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 <i class="bi bi-upc-scan me-1 text-cyan-500"></i>Paper ID
@@ -161,7 +161,7 @@
                                    placeholder="e.g., 10.1000/xyz123">
                         </div>
                         
-                        <!-- Find Button -->
+                        
                         <div class="md:col-span-3 flex items-end">
                             <button type="button" 
                                     id="btnFindPaper" 
@@ -173,14 +173,14 @@
                         </div>
                     </div>
                     
-                    <!-- Find Result Message -->
+                    
                     <div id="findResult" class="hidden mt-4"></div>
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- SECTION 2: Manual Paper Entry -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-brand-50 to-sphere-secondary/10 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -195,7 +195,7 @@
                 </div>
                 
                 <div class="p-5 md:p-6 space-y-5">
-                    <!-- Paper Title -->
+                    
                     <div>
                         <label for="title" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-card-heading me-1 text-brand-500"></i>Paper Title <span class="text-red-500">*</span>
@@ -215,7 +215,7 @@
                         @enderror
                     </div>
                     
-                    <!-- Authors -->
+                    
                     <div>
                         <label for="authors" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-people me-1 text-brand-500"></i>Authors <span class="text-red-500">*</span>
@@ -239,9 +239,9 @@
                         @enderror
                     </div>
                     
-                    <!-- Venue, Year, URL -->
+                    
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
-                        <!-- Venue -->
+                        
                         <div class="md:col-span-6">
                             <label for="venue" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 <i class="bi bi-building me-1 text-brand-500"></i>Venue / Journal <span class="text-red-500">*</span>
@@ -261,7 +261,7 @@
                             @enderror
                         </div>
                         
-                        <!-- Year -->
+                        
                         <div class="md:col-span-3">
                             <label for="year" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 <i class="bi bi-calendar-event me-1 text-brand-500"></i>Year <span class="text-red-500">*</span>
@@ -282,7 +282,7 @@
                             @enderror
                         </div>
                         
-                        <!-- URL -->
+                        
                         <div class="md:col-span-3">
                             <label for="url" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 <i class="bi bi-link-45deg me-1 text-brand-500"></i>URL
@@ -304,9 +304,9 @@
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- Navigation -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('contribute.metadata') }}" 
@@ -336,7 +336,6 @@
 
 @push('scripts')
 <script>
-    // Enable/disable Find button based on input
     const paperType = document.getElementById('paper_id_type');
     const paperId = document.getElementById('paper_id');
     const btnFind = document.getElementById('btnFindPaper');
@@ -355,8 +354,6 @@
     paperType.addEventListener('change', updateFindButton);
     paperId.addEventListener('input', updateFindButton);
     updateFindButton();
-    
-    // Find paper (mock implementation)
     btnFind.addEventListener('click', function() {
         const type = paperType.value;
         const id = paperId.value.trim();
@@ -365,8 +362,6 @@
             showFindResult('error', 'Please enter a Paper ID');
             return;
         }
-        
-        // Show loading
         const originalHTML = btnFind.innerHTML;
         btnFind.disabled = true;
         btnFind.className = 'w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold text-sm cursor-not-allowed transition-all';
@@ -377,8 +372,6 @@
             </svg>
             <span>Searching...</span>
         `;
-        
-        // Mock API call
         setTimeout(() => {
             btnFind.disabled = false;
             btnFind.innerHTML = originalHTML;
@@ -411,28 +404,20 @@
         `;
         findResult.classList.remove('hidden');
     }
-    
-    // Form validation
     document.getElementById('paperForm').addEventListener('submit', function(e) {
         const title = document.getElementById('title').value.trim();
         const authors = document.getElementById('authors').value.trim();
         const venue = document.getElementById('venue').value.trim();
         const year = document.getElementById('year').value;
-        
-        // If all fields are empty, allow submission (paper is optional)
         if (!title && !authors && !venue && !year) {
             return true;
         }
-        
-        // If any field is filled, validate required fields
         if (!title || !authors || !venue || !year) {
             e.preventDefault();
             showFindResult('error', 'Please fill in all required fields marked with *');
             window.scrollTo({ top: 0, behavior: 'smooth' });
             return false;
         }
-        
-        // Show loading state
         const btn = document.getElementById('nextBtn');
         btn.disabled = true;
         btn.innerHTML = `

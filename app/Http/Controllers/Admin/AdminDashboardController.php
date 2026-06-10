@@ -46,43 +46,40 @@ class AdminDashboardController extends Controller
                         ->first();
                 }
                 
-                // Tambahkan donor sebagai property dinamis
+
                 $dataset->donor = $donor;
                 
                 return $dataset;
             });
 
-        // 3. AKTIVITAS TERAKHIR (Timeline di Kanan)
-        // Mengambil 5 dataset terbaru (apapun statusnya) untuk feed aktivitas
+
         $recentActivity = Dataset::orderBy('created_at', 'desc')
             ->take(5)
             ->get()
             ->map(function($dataset) {
-                // Ambil contributor pertama jika ada
+
                 $contributor = DB::table('dataset_contributors')
                     ->join('people', 'dataset_contributors.person_id', '=', 'people.person_id')
                     ->where('dataset_contributors.dataset_id', $dataset->dataset_id)
                     ->select('people.*')
                     ->first();
                 
-                // Tambahkan contributor sebagai property dinamis
+
                 $dataset->contributor = $contributor;
                 
                 return $dataset;
             });
 
-        // 4. DATA CHART (Grafik Bulanan)
-        // Mengambil jumlah dataset per bulan (6 bulan terakhir)
+
         $monthlySubmissions = Dataset::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as count')
             ->where('created_at', '>=', now()->subMonths(6))
             ->groupBy('month')
-            ->orderBy('month', 'asc') // Ascending agar grafik berjalan dari kiri ke kanan
+            ->orderBy('month', 'asc') 
             ->get();
-
-        // 5. STATISTIK TAMBAHAN (Opsional untuk chart yang lebih lengkap)
-        $stats['monthly_growth'] = $monthlySubmissions->pluck('count', 'month')->toArray();
         
-        // Statistik by data type untuk chart
+        $stats['monthly_growth'] = $monthlySubmissions->pluck('count', 'month')->toArray();
+
+        
         $stats['data_type_counts'] = Dataset::select('data_type', DB::raw('COUNT(*) as count'))
             ->whereNotNull('data_type')
             ->where('data_type', '!=', '')
@@ -90,7 +87,7 @@ class AdminDashboardController extends Controller
             ->pluck('count', 'data_type')
             ->toArray();
         
-        // Statistik by subject area untuk chart
+        
         $stats['subject_area_counts'] = Dataset::select('subject_area', DB::raw('COUNT(*) as count'))
             ->whereNotNull('subject_area')
             ->where('subject_area', '!=', '')
@@ -98,7 +95,7 @@ class AdminDashboardController extends Controller
             ->pluck('count', 'subject_area')
             ->toArray();
 
-        // Return View
+        
         return view('admin.dashboard', compact(
             'stats', 
             'pendingDatasets', 
@@ -107,9 +104,7 @@ class AdminDashboardController extends Controller
         ));
     }
 
-    /**
-     * Metode tambahan untuk Update Statistik Real-time (Opsional)
-     */
+    
     public function getStats()
     {
         $stats = [

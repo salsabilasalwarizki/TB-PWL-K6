@@ -14,7 +14,6 @@ return new class extends Migration
             $table->foreignId('keyword_id')->constrained('keywords', 'keyword_id')->onDelete('cascade');
             $table->timestamps();
             
-            // Prevent duplicate entries
             $table->unique(['dataset_id', 'keyword_id']);
         });
     }

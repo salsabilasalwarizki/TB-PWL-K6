@@ -6,8 +6,7 @@
     <title>Welcome to DataSphere Newsletter</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6;">
-    
-    <!-- Preheader (hidden text for email clients) -->
+   
     <div style="display: none; max-height: 0; overflow: hidden;">
         Welcome to DataSphere! You'll receive the latest ML datasets and research updates.
     </div>
@@ -17,7 +16,6 @@
             <td align="center">
                 <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%;">
                     
-                    <!-- Header with Logo -->
                     <tr>
                         <td style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%); padding: 40px 30px; text-align: center; border-radius: 16px 16px 0 0;">
                             <div style="display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 50%; width: 70px; height: 70px; line-height: 70px; margin-bottom: 15px;">
@@ -28,11 +26,10 @@
                         </td>
                     </tr>
                     
-                    <!-- Main Content -->
                     <tr>
                         <td style="background-color: white; padding: 40px 30px;">
                             <h2 style="color: #111827; margin: 0 0 20px 0; font-size: 24px;">
-                                🎉 Welcome to DataSphere!
+                                Welcome to DataSphere!
                             </h2>
                             
                             <p style="color: #4b5563; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
@@ -40,17 +37,15 @@
                                 We're thrilled to have you join our growing community of machine learning enthusiasts and researchers.
                             </p>
                             
-                            <!-- Success Box -->
                             <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-left: 4px solid #10b981; padding: 20px; border-radius: 8px; margin: 25px 0;">
                                 <p style="color: #065f46; margin: 0; font-size: 14px; line-height: 1.5;">
                                     <strong>✓ You're all set!</strong><br>
                                     You'll now receive updates about new datasets, research papers, and ML insights directly to your inbox.
                                 </p>
                             </div>
-                            
-                            <!-- What to Expect -->
+                           
                             <h3 style="color: #111827; margin: 30px 0 15px 0; font-size: 18px;">
-                                📬 What You'll Receive
+                                What You'll Receive
                             </h3>
                             
                             <table width="100%" cellpadding="0" cellspacing="0">
@@ -59,7 +54,7 @@
                                         <table width="100%" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td width="40" style="vertical-align: top;">
-                                                    <div style="background: #eff6ff; width: 32px; height: 32px; border-radius: 8px; text-align: center; line-height: 32px;">📊</div>
+                                                    <div style="background: #eff6ff; width: 32px; height: 32px; border-radius: 8px; text-align: center; line-height: 32px;"></div>
                                                 </td>
                                                 <td style="padding-left: 12px;">
                                                     <strong style="color: #111827; font-size: 14px;">New Dataset Releases</strong>
@@ -74,7 +69,7 @@
                                         <table width="100%" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td width="40" style="vertical-align: top;">
-                                                    <div style="background: #fef3c7; width: 32px; height: 32px; border-radius: 8px; text-align: center; line-height: 32px;">📚</div>
+                                                    <div style="background: #fef3c7; width: 32px; height: 32px; border-radius: 8px; text-align: center; line-height: 32px;"></div>
                                                 </td>
                                                 <td style="padding-left: 12px;">
                                                     <strong style="color: #111827; font-size: 14px;">Research Papers & Insights</strong>
@@ -89,7 +84,7 @@
                                         <table width="100%" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td width="40" style="vertical-align: top;">
-                                                    <div style="background: #ede9fe; width: 32px; height: 32px; border-radius: 8px; text-align: center; line-height: 32px;">🚀</div>
+                                                    <div style="background: #ede9fe; width: 32px; height: 32px; border-radius: 8px; text-align: center; line-height: 32px;"></div>
                                                 </td>
                                                 <td style="padding-left: 12px;">
                                                     <strong style="color: #111827; font-size: 14px;">Platform Updates</strong>
@@ -101,7 +96,6 @@
                                 </tr>
                             </table>
                             
-                            <!-- CTA Button -->
                             <table width="100%" cellpadding="0" cellspacing="0" style="margin: 30px 0;">
                                 <tr>
                                     <td align="center">
@@ -119,7 +113,6 @@
                         </td>
                     </tr>
                     
-                    <!-- Footer -->
                     <tr>
                         <td style="background-color: #1f2937; padding: 30px; text-align: center; border-radius: 0 0 16px 16px;">
                             <p style="color: #9ca3af; font-size: 13px; margin: 0 0 10px 0;">

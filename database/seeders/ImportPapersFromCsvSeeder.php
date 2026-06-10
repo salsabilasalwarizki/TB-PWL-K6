@@ -16,28 +16,27 @@ class ImportPapersFromCsvSeeder extends Seeder
     
     public function __construct()
     {
-        // Path ke folder CSV papers
         $this->csvFolderPath = database_path('data/papers');
     }
     
     public function run(): void
     {
         if (!is_dir($this->csvFolderPath)) {
-            $this->command->error("❌ Folder tidak ditemukan: {$this->csvFolderPath}");
+            $this->command->error("Folder tidak ditemukan: {$this->csvFolderPath}");
             return;
         }
         
-        $this->command->info("📂 Scanning folder: {$this->csvFolderPath}");
+        $this->command->info("Scanning folder: {$this->csvFolderPath}");
         
         $files = glob($this->csvFolderPath . '/*.csv');
         $total = count($files);
         
         if ($total === 0) {
-            $this->command->error("❌ Tidak ada file CSV ditemukan di {$this->csvFolderPath}");
+            $this->command->error("Tidak ada file CSV ditemukan di {$this->csvFolderPath}");
             return;
         }
         
-        $this->command->info("📊 Ditemukan {$total} file CSV");
+        $this->command->info("Ditemukan {$total} file CSV");
         
         $imported = 0;
         $skipped = 0;
@@ -51,7 +50,6 @@ class ImportPapersFromCsvSeeder extends Seeder
                     $filename = pathinfo($file, PATHINFO_FILENAME);
                     $this->command->info("📄 [" . ($index + 1) . "/{$total}] Processing: {$filename}");
                     
-                    // Cek ukuran file dulu
                     if (filesize($file) === 0) {
                         $this->command->warn("  ⏭️ Skipped (File Kosong): {$filename}");
                         $skipped++;
@@ -68,14 +66,14 @@ class ImportPapersFromCsvSeeder extends Seeder
                     
                 } catch (\Exception $e) {
                     $errors++;
-                    $this->command->error("  ❌ Error: " . $e->getMessage());
+                    $this->command->error(" Error: " . $e->getMessage());
                 }
             }
             
             DB::commit();
             
             $this->command->newLine();
-            $this->command->info("✅ Import selesai!");
+            $this->command->info("Import selesai!");
             $this->command->table(
                 ['Metric', 'Value'],
                 [
@@ -88,42 +86,32 @@ class ImportPapersFromCsvSeeder extends Seeder
             
         } catch (\Exception $e) {
             DB::rollBack();
-            $this->command->error("❌ Import gagal: " . $e->getMessage());
+            $this->command->error("Import gagal: " . $e->getMessage());
             throw $e;
         }
     }
     
-    /**
-     * Import paper from single CSV file
-     */
     protected function importPaperFromCsv(string $filePath, string $datasetName): string
     {
         $csv = Reader::createFromPath($filePath, 'r');
         $csv->setDelimiter(',');
         $csv->setEnclosure('"');
         
-        // Strategi 1: Coba baca dengan Header
         $csv->setHeaderOffset(0);
         $records = iterator_to_array((new Statement())->process($csv));
         
-        // Strategi 2: Jika kosong, coba baca tanpa Header (Raw Rows)
         if (empty($records)) {
             $csv->setHeaderOffset(-1);
             $records = iterator_to_array((new Statement())->process($csv));
         }
         
-        // Validasi: Jika masih kosong, file tidak valid
         if (empty($records)) {
             throw new \Exception("File CSV kosong atau tidak memiliki data.");
         }
         
-        // Ambil baris pertama
         $row = $records[0];
         
-        // Normalisasi data (handling array associative vs numeric)
         if (array_key_exists(0, $row)) {
-            // Jika array numerik (dari setHeaderOffset(-1))
-            // Asumsikan urutan kolom: Title, Authors, Venue, Year, DOI, URL, Abstract
             $data = [
                 'title' => $row[0] ?? null,
                 'authors' => $row[1] ?? null,
@@ -134,11 +122,9 @@ class ImportPapersFromCsvSeeder extends Seeder
                 'abstract' => $row[6] ?? null,
             ];
         } else {
-            // Jika array associative (dari setHeaderOffset(0))
             $data = array_change_key_case($row, CASE_LOWER);
         }
         
-        // Extract data dengan fallback
         $paperData = [
             'title' => $this->clean($data['title'] ?? $data['paper_title'] ?? null),
             'authors' => $this->clean($data['authors'] ?? $data['author'] ?? null),
@@ -149,7 +135,6 @@ class ImportPapersFromCsvSeeder extends Seeder
             'abstract' => $this->clean($data['abstract'] ?? $data['description'] ?? null),
         ];
         
-        // Fallback title dari nama file jika kosong
         if (empty($paperData['title'])) {
             $paperData['title'] = ucwords(str_replace(['-', '_', '+'], ' ', $datasetName));
         }
@@ -158,13 +143,11 @@ class ImportPapersFromCsvSeeder extends Seeder
             throw new \Exception("Paper title is required");
         }
         
-        // Cari dataset
         $dataset = $this->findDataset($datasetName);
         if (!$dataset) {
             $this->command->warn("  ⚠️ Dataset tidak ditemukan: {$datasetName}. Paper dibuat tanpa link.");
         }
         
-        // Create/Find Paper
         $paper = Paper::firstOrCreate(
             ['title' => $paperData['title'], 'doi' => $paperData['doi']],
             [
@@ -177,7 +160,6 @@ class ImportPapersFromCsvSeeder extends Seeder
             ]
         );
         
-        // Link ke dataset
         if ($dataset) {
             $linked = DB::table('dataset_papers')->updateOrInsert(
                 ['dataset_id' => $dataset->dataset_id, 'paper_id' => $paper->paper_id],
@@ -209,7 +191,6 @@ class ImportPapersFromCsvSeeder extends Seeder
         return is_numeric($val) && strlen($val) === 4 ? (int)$val : null;
     }
     
-    // Menggunakan String Concatenation untuk menghindari error syntax Heredoc
     protected function generateBibtex(array $d): ?string
     {
         if (empty($d['title'])) return null;

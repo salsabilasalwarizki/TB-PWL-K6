@@ -4,7 +4,7 @@
 @section('content')
 <div class="relative">
     
-    <!-- ===== HERO SECTION ===== -->
+    
     <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary text-white">
         <div class="absolute inset-0">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
@@ -45,11 +45,11 @@
         </div>
     </section>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid lg:grid-cols-[280px_1fr] gap-6">
             
-            <!-- ===== SIDEBAR NAVIGATION ===== -->
+            
             <aside class="lg:sticky lg:top-24 lg:self-start">
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <div class="p-4 border-b border-gray-100 dark:border-gray-700">
@@ -74,7 +74,7 @@
                         </a>
                     </nav>
                     
-                    <!-- Info Box -->
+                    
                     <div class="p-4 border-t border-gray-100 dark:border-gray-700">
                         <div class="bg-gradient-to-br from-brand-50 to-sphere-secondary/10 dark:from-brand-900/30 dark:to-sphere-secondary/20 rounded-xl p-4">
                             <div class="flex items-start gap-2 mb-2">
@@ -89,10 +89,10 @@
                 </div>
             </aside>
 
-            <!-- ===== MAIN CONTENT AREA ===== -->
+            
             <div class="space-y-6">
                 
-                <!-- Info Banner -->
+                
                 <div class="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl p-4 flex items-start gap-3">
                     <i class="bi bi-lightbulb-fill text-amber-500 text-xl mt-0.5"></i>
                     <div class="flex-1">
@@ -104,7 +104,7 @@
                 </div>
 
                 @if($datasets->isNotEmpty())
-                    <!-- ===== DATASETS TABLE ===== -->
+                    
                     <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                         <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between">
                             <div class="flex items-center gap-3">
@@ -118,7 +118,7 @@
                             </div>
                         </div>
                         
-                        <!-- Desktop Table View -->
+                        
                         <div class="hidden md:block">
                             <div class="overflow-x-auto">
                                 <table class="w-full">
@@ -211,7 +211,7 @@
                             </div>
                         </div>
                         
-                        <!-- Mobile Card View -->
+                        
                         <div class="md:hidden divide-y divide-gray-100 dark:divide-gray-700">
                             @foreach($datasets as $dataset)
                             <div class="p-4 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
@@ -270,7 +270,7 @@
                             @endforeach
                         </div>
                         
-                        <!-- Pagination -->
+                        
                         @if($datasets->hasPages())
                         <div class="p-4 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/30">
                             {{ $datasets->links() }}
@@ -278,7 +278,7 @@
                         @endif
                     </div>
                 @else
-                    <!-- ===== EMPTY STATE ===== -->
+                    
                     <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                         <div class="p-12 text-center">
                             <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-brand-50 to-sphere-secondary/10 dark:from-brand-900/30 dark:to-sphere-secondary/20 flex items-center justify-center">

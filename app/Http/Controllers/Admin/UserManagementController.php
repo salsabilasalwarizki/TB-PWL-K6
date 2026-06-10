@@ -14,7 +14,7 @@ class UserManagementController extends Controller
     {
         $query = User::query();
         
-        // Search
+        
         if ($request->filled('search')) {
             $query->where(function($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->search . '%')
@@ -22,7 +22,7 @@ class UserManagementController extends Controller
             });
         }
         
-        // Filter by role
+       
         if ($request->filled('role')) {
             $query->where('role', $request->role);
         }
@@ -48,7 +48,7 @@ class UserManagementController extends Controller
             'role' => 'required|in:user,admin,superadmin',
         ]);
         
-        // Prevent self-demotion
+        
         if ($user->id === auth()->id() && $validated['role'] !== 'superadmin') {
             return redirect()->back()->with('error', 'You cannot change your own role.');
         }

@@ -5,7 +5,7 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
+    
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,7 +13,7 @@
     
     <div class="relative max-w-4xl mx-auto">
         
-        <!-- Breadcrumb -->
+        
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
@@ -24,7 +24,7 @@
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Donate Dataset</span>
         </nav>
         
-        <!-- Header Card -->
+        
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-brand-600 to-sphere-secondary p-8 md:p-10">
                 <div class="flex items-center gap-4 mb-4">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             
-            <!-- Modern Progress Bar -->
+            
             <div class="p-6 md:p-8 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-800">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
@@ -56,7 +56,7 @@
                     </span>
                 </div>
                 
-                <!-- Step indicators -->
+                
                 <div class="hidden md:flex items-center gap-1 mb-3">
                     @for($i = 1; $i <= 7; $i++)
                         <div class="flex-1 h-2 rounded-full {{ $i <= 5 ? 'bg-gradient-to-r from-amber-500 to-orange-500' : 'bg-gray-200 dark:bg-gray-700' }}"></div>
@@ -66,7 +66,7 @@
                     <div class="h-full bg-gradient-to-r from-amber-500 to-orange-500" style="width: 71%"></div>
                 </div>
                 
-                <!-- Step labels -->
+                
                 <div class="hidden md:grid grid-cols-7 gap-1 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
                     <span class="text-center font-semibold text-amber-700 dark:text-amber-400">Basic</span>
                     <span class="text-center font-semibold text-amber-700 dark:text-amber-400">Paper</span>
@@ -82,9 +82,9 @@
         <form action="{{ route('contribute.keywords.store') }}" method="POST" id="keywordsForm">
             @csrf
             
-            <!-- ============================================ -->
-            <!-- SECTION 1: Add Keywords -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -103,7 +103,7 @@
                 
                 <div class="p-5 md:p-6 space-y-5">
                     
-                    <!-- Info Alert -->
+                    
                     <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-start gap-3">
                         <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                             <i class="bi bi-info-circle text-lg text-blue-600 dark:text-blue-400"></i>
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                     
-                    <!-- Keyword Input -->
+                    
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-search me-1 text-amber-500"></i>Search or Add Keywords
@@ -132,7 +132,7 @@
                             </div>
                         </div>
                         
-                        <!-- Suggestions Dropdown -->
+                        
                         <div id="keyword_suggestions" class="hidden mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg overflow-hidden">
                             <div class="px-4 py-2 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700">
                                 <p class="text-xs font-semibold text-gray-700 dark:text-gray-300">
@@ -140,12 +140,12 @@
                                 </p>
                             </div>
                             <div id="suggestions_list" class="p-2 max-h-48 overflow-y-auto">
-                                <!-- Dynamic suggestions -->
+                                
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Selected Keywords -->
+                    
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
                             <i class="bi bi-check-circle me-1 text-amber-500"></i>Selected Keywords
@@ -180,9 +180,9 @@
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- SECTION 2: Popular Keywords -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-orange-50 to-red-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -222,9 +222,9 @@
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- Navigation -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('contribute.files') }}" 
@@ -252,7 +252,7 @@
     </div>
 </div>
 
-<!-- Notification Container -->
+
 <div id="notification_container" class="fixed top-20 right-4 z-50 space-y-2"></div>
 
 <style>
@@ -273,13 +273,9 @@
 <script>
     let keywords = @json($keywordsData ?? old('keywords', []));
     const allKeywords = @json($allKeywords ?? []);
-    
-    // Initialize
     document.addEventListener('DOMContentLoaded', function() {
         updateKeywordsDisplay();
         updateKeywordCount();
-        
-        // Input handler
         const input = document.getElementById('keyword_input');
         input.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -292,8 +288,6 @@
                 }
             }
         });
-        
-        // Show suggestions on input
         input.addEventListener('input', function() {
             const value = this.value.trim().toLowerCase();
             if (value.length > 0) {
@@ -302,15 +296,11 @@
                 hideSuggestions();
             }
         });
-        
-        // Hide suggestions when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('#keyword_input') && !e.target.closest('#keyword_suggestions')) {
                 hideSuggestions();
             }
         });
-        
-        // Mark already added keywords in popular section
         keywords.forEach(kw => {
             const btn = document.querySelector(`.popular-keyword[data-keyword="${kw}"]`);
             if (btn) {
@@ -319,12 +309,8 @@
             }
         });
     });
-    
-    // Add keyword
     function addKeyword(keyword) {
         const normalizedKeyword = keyword.trim();
-        
-        // Check if already exists
         if (keywords.includes(normalizedKeyword)) {
             showNotification('Keyword already added!', 'warning');
             return;
@@ -334,8 +320,6 @@
         updateKeywordsDisplay();
         updateHiddenInput();
         updateKeywordCount();
-        
-        // Mark as added in popular keywords
         const btn = document.querySelector(`.popular-keyword[data-keyword="${normalizedKeyword}"]`);
         if (btn) {
             btn.classList.add('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
@@ -344,15 +328,11 @@
         
         showNotification(`Keyword "${normalizedKeyword}" added`, 'success');
     }
-    
-    // Remove keyword
     function removeKeyword(keyword, index) {
         keywords.splice(index, 1);
         updateKeywordsDisplay();
         updateHiddenInput();
         updateKeywordCount();
-        
-        // Unmark in popular keywords
         const btn = document.querySelector(`.popular-keyword[data-keyword="${keyword}"]`);
         if (btn) {
             btn.classList.remove('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
@@ -361,8 +341,6 @@
         
         showNotification(`Keyword "${keyword}" removed`, 'info');
     }
-    
-    // Update display
     function updateKeywordsDisplay() {
         const container = document.getElementById('keywords_container');
         
@@ -390,23 +368,15 @@
             `).join('');
         }
     }
-    
-    // Update keyword count
     function updateKeywordCount() {
         document.getElementById('keywordCount').textContent = keywords.length;
     }
-    
-    // Update hidden input for form submission
     function updateHiddenInput() {
         document.getElementById('keywords_input').value = JSON.stringify(keywords);
     }
-    
-    // Show suggestions
     function showSuggestions(query) {
         const suggestionsDiv = document.getElementById('keyword_suggestions');
         const suggestionsList = document.getElementById('suggestions_list');
-        
-        // Filter keywords that match query and are not already added
         const filtered = allKeywords.filter(kw => 
             kw.toLowerCase().includes(query) && !keywords.includes(kw)
         ).slice(0, 8);
@@ -426,13 +396,9 @@
             hideSuggestions();
         }
     }
-    
-    // Hide suggestions
     function hideSuggestions() {
         document.getElementById('keyword_suggestions').classList.add('hidden');
     }
-    
-    // Show notification
     function showNotification(message, type = 'info') {
         const container = document.getElementById('notification_container');
         const notification = document.createElement('div');
@@ -469,11 +435,7 @@
             setTimeout(() => notification.remove(), 300);
         }, 3000);
     }
-    
-    // Form validation
     document.getElementById('keywordsForm').addEventListener('submit', function(e) {
-        // Keywords are optional, so no validation needed
-        // But show loading state
         const btn = document.getElementById('nextBtn');
         btn.disabled = true;
         btn.innerHTML = `

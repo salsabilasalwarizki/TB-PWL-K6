@@ -5,7 +5,7 @@
 @section('content')
 <div class="relative">
     
-    <!-- ===== HERO SECTION ===== -->
+    
     <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary text-white">
         <div class="absolute inset-0">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
@@ -13,7 +13,7 @@
         </div>
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
-            <!-- Breadcrumb -->
+            
             <nav class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('home') }}" class="hover:text-white transition-colors">Home</a>
                 <i class="bi bi-chevron-right text-xs"></i>
@@ -23,7 +23,7 @@
             </nav>
             
             <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                <!-- Thumbnail -->
+                
                 <div class="flex-shrink-0">
                     <div class="w-24 h-24 md:w-28 md:h-28 rounded-2xl overflow-hidden bg-white/10 backdrop-blur-md border-2 border-white/20 flex items-center justify-center shadow-2xl">
                         @if($dataset->thumbnail_url)
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 
-                <!-- Info -->
+                
                 <div class="flex-1 min-w-0">
                     <div class="flex flex-wrap items-center gap-2 mb-2">
                         @if($dataset->data_type)
@@ -92,14 +92,14 @@
         </div>
     </section>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid lg:grid-cols-[1fr_320px] gap-6">
             
-            <!-- ===== LEFT: MAIN CONTENT ===== -->
+            
             <div class="space-y-6 min-w-0">
                 
-                <!-- Abstract -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
                     <div class="flex items-center gap-2 mb-3">
                         <div class="w-8 h-8 rounded-lg bg-brand-50 dark:bg-brand-900/30 flex items-center justify-center">
@@ -120,7 +120,7 @@
                     @endif
                 </div>
 
-                <!-- Characteristics Grid -->
+                
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                     @php
                         $characteristics = [
@@ -153,7 +153,7 @@
                     @endforeach
                 </div>
 
-                <!-- Collapsible: Dataset Information -->
+                
                 @if($dataset->descriptionDetails)
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <button type="button" onclick="toggleSection('datasetInfoSection')" class="w-full p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
@@ -188,7 +188,7 @@
                 </div>
                 @endif
 
-                <!-- Collapsible: Variables Table -->
+                
                 @if($dataset->variables->isNotEmpty())
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <button type="button" onclick="toggleSection('variablesSection')" class="w-full p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
@@ -261,7 +261,7 @@
                 </div>
                 @endif
 
-                <!-- Collapsible: Introductory Paper -->
+                
                 @php
                     $introductoryPapers = $dataset->papers->where('pivot.citation_type', 'introductory')->take(1);
                 @endphp
@@ -299,7 +299,7 @@
                 </div>
                 @endif
 
-                <!-- Collapsible: Dataset Files -->
+                
                 @if($dataset->files->isNotEmpty())
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <button type="button" onclick="toggleSection('filesSection')" class="w-full p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
@@ -346,7 +346,7 @@
                 </div>
                 @endif
 
-                <!-- Papers Citing this Dataset -->
+                
                 @php
                     $citingPapers = $dataset->papers->where(function($paper) {
                         return $paper->pivot->citation_type === 'citing' || $paper->pivot->citation_type === null;
@@ -406,7 +406,7 @@
                             @endforeach
                         </div>
                         
-                        <!-- Pagination -->
+                        
                         @if($totalPages > 1 || $totalPapers > 5)
                         <div class="mt-5 pt-5 border-t border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row items-center justify-between gap-3">
                             <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
@@ -461,7 +461,7 @@
                     </div>
                 </div>
 
-                <!-- Related Papers -->
+                
                 @php
                     $relatedPapers = $dataset->papers->where('pivot.citation_type', 'related');
                 @endphp
@@ -485,7 +485,7 @@
                 </div>
                 @endif
 
-                <!-- Reviews -->
+                
                 @if($dataset->reviews->isNotEmpty())
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <div class="p-5 border-b border-gray-100 dark:border-gray-700 flex items-center gap-3">
@@ -533,10 +533,10 @@
 
             </div>
 
-            <!-- ===== RIGHT: SIDEBAR ===== -->
+            
             <aside class="space-y-4 lg:sticky lg:top-24 lg:self-start">
                 
-                <!-- Action Buttons -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5">
                     @php
                         $defaultFile = $dataset->files->where('pivot.is_default', 1)->first() ?? $dataset->files->first();
@@ -577,7 +577,7 @@
                     </div>
                 </div>
 
-                <!-- Keywords -->
+                
                 @if($dataset->keywords->isNotEmpty())
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5">
                     <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
@@ -594,7 +594,7 @@
                 </div>
                 @endif
 
-                <!-- Creators -->
+                
                 @php
                     $creators = $dataset->contributors->where('pivot.contribution_role', 'creator');
                     $otherContributors = $dataset->contributors->whereNotIn('pivot.contribution_role', ['creator']);
@@ -648,7 +648,7 @@
                 </div>
                 @endif
 
-                <!-- DOI -->
+                
                 @if($dataset->doi)
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5">
                     <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
@@ -662,7 +662,7 @@
                 </div>
                 @endif
 
-                <!-- Dataset Details -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5">
                     <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
                         <i class="bi bi-info-circle"></i>Details
@@ -703,7 +703,7 @@
     </div>
 </div>
 
-<!-- Citation Modal -->
+
 <div id="citationModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0">
         <div class="fixed inset-0 bg-gray-900 bg-opacity-60 transition-opacity" onclick="closeCitationModal()"></div>
@@ -770,7 +770,6 @@
 
 @push('scripts')
 <script>
-// ===== Toggle Collapsible Sections =====
 function toggleSection(id) {
     const section = document.getElementById(id);
     const icon = document.getElementById(id + '-icon');
@@ -779,8 +778,6 @@ function toggleSection(id) {
     section.classList.toggle('hidden');
     if (icon) icon.style.transform = section.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
 }
-
-// ===== Citation Modal =====
 function showCitation() {
     document.getElementById('citationModal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -807,8 +804,6 @@ function copyCitation() {
         }, 2000);
     });
 }
-
-// ===== Python Import =====
 function importInPython() {
     @php $defaultFile = $dataset->files->where('pivot.is_default', 1)->first() ?? $dataset->files->first(); @endphp
     const code = `# Import the dataset
@@ -829,8 +824,6 @@ print(df.describe())`;
         setTimeout(() => notif.remove(), 2000);
     });
 }
-
-// ===== Sort Papers =====
 function sortPapers() {
     const sortBy = document.getElementById('sortByYear').value;
     const urlParams = new URLSearchParams(window.location.search);
@@ -838,16 +831,12 @@ function sortPapers() {
     urlParams.set('page', '1');
     window.location.search = urlParams.toString();
 }
-
-// ===== Change Page Size =====
 function changePageSize(size) {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set('per_page', size);
     urlParams.set('page', '1');
     window.location.search = urlParams.toString();
 }
-
-// ===== Track View =====
 document.addEventListener('DOMContentLoaded', function() {
     const datasetId = {{ $dataset->dataset_id }};
     const trackUrl = "{{ route('datasets.track-view', $dataset) }}";
@@ -874,8 +863,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(err => console.warn('Tracking error:', err));
     }
 });
-
-// ===== Close modal on Escape =====
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeCitationModal();

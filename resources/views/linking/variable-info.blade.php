@@ -5,7 +5,6 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,14 +12,12 @@
     
     <div class="relative max-w-4xl mx-auto">
         
-        <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Link External Dataset</span>
         </nav>
         
-        <!-- Header Card -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-8 md:p-10">
                 <div class="flex items-center gap-4">
@@ -38,7 +35,6 @@
                 </div>
             </div>
             
-            <!-- Progress Bar -->
             <div class="p-6 md:p-8 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-800">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
@@ -52,7 +48,6 @@
                     </span>
                 </div>
                 
-                <!-- Progress bar -->
                 <div class="hidden md:flex items-center gap-1 mb-3">
                     <div class="flex-1 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></div>
                     <div class="flex-1 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></div>
@@ -64,8 +59,7 @@
                 <div class="md:hidden h-2 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
                     <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500" style="width: 83.33%"></div>
                 </div>
-                
-                <!-- Step labels -->
+               
                 <div class="hidden md:grid grid-cols-6 gap-1 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
                     <span class="text-center font-semibold text-indigo-700 dark:text-indigo-400">Basic</span>
                     <span class="text-center font-semibold text-indigo-700 dark:text-indigo-400">Paper</span>
@@ -80,9 +74,6 @@
         <form action="{{ route('contribute.linking.variable-info.store') }}" method="POST" id="variableInfoForm">
             @csrf
             
-            <!-- ============================================ -->
-            <!-- SECTION: Variable Information -->
-            <!-- ============================================ -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -98,7 +89,6 @@
                 
                 <div class="p-5 md:p-6 space-y-6">
                     
-                    <!-- Info Alert -->
                     <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-start gap-3">
                         <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                             <i class="bi bi-info-circle text-lg text-blue-600 dark:text-blue-400"></i>
@@ -108,7 +98,6 @@
                         </div>
                     </div>
                     
-                    <!-- Class Labels -->
                     <div>
                         <label for="class_labels" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-tags me-1 text-violet-500"></i>Class Labels
@@ -132,10 +121,8 @@
                         @enderror
                     </div>
                     
-                    <!-- Divider -->
                     <div class="border-t border-gray-200 dark:border-gray-700"></div>
                     
-                    <!-- Additional Variable Info -->
                     <div>
                         <label for="variable_info" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-card-text me-1 text-violet-500"></i>Additional Variable Information
@@ -158,8 +145,7 @@
                         </p>
                         @enderror
                     </div>
-                    
-                    <!-- Helper Box: Example Format -->
+                   
                     <div class="bg-gradient-to-r from-violet-50/50 to-purple-50/50 dark:from-violet-900/10 dark:to-purple-900/10 border border-violet-200 dark:border-violet-800 rounded-xl p-5">
                         <div class="flex items-center gap-2 mb-3">
                             <i class="bi bi-lightbulb text-lg text-violet-600 dark:text-violet-400"></i>
@@ -172,10 +158,7 @@ target: categorical (>50K, <=50K).</code></pre>
                     </div>
                 </div>
             </div>
-            
-            <!-- ============================================ -->
-            <!-- Navigation -->
-            <!-- ============================================ -->
+           
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('contribute.linking.keywords') }}" 
@@ -203,7 +186,6 @@ target: categorical (>50K, <=50K).</code></pre>
 
 @push('scripts')
 <script>
-    // Character counter for textareas
     function updateCharCount(textarea, max) {
         const count = textarea.value.length;
         const counterId = textarea.id + 'Count';
@@ -217,8 +199,7 @@ target: categorical (>50K, <=50K).</code></pre>
             }
         }
     }
-    
-    // Initialize all counters on page load
+   
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.var-textarea').forEach(textarea => {
             const max = parseInt(textarea.getAttribute('maxlength'));
@@ -226,7 +207,6 @@ target: categorical (>50K, <=50K).</code></pre>
         });
     });
     
-    // Form submission with loading state
     document.getElementById('variableInfoForm').addEventListener('submit', function(e) {
         const btn = document.getElementById('nextBtn');
         btn.disabled = true;

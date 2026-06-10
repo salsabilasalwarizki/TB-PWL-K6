@@ -23,22 +23,14 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\PostController;
-// use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Admin\CategoryController;
 
-// ============================================
-// PUBLIC ROUTES
-// ============================================
-// ============================================
-// TEST ROUTES (Hapus setelah fix)
-// ============================================
 
 Route::get('/test-session', function() {
-    // Set session value
+
     session(['test_login' => 'success']);
     session()->save();
     
-    // Get value back
     $testValue = session('test_login', 'not set');
     
     return response()->json([
@@ -95,18 +87,11 @@ Route::get('/search', function (\Illuminate\Http\Request $request) {
 
 Route::get('/contribute', [ContributeController::class, 'policy'])->name('contribute.policy');
 
-// ============================================
-// SOCIAL AUTH ROUTES
-// ============================================
 
 Route::get('/auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 Route::get('/auth/github', [SocialAuthController::class, 'redirectToGithub'])->name('github.login');
 Route::get('/auth/github/callback', [SocialAuthController::class, 'handleGithubCallback']);
-
-// ============================================
-// AUTHENTICATED ROUTES
-// ============================================
 
 Route::middleware('auth')->group(function () {
         Route::get('/email/verify', function () {
@@ -162,30 +147,23 @@ Route::middleware('auth')->group(function () {
     });
     
 Route::prefix('contribute/linking')->name('contribute.linking.')->group(function () {
-        // Policy page
         Route::get('/', [ContributeController::class, 'linkingPolicy'])->name('policy');
-        
-        // Metadata
+       
         Route::get('/metadata', [ContributeController::class, 'createLinkingMetadata'])->name('metadata');
         Route::post('/metadata', [ContributeController::class, 'storeLinkingMetadata'])->name('metadata.store');
         
-        // Paper
         Route::get('/paper', [ContributeController::class, 'createLinkingPaper'])->name('paper');
         Route::post('/paper', [ContributeController::class, 'storeLinkingPaper'])->name('paper.store');
         
-        // Creators
         Route::get('/creators', [ContributeController::class, 'createLinkingCreators'])->name('creators');
         Route::post('/creators', [ContributeController::class, 'storeLinkingCreators'])->name('creators.store');
         
-        // Keywords
         Route::get('/keywords', [ContributeController::class, 'createLinkingKeywords'])->name('keywords');
         Route::post('/keywords', [ContributeController::class, 'storeLinkingKeywords'])->name('keywords.store');
         
-        // Variable Info
         Route::get('/variable-info', [ContributeController::class, 'createLinkingVariableInfo'])->name('variable-info');
         Route::post('/variable-info', [ContributeController::class, 'storeLinkingVariableInfo'])->name('variable-info.store');
         
-        // Descriptive & Submit
         Route::get('/descriptive', [ContributeController::class, 'createLinkingDescriptive'])->name('descriptive');
         Route::post('/submit', [ContributeController::class, 'submitLinking'])->name('submit');
     });
@@ -194,9 +172,7 @@ Route::prefix('contribute/linking')->name('contribute.linking.')->group(function
     Route::post('/contribute/external/submit', [ContributeController::class, 'submitExternalLink'])->name('contribute.external.submit');
 });
 
-// ============================================
-// ADMIN ROUTES
-// ============================================
+
 
 Route::middleware(['auth', 'role:admin,superadmin'])->prefix('admin')->name('admin.')->group(function () {
     
@@ -536,22 +512,18 @@ Route::middleware(['auth', 'role:admin,superadmin'])->prefix('admin')->name('adm
     });
 });
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
-    // Categories Routes
+    
     Route::resource('categories', CategoryController::class);
     
-    // Posts Routes
     Route::resource('posts', PostController::class);
     Route::post('posts/bulk-delete', [PostController::class, 'bulkDelete'])->name('posts.bulk-delete');
     Route::post('posts/{post}/toggle-status', [PostController::class, 'toggleStatus'])->name('posts.toggle-status');
     Route::post('posts/{post}/duplicate', [PostController::class, 'duplicate'])->name('posts.duplicate');
 });
-// Public Routes
+
 Route::get('/posts', [App\Http\Controllers\Frontend\PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [App\Http\Controllers\Frontend\PostController::class, 'show'])->name('posts.show');
 
-// ============================================
-// HELPER & ALIASES
-// ============================================
 
 Route::redirect('/dashboard', '/')->name('dashboard.redirect');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

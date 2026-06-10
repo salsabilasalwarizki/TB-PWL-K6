@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->boolean('is_active')->default(true);
-            $table->string('token')->nullable(); // Untuk unsubscribe
+            $table->string('token')->nullable(); 
             $table->timestamp('subscribed_at')->nullable();
             $table->timestamp('unsubscribed_at')->nullable();
             $table->timestamps();

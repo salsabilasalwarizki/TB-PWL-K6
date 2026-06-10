@@ -5,7 +5,7 @@
 @section('content')
 <div class="relative">
     
-    <!-- ===== HERO SECTION ===== -->
+    
     <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary text-white">
         <div class="absolute inset-0">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
@@ -33,11 +33,11 @@
         </div>
     </section>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid lg:grid-cols-[280px_1fr] gap-6">
             
-            <!-- ===== DESKTOP FILTERS SIDEBAR ===== -->
+            
             <aside class="hidden lg:block lg:sticky lg:top-24 lg:self-start">
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <div class="p-4 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between">
@@ -55,10 +55,10 @@
                 </div>
             </aside>
 
-            <!-- ===== MAIN CONTENT AREA ===== -->
+            
             <div class="space-y-4 md:space-y-6">
                 
-                <!-- Mobile Filter Toggle -->
+                
                 <div class="lg:hidden flex items-center gap-2">
                     <button onclick="openMobileFilter()" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                         <i class="bi bi-funnel-fill text-brand-600 dark:text-brand-400"></i>
@@ -75,7 +75,7 @@
                     </button>
                 </div>
                 
-                <!-- Mobile Sort Dropdown -->
+                
                 <div id="mobileSortDropdown" class="hidden lg:hidden bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 p-2">
                     <a href="{{ request()->fullUrlWithQuery(['sort' => 'view_count', 'order' => 'desc']) }}" 
                        class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 {{ request('sort') == 'view_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : '' }}">
@@ -100,7 +100,7 @@
                     </a>
                 </div>
                 
-                <!-- Search Results Alert -->
+                
                 @if(request('q'))
                 <div class="bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 rounded-xl md:rounded-2xl p-3 md:p-4 flex items-center justify-between">
                     <div class="flex items-center gap-2 md:gap-3 min-w-0">
@@ -119,11 +119,11 @@
                 </div>
                 @endif
                 
-                <!-- Desktop Toolbar -->
+                
                 <div class="hidden lg:block bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-4">
                     <div class="flex flex-wrap items-center justify-between gap-4">
                         
-                        <!-- Sort Dropdown -->
+                        
                         <div class="relative">
                             <button id="sortBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                                 <i class="bi bi-sort-down"></i>
@@ -155,7 +155,7 @@
                             </div>
                         </div>
                         
-                        <!-- View Toggle & Expand -->
+                        
                         <div class="flex items-center gap-2">
                             <div class="flex rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden">
                                 <button type="button" id="listViewBtn" class="px-3 py-2 text-sm transition-colors {{ request('view') != 'grid' ? 'bg-brand-600 text-white' : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600' }}">
@@ -173,7 +173,7 @@
                     </div>
                 </div>
                 
-                <!-- Active Filters -->
+                
                 @if(request()->except('page', 'view', 'sort', 'order'))
                 <div class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-3 md:p-4">
                     <div class="flex flex-wrap items-center gap-2">
@@ -204,7 +204,7 @@
                 </div>
                 @endif
                 
-                <!-- Datasets Grid/List -->
+                
                 <div class="{{ request('view') == 'grid' ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4' : 'space-y-3 md:space-y-4' }}" id="datasetsContainer">
                     @forelse($datasets as $index => $dataset)
                     <article class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 dataset-card" 
@@ -212,7 +212,7 @@
                              style="animation-delay: {{ min($index * 0.05, 0.5) }}s">
                         <div class="p-3 md:p-4">
                             <div class="flex gap-2 md:gap-3">
-                                <!-- Thumbnail -->
+                                
                                 <div class="flex-shrink-0">
                                     <div class="w-16 h-16 md:w-20 md:h-20 rounded-lg md:rounded-xl overflow-hidden bg-gradient-to-br from-brand-500 to-sphere-secondary flex items-center justify-center shadow-sm">
                                         @if($dataset->thumbnail_url)
@@ -225,16 +225,16 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Content -->
+                                
                                 <div class="flex-1 min-w-0">
-                                    <!-- Title -->
+                                    
                                     <h6 class="font-semibold text-gray-900 dark:text-white mb-1 line-clamp-1 text-sm md:text-base">
                                         <a href="{{ route('datasets.show', $dataset) }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
                                             {{ $dataset->display_name ?? $dataset->name }}
                                         </a>
                                     </h6>
                                     
-                                    <!-- Badges -->
+                                    
                                     <div class="flex flex-wrap gap-1 mb-2">
                                         @if($dataset->data_type)
                                         <span class="px-1.5 md:px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 text-[10px] md:text-xs font-semibold">{{ $dataset->data_type }}</span>
@@ -249,12 +249,12 @@
                                         @endif
                                     </div>
                                     
-                                    <!-- Description -->
+                                    
                                     <p class="text-xs text-gray-600 dark:text-gray-400 mb-2 line-clamp-2 hidden md:block">
                                         {{ Str::limit($dataset->abstract ?? $dataset->description, request('view') == 'grid' ? 60 : 120) }}
                                     </p>
                                     
-                                    <!-- Stats -->
+                                    
                                     <div class="flex flex-wrap gap-2 md:gap-3 text-[10px] md:text-xs text-gray-500 dark:text-gray-400 mb-2 md:mb-3">
                                         @if($dataset->num_instances !== null)
                                         <span class="flex items-center gap-1" title="Instances">
@@ -276,7 +276,7 @@
                                         @endif
                                     </div>
                                     
-                                    <!-- Actions -->
+                                    
                                     <div class="flex gap-1.5 md:gap-2">
                                         <a href="{{ route('datasets.show', $dataset) }}" 
                                            class="flex-1 inline-flex items-center justify-center gap-1 px-2 md:px-3 py-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 text-[11px] md:text-xs font-semibold hover:bg-brand-100 dark:hover:bg-brand-900/50 transition-colors">
@@ -300,7 +300,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Expanded Details -->
+                            
                             <div class="hidden mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-100 dark:border-gray-700" id="details-{{ $dataset->dataset_id }}">
                                 <div class="grid md:grid-cols-2 gap-3 md:gap-4">
                                     @if($dataset->variables->isNotEmpty())
@@ -346,7 +346,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Quick Actions -->
+                                
                                 <div class="flex gap-1.5 md:gap-2 mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-100 dark:border-gray-700">
                                     <button class="flex-1 inline-flex items-center justify-center gap-1 px-2 md:px-3 py-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 text-[11px] md:text-xs font-semibold hover:bg-brand-100 dark:hover:bg-brand-900/50 transition-colors" 
                                             onclick="importInPython({{ $dataset->dataset_id }})">
@@ -381,12 +381,12 @@
                     @endforelse
                 </div>
                 
-                <!-- Pagination Section -->
+                
                 @if($datasets->hasPages())
                 <div class="mt-4 md:mt-6 bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-3 md:p-4">
                     <div class="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
                         
-                        <!-- Results Info -->
+                        
                         <div class="text-xs md:text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">
                             <span class="font-semibold text-gray-900 dark:text-white">{{ $datasets->firstItem() ?? 0 }}</span>
                             <span class="mx-1">-</span>
@@ -395,7 +395,7 @@
                             <span class="font-semibold text-gray-900 dark:text-white">{{ number_format($datasets->total()) }}</span>
                         </div>
 
-                        <!-- Pagination Controls -->
+                        
                         <div class="flex items-center gap-0.5 md:gap-1 flex-wrap justify-center">
                             @if ($datasets->onFirstPage())
                                 <button disabled class="w-8 h-8 md:w-9 md:h-9 rounded-lg text-gray-400 cursor-not-allowed flex items-center justify-center">
@@ -461,14 +461,14 @@
     </div>
 </div>
 
-<!-- ===== MOBILE FILTER DRAWER ===== -->
+
 <div id="mobileFilterDrawer" class="fixed inset-0 z-[60] hidden lg:hidden">
-    <!-- Backdrop -->
+    
     <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="closeMobileFilter()" id="mobileFilterBackdrop"></div>
     
-    <!-- Drawer Panel -->
+    
     <div class="mobile-panel absolute right-0 top-0 h-full w-full max-w-sm bg-white dark:bg-gray-900 shadow-2xl translate-x-full flex flex-col" id="mobileFilterPanel">
-        <!-- Header -->
+        
         <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
             <div class="flex items-center gap-2">
                 <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-sphere-secondary flex items-center justify-center">
@@ -481,14 +481,14 @@
             </button>
         </div>
         
-        <!-- Filter Content -->
+        
         <div class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
             <form method="GET" action="{{ route('datasets.index') }}" id="mobileFilterForm">
                 @include('partials.filter-form', ['isMobile' => true])
             </form>
         </div>
         
-        <!-- Footer Actions -->
+        
         <div class="p-4 border-t border-gray-200 dark:border-gray-700 flex-shrink-0 bg-gray-50 dark:bg-gray-800/50 space-y-2">
             <a href="{{ route('datasets.index') }}" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                 <i class="bi bi-x-circle"></i>
@@ -502,7 +502,7 @@
     </div>
 </div>
 
-<!-- Citation Modal -->
+
 <div id="citationModal" class="fixed inset-0 z-[70] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0">
         <div class="fixed inset-0 bg-gray-900 bg-opacity-60 transition-opacity" onclick="closeCitationModal()"></div>
@@ -597,7 +597,6 @@
 
 @push('scripts')
 <script>
-// ===== MOBILE FILTER DRAWER =====
 function openMobileFilter() {
     const drawer = document.getElementById('mobileFilterDrawer');
     const panel = document.getElementById('mobileFilterPanel');
@@ -629,8 +628,6 @@ function clearAllFilters() {
         window.location.href = '{{ route("datasets.index") }}';
     }
 }
-
-// ===== Range Sliders =====
 function updateRangeValue(type, value) {
     const el = document.getElementById(type + 'Value');
     if (el) el.textContent = parseInt(value).toLocaleString();
@@ -645,8 +642,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-// ===== Toggle Sections =====
 function toggleSection(id) {
     const section = document.getElementById(id);
     const icon = document.getElementById(id + '-icon');
@@ -655,8 +650,6 @@ function toggleSection(id) {
     section.classList.toggle('hidden');
     if (icon) icon.style.transform = section.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
 }
-
-// ===== Card Toggle (Individual) =====
 function toggleCard(datasetId) {
     const details = document.getElementById('details-' + datasetId);
     const icon = document.getElementById('toggle-icon-' + datasetId);
@@ -667,8 +660,6 @@ function toggleCard(datasetId) {
     
     updateExpandAllState();
 }
-
-// ===== Attach toggle to all buttons =====
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.toggle-detail-btn').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -678,8 +669,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// ===== Update Expand All button state =====
 function updateExpandAllState() {
     const allDetails = document.querySelectorAll('[id^="details-"]');
     const visibleCount = Array.from(allDetails).filter(d => !d.classList.contains('hidden')).length;
@@ -698,8 +687,6 @@ function updateExpandAllState() {
         }
     }
 }
-
-// ===== Expand/Collapse All =====
 document.addEventListener('DOMContentLoaded', function() {
     const expandAllBtn = document.getElementById('expandAllBtn');
     if (expandAllBtn) {
@@ -730,8 +717,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// ===== View Mode =====
 document.addEventListener('DOMContentLoaded', function() {
     const listBtn = document.getElementById('listViewBtn');
     const gridBtn = document.getElementById('gridViewBtn');
@@ -752,8 +737,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// ===== Sort Dropdown (Desktop) =====
 document.addEventListener('DOMContentLoaded', function() {
     const sortBtn = document.getElementById('sortBtn');
     const sortDropdown = document.getElementById('sortDropdown');
@@ -770,8 +753,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    // Mobile Sort Dropdown
     const mobileSortBtn = document.getElementById('mobileSortBtn');
     const mobileSortDropdown = document.getElementById('mobileSortDropdown');
     
@@ -788,8 +769,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// ===== Live Search Filters =====
 function setupLiveSearch(inputId, itemClass) {
     const input = document.getElementById(inputId);
     if (!input) return;
@@ -806,13 +785,9 @@ function setupLiveSearch(inputId, itemClass) {
 document.addEventListener('DOMContentLoaded', function() {
     setupLiveSearch('keywordSearch', 'keyword-item');
     setupLiveSearch('subjectSearch', 'subject-item');
-    
-    // Also setup for mobile versions
     setupLiveSearch('mobileKeywordSearch', 'mobile-keyword-item');
     setupLiveSearch('mobileSubjectSearch', 'mobile-subject-item');
 });
-
-// ===== Citation Modal =====
 function showCitation(datasetId, datasetName) {
     const modal = document.getElementById('citationModal');
     const year = new Date().getFullYear();
@@ -857,8 +832,6 @@ function copyCitation() {
         }, 2000);
     });
 }
-
-// ===== Python Import =====
 function importInPython(datasetId) {
     const code = `# Import dataset ${datasetId}
 import pandas as pd
@@ -878,8 +851,6 @@ print(df.head())`;
         alert('✓ Python code copied to clipboard!');
     });
 }
-
-// ===== Save to Collection =====
 function addToCollection(datasetId) {
     fetch(`/datasets/${datasetId}/save`, {
         method: 'POST',
@@ -897,15 +868,12 @@ function addToCollection(datasetId) {
         window.location.href = "{{ route('login') }}?redirect=" + encodeURIComponent(window.location.href);
     });
 }
-
-// ===== Close modal on Escape =====
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeCitationModal();
         closeMobileFilter();
     }
 });
-// ===== Filter List (untuk search keywords/subject area) =====
 function filterList(query, itemClass) {
     const filter = query.toLowerCase();
     document.querySelectorAll('.' + itemClass).forEach(item => {

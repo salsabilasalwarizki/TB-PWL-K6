@@ -12,20 +12,10 @@ use App\Http\Controllers\Admin\{
 };
 use App\Http\Middleware\RoleMiddleware;
 
-/*
-|--------------------------------------------------------------------------
-| Admin Routes (MINIMAL & AMAN)
-|--------------------------------------------------------------------------
-| Tidak ada 'use' statement controller Admin untuk menghindari error autoloading.
-| Tambahkan kembali hanya setelah file controller benar-benar dibuat.
-*/
-
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     
-    // Dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     
-    // Dataset Review
     Route::prefix('datasets')->name('datasets.')->group(function () {
         Route::get('/', [DatasetReviewController::class, 'index'])->name('index');
         Route::get('/{dataset}', [DatasetReviewController::class, 'show'])->name('show');
@@ -36,18 +26,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::post('/bulk-approve', [DatasetReviewController::class, 'bulkApprove'])->name('bulk-approve');
     });
     
-    // User Management
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/', [UserManagementController::class, 'index'])->name('index');
         Route::get('/{user}', [UserManagementController::class, 'show'])->name('show');
         Route::put('/{user}/role', [UserManagementController::class, 'updateRole'])->name('update-role');
         Route::post('/{user}/toggle-status', [UserManagementController::class, 'toggleStatus'])->name('toggle-status');
     });
-    
-    // Statistics
+   
     Route::get('/statistics', [StatisticsController::class, 'index'])->name('statistics');
     
-    // Settings (optional)
     Route::get('/settings', function() {
         return view('admin.settings');
     })->name('settings');

@@ -5,7 +5,7 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
+    
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,14 +13,14 @@
     
     <div class="relative max-w-4xl mx-auto">
         
-        <!-- Breadcrumb -->
+        
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Link External Dataset</span>
         </nav>
         
-        <!-- Header Card -->
+        
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-8 md:p-10">
                 <div class="flex items-center gap-4">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             
-            <!-- Progress Bar (Complete) -->
+            
             <div class="p-6 md:p-8 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-gray-800 dark:to-gray-800">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
@@ -53,7 +53,7 @@
                     </span>
                 </div>
                 
-                <!-- Progress bar (Complete) -->
+                
                 <div class="hidden md:flex items-center gap-1 mb-3">
                     @for($i = 1; $i <= 6; $i++)
                         <div class="flex-1 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-green-500"></div>
@@ -63,7 +63,7 @@
                     <div class="h-full bg-gradient-to-r from-emerald-500 to-green-500" style="width: 100%"></div>
                 </div>
                 
-                <!-- Step labels (All Complete) -->
+                
                 <div class="hidden md:grid grid-cols-6 gap-1 mt-2 text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold">
                     <span class="text-center">Basic</span>
                     <span class="text-center">Paper</span>
@@ -75,11 +75,11 @@
             </div>
         </div>
         
-        <!-- Form -->
+        
         <form action="{{ route('contribute.linking.submit') }}" method="POST" id="linkingForm">
             @csrf
             
-            <!-- Descriptive Questions -->
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -95,7 +95,7 @@
                 
                 <div class="p-5 md:p-6 space-y-5">
                     
-                    <!-- 1. Purpose -->
+                    
                     <div>
                         <label for="purpose" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-bullseye me-1 text-indigo-500"></i>
@@ -115,7 +115,7 @@
                         </div>
                     </div>
                     
-                    <!-- 2. Funding -->
+                    
                     <div>
                         <label for="funding" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-cash-stack me-1 text-indigo-500"></i>
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                     
-                    <!-- 3. Instances Represent -->
+                    
                     <div>
                         <label for="instances_represent" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-grid-3x3-gap me-1 text-indigo-500"></i>
@@ -155,7 +155,7 @@
                         </div>
                     </div>
                     
-                    <!-- 4. Data Splits -->
+                    
                     <div>
                         <label for="data_splits" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-pie-chart me-1 text-indigo-500"></i>
@@ -175,7 +175,7 @@
                         </div>
                     </div>
                     
-                    <!-- 5. Sensitive Data -->
+                    
                     <div>
                         <label for="sensitive_data" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-shield-exclamation me-1 text-indigo-500"></i>
@@ -195,7 +195,7 @@
                         </div>
                     </div>
                     
-                    <!-- 6. Preprocessing -->
+                    
                     <div>
                         <label for="preprocessing" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-gear me-1 text-indigo-500"></i>
@@ -215,7 +215,7 @@
                         </div>
                     </div>
                     
-                    <!-- 7. Additional Information -->
+                    
                     <div>
                         <label for="additional_info" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-info-circle me-1 text-indigo-500"></i>
@@ -235,7 +235,7 @@
                         </div>
                     </div>
                     
-                    <!-- 8. Citation Requests -->
+                    
                     <div>
                         <label for="citation_requests" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-quote me-1 text-indigo-500"></i>
@@ -265,7 +265,7 @@
                 </div>
             </div>
             
-            <!-- Summary Box -->
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border-2 border-indigo-300 dark:border-indigo-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40 border-b border-indigo-200 dark:border-indigo-800 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -316,7 +316,7 @@
                 </div>
             </div>
             
-            <!-- Navigation -->
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('contribute.linking.variable-info') }}" 
@@ -345,10 +345,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (form && submitBtn) {
         form.addEventListener('submit', function(e) {
-            // Optional: Validate client-side before submitting
-            // if (!this.checkValidity()) return;
-
-            // Show loading state
             submitBtn.disabled = true;
             const originalContent = submitBtn.innerHTML;
             submitBtn.innerHTML = `
@@ -358,10 +354,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 </svg>
                 Submitting...
             `;
-
-            // DO NOT use e.preventDefault() here if you want a standard submission.
-            // The form will submit naturally, and the loading state will show briefly 
-            // before the page redirects.
         });
     }
 });

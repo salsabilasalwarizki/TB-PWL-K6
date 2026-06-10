@@ -9,9 +9,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FileController extends Controller
 {
-    /**
-     * Stream file with progress support
-     */
+    
     public function stream(Request $request, File $file): StreamedResponse
     {
         $path = storage_path('app/public/' . $file->file_path);
@@ -31,9 +29,7 @@ class FileController extends Controller
         ]);
     }
     
-    /**
-     * Get file metadata (AJAX)
-     */
+    
     public function metadata(File $file)
     {
         return response()->json([

@@ -5,7 +5,6 @@
 @section('content')
 <div class="relative">
     
-    <!-- ===== HERO SECTION ===== -->
     <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary text-white">
         <div class="absolute inset-0">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
@@ -13,7 +12,6 @@
         </div>
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-            <!-- Breadcrumb -->
             <nav class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('home') }}" class="hover:text-white transition-colors">Home</a>
                 <i class="bi bi-chevron-right text-xs"></i>
@@ -46,14 +44,11 @@
         </div>
     </section>
 
-    <!-- ===== MAIN CONTENT ===== -->
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid lg:grid-cols-[1fr_400px] gap-8">
             
-            <!-- ===== LEFT: CONTACT FORM ===== -->
             <div class="space-y-6">
                 
-                <!-- Contact Form -->
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-900/30 flex items-center justify-center">
@@ -65,7 +60,6 @@
                         </div>
                     </div>
                     
-                    <!-- Flash Messages -->
                     @if(session('success'))
                     <div class="mb-4 p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 flex items-start gap-3">
                         <i class="bi bi-check-circle-fill text-green-500 text-xl mt-0.5"></i>
@@ -165,7 +159,6 @@
                     </form>
                 </div>
                 
-                <!-- FAQ Section -->
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center">
@@ -218,17 +211,14 @@
                 </div>
             </div>
             
-            <!-- ===== RIGHT: CONTACT INFO ===== -->
             <aside class="space-y-4 lg:sticky lg:top-24 lg:self-start">
                 
-                <!-- Contact Info Card -->
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
                     <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
                         <i class="bi bi-info-circle"></i>Contact Information
                     </h3>
                     
                     <div class="space-y-4">
-                        <!-- Email -->
                         <div class="flex items-start gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700">
                             <div class="w-9 h-9 rounded-lg bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center flex-shrink-0">
                                 <i class="bi bi-envelope-fill text-brand-600 dark:text-brand-400"></i>
@@ -241,7 +231,6 @@
                             </div>
                         </div>
                         
-                        <!-- Address -->
                         <div class="flex items-start gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700">
                             <div class="w-9 h-9 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
                                 <i class="bi bi-geo-alt-fill text-green-600 dark:text-green-400"></i>
@@ -256,7 +245,6 @@
                             </div>
                         </div>
                         
-                        <!-- Institution -->
                         <div class="flex items-start gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700">
                             <div class="w-9 h-9 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center flex-shrink-0">
                                 <i class="bi bi-building text-purple-600 dark:text-purple-400"></i>
@@ -271,7 +259,6 @@
                     </div>
                 </div>
                 
-                <!-- Response Time -->
                 <div class="bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary rounded-2xl p-6 text-white shadow-xl">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center">
@@ -288,7 +275,6 @@
                     </div>
                 </div>
                 
-                <!-- Support Hours -->
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
                     <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
                         <i class="bi bi-calendar-check"></i>Support Hours
@@ -321,7 +307,6 @@
 
 @push('scripts')
 <script>
-// Character counter for message
 const messageInput = document.querySelector('textarea[name="message"]');
 const charCount = document.getElementById('charCount');
 
@@ -335,7 +320,6 @@ if (messageInput && charCount) {
         }
     });
     
-    // Update on page load (for old input)
     charCount.textContent = messageInput.value.length;
 }
 </script>

@@ -47,7 +47,7 @@ class SocialAuthController extends Controller
                 'name' => $googleUser->getName(),
             ]);
             
-            // Find or create user
+            
             $user = User::where('google_id', $googleUser->getId())->first();
             
             if (!$user) {
@@ -77,11 +77,11 @@ class SocialAuthController extends Controller
                 }
             }
             
-            // Login user
+            
             Log::info('Logging in user ID: ' . $user->id);
             Auth::login($user, true);
             
-            // Save session
+           
             session(['user_id' => $user->id]);
             session()->save();
             
@@ -91,7 +91,7 @@ class SocialAuthController extends Controller
                 'session_id' => session()->getId(),
             ]);
             
-            // Redirect ke home dengan URL penuh
+            
             Log::info('Redirecting to: ' . url('/'));
             
             return redirect()->to(url('/'));
@@ -163,11 +163,11 @@ class SocialAuthController extends Controller
                 }
             }
             
-            // Login user
+            
             Log::info('Logging in user ID: ' . $user->id);
             Auth::login($user, true);
             
-            // Save session
+            
             session(['user_id' => $user->id]);
             session()->save();
             
@@ -177,7 +177,7 @@ class SocialAuthController extends Controller
                 'session_id' => session()->getId(),
             ]);
             
-            // Redirect ke home
+           
             Log::info('Redirecting to: ' . url('/'));
             
             return redirect()->to(url('/'));

@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 class NewsletterController extends Controller
 {
-    /**
-     * Subscribe ke newsletter
-     */
+    
     public function subscribe(Request $request)
     {
         $validated = $request->validate([
@@ -22,7 +20,7 @@ class NewsletterController extends Controller
             'email.email' => 'Please enter a valid email address.',
         ]);
 
-        // Cek apakah email sudah terdaftar
+       
         if (NewsletterSubscription::isSubscribed($validated['email'])) {
             return response()->json([
                 'success' => false,
@@ -30,7 +28,7 @@ class NewsletterController extends Controller
             ], 422);
         }
 
-        // Cek apakah email pernah unsubscribe, re-activate
+        
         $existing = NewsletterSubscription::where('email', $validated['email'])->first();
         
         if ($existing) {
@@ -49,12 +47,12 @@ class NewsletterController extends Controller
             ]);
         }
 
-        // Kirim email welcome
+        
         try {
             Mail::to($validated['email'])->send(new NewsletterWelcomeMail($subscription));
         } catch (\Exception $e) {
             Log::error('Newsletter welcome email failed: ' . $e->getMessage());
-            // Tetap success karena subscription berhasil, hanya email yang gagal
+            
         }
 
         return response()->json([
@@ -63,9 +61,7 @@ class NewsletterController extends Controller
         ]);
     }
 
-    /**
-     * Unsubscribe dari newsletter
-     */
+    
     public function unsubscribe($token)
     {
         $subscription = NewsletterSubscription::where('token', $token)->first();

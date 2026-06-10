@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class DatasetStatsService
 {
-    /**
-     * Get comprehensive dataset statistics
-     */
+   
     public function getStats(bool $fresh = false): array
     {
         $key = 'dataset:stats:global';
@@ -45,14 +43,12 @@ class DatasetStatsService
         });
     }
     
-    /**
-     * Get stats for specific filter combination
-     */
+   
     public function getFilteredStats(array $filters): array
     {
         $query = Dataset::where('status', 'available');
         
-        // Apply filters (simplified - extend as needed)
+        
         if (!empty($filters['data_type'])) {
             $query->where('data_type', $filters['data_type']);
         }
@@ -73,13 +69,11 @@ class DatasetStatsService
         ];
     }
     
-    /**
-     * Clear all dataset-related caches
-     */
+    
     public function clearCache(): void
     {
         Cache::forget('dataset:stats:global');
         Cache::forget('dataset_filters');
-        // Add more cache keys as needed
+       
     }
 }

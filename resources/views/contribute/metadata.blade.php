@@ -5,7 +5,7 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
+    
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,7 +13,7 @@
     
     <div class="relative max-w-4xl mx-auto">
         
-        <!-- Breadcrumb -->
+        
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
@@ -24,7 +24,7 @@
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Donate Dataset</span>
         </nav>
         
-        <!-- Header Card -->
+        
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-brand-600 to-sphere-secondary p-8 md:p-10">
                 <div class="flex items-center gap-4 mb-4">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             
-            <!-- Description -->
+            
             <div class="p-6 md:p-8 border-b border-gray-100 dark:border-gray-700">
                 <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
                     We offer users the option to upload their dataset data to our repository.
@@ -53,7 +53,7 @@
                 </p>
             </div>
             
-            <!-- Modern Progress Bar -->
+            
             <div class="p-6 md:p-8 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-800">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
@@ -67,7 +67,7 @@
                     </span>
                 </div>
                 
-                <!-- Step indicators -->
+                
                 <div class="hidden md:flex items-center gap-1 mb-3">
                     @for($i = 1; $i <= 7; $i++)
                         <div class="flex-1 h-2 rounded-full {{ $i === 1 ? 'bg-gradient-to-r from-amber-500 to-orange-500' : 'bg-gray-200 dark:bg-gray-700' }}"></div>
@@ -77,7 +77,7 @@
                     <div class="h-full bg-gradient-to-r from-amber-500 to-orange-500" style="width: 14.28%"></div>
                 </div>
                 
-                <!-- Step labels -->
+                
                 <div class="hidden md:grid grid-cols-7 gap-1 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
                     <span class="text-center font-semibold text-amber-700 dark:text-amber-400">Basic</span>
                     <span class="text-center">Paper</span>
@@ -90,7 +90,7 @@
             </div>
         </div>
         
-        <!-- Error Alert -->
+        
         @if($errors->any())
         <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-5 mb-6 flex items-start gap-3">
             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
@@ -115,9 +115,9 @@
         <form action="{{ route('contribute.metadata.store') }}" method="POST" enctype="multipart/form-data" id="donationForm">
             @csrf
             
-            <!-- ============================================ -->
-            <!-- SECTION 1: Basic Info -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-brand-50 to-sphere-secondary/10 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -132,7 +132,7 @@
                 </div>
                 
                 <div class="p-5 md:p-6 space-y-5">
-                    <!-- Dataset Name -->
+                    
                     <div>
                         <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-tag me-1 text-brand-500"></i>Dataset Name <span class="text-red-500">*</span>
@@ -151,7 +151,7 @@
                         @enderror
                     </div>
                     
-                    <!-- Abstract -->
+                    
                     <div>
                         <label for="abstract" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-card-text me-1 text-brand-500"></i>Abstract <span class="text-red-500">*</span>
@@ -178,7 +178,7 @@
                         </div>
                     </div>
                     
-                    <!-- Numeric Stats -->
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label for="num_instances" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -218,7 +218,7 @@
                         </div>
                     </div>
                     
-                    <!-- DOI -->
+                    
                     <div>
                         <label for="doi" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-upc-scan me-1 text-brand-500"></i>Dataset DOI
@@ -235,7 +235,7 @@
                         </p>
                     </div>
                     
-                    <!-- Graphics Upload -->
+                    
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-image me-1 text-brand-500"></i>Graphics
@@ -263,16 +263,16 @@
                                 </p>
                             </div>
                             
-                            <!-- Preview Container -->
+                            
                             <div id="graphics-preview" class="hidden"></div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- SECTION 2: Dataset Characteristics -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-purple-50 to-sphere-secondary/10 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -330,9 +330,9 @@
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- SECTION 3: Subject Area -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -388,9 +388,9 @@
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- SECTION 4: Associated Tasks -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -444,9 +444,9 @@
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- SECTION 5: Feature Types -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -491,9 +491,9 @@
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- Navigation -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('profile.datasets') }}" 
@@ -523,13 +523,10 @@
 
 @push('scripts')
 <script>
-    // Character counter for abstract
     function updateCharCount(textarea, max) {
         const count = textarea.value.length;
         document.getElementById('charCount').textContent = count;
     }
-    
-    // Graphics upload preview
     const graphicsInput = document.getElementById('graphics');
     const graphicsContent = document.getElementById('graphicsContent');
     const graphicsPreview = document.getElementById('graphics-preview');
@@ -564,8 +561,6 @@
         graphicsPreview.classList.add('hidden');
         graphicsPreview.innerHTML = '';
     }
-    
-    // Drag & drop visual feedback
     ['dragenter', 'dragover'].forEach(eventName => {
         graphicsDropZone.addEventListener(eventName, (e) => {
             e.preventDefault();
@@ -579,8 +574,6 @@
             graphicsDropZone.classList.remove('border-brand-500', 'bg-brand-50/50', 'dark:bg-brand-900/10');
         });
     });
-    
-    // Form submission loading state
     document.getElementById('donationForm').addEventListener('submit', function(e) {
         const btn = document.getElementById('nextBtn');
         btn.disabled = true;

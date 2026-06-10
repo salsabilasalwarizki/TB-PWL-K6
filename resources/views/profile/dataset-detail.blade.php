@@ -5,7 +5,7 @@
 @section('content')
 <div class="relative">
     
-    <!-- ===== HERO SECTION ===== -->
+    
     <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary text-white">
         <div class="absolute inset-0">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
@@ -13,7 +13,7 @@
         </div>
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
-            <!-- Breadcrumb -->
+            
             <nav class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('home') }}" class="hover:text-white transition-colors">Home</a>
                 <i class="bi bi-chevron-right text-xs"></i>
@@ -23,7 +23,7 @@
             </nav>
             
             <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
-                <!-- Thumbnail -->
+                
                 <div class="flex-shrink-0">
                     <div class="w-24 h-24 md:w-28 md:h-28 rounded-2xl overflow-hidden bg-white/10 backdrop-blur-md border-2 border-white/20 flex items-center justify-center shadow-2xl">
                         @if($dataset->thumbnail_url)
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 
-                <!-- Info -->
+                
                 <div class="flex-1 min-w-0">
                     <div class="flex flex-wrap items-center gap-2 mb-2">
                         @if($dataset->data_type)
@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 
-                <!-- Actions -->
+                
                 <div class="flex gap-2 flex-shrink-0">
                     <a href="{{ route('contribute.edit.metadata', $dataset) }}" 
                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-brand-700 font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
@@ -109,14 +109,14 @@
         </div>
     </section>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid lg:grid-cols-[1fr_320px] gap-6">
             
-            <!-- ===== LEFT: MAIN CONTENT ===== -->
+            
             <div class="space-y-6 min-w-0">
                 
-                <!-- Description -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
                     <div class="flex items-center gap-2 mb-3">
                         <div class="w-8 h-8 rounded-lg bg-brand-50 dark:bg-brand-900/30 flex items-center justify-center">
@@ -129,7 +129,7 @@
                     </p>
                 </div>
 
-                <!-- Characteristics Grid -->
+                
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                     @php
                         $characteristics = [
@@ -162,7 +162,7 @@
                     @endforeach
                 </div>
 
-                <!-- Collapsible: Dataset Information -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <button type="button" onclick="toggleSection('datasetInfoSection')" class="w-full p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
                         <div class="flex items-center gap-3">
@@ -195,7 +195,7 @@
                     </div>
                 </div>
 
-                <!-- Collapsible: Introductory Papers -->
+                
                 @if($dataset->papers->isNotEmpty())
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <button type="button" onclick="toggleSection('paperSection')" class="w-full p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
@@ -230,7 +230,7 @@
                 </div>
                 @endif
 
-                <!-- Collapsible: Dataset Files -->
+                
                 @if($dataset->files->isNotEmpty())
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <button type="button" onclick="toggleSection('filesSection')" class="w-full p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
@@ -274,7 +274,7 @@
                 </div>
                 @endif
 
-                <!-- Collapsible: Variables -->
+                
                 @if($dataset->variables->isNotEmpty())
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <button type="button" onclick="toggleSection('variablesSection')" class="w-full p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
@@ -327,10 +327,10 @@
 
             </div>
 
-            <!-- ===== RIGHT: SIDEBAR ===== -->
+            
             <aside class="space-y-4 lg:sticky lg:top-24 lg:self-start">
                 
-                <!-- Action Buttons -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5">
                     @php
                         $totalSize = $dataset->files->sum('file_size_bytes');
@@ -364,7 +364,7 @@
                     </div>
                 </div>
 
-                <!-- DOI -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5">
                     <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
                         <i class="bi bi-upc-scan"></i>DOI
@@ -380,7 +380,7 @@
                     @endif
                 </div>
 
-                <!-- License -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5">
                     <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
                         <i class="bi bi-shield-check"></i>License
@@ -396,7 +396,7 @@
                     </p>
                 </div>
 
-                <!-- Creators -->
+                
                 @if($dataset->creators && $dataset->creators->isNotEmpty())
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5">
                     <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
@@ -423,7 +423,7 @@
                 </div>
                 @endif
 
-                <!-- Submission Status -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-5">
                     <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
                         <i class="bi bi-check2-circle"></i>Submission Status
@@ -463,7 +463,7 @@
     </div>
 </div>
 
-<!-- Citation Modal -->
+
 <div id="citationModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0">
         <div class="fixed inset-0 bg-gray-900 bg-opacity-60 transition-opacity" onclick="closeCitationModal()"></div>
@@ -521,7 +521,6 @@
 
 @push('scripts')
 <script>
-// ===== Toggle Collapsible Sections =====
 function toggleSection(id) {
     const section = document.getElementById(id);
     const icon = document.getElementById(id + '-icon');
@@ -530,8 +529,6 @@ function toggleSection(id) {
     section.classList.toggle('hidden');
     if (icon) icon.style.transform = section.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
 }
-
-// ===== Visibility Toggle =====
 function toggleVisibility() {
     const btn = document.getElementById('visibilityBtn');
     const isCurrentlyPublic = btn.querySelector('i').classList.contains('bi-globe');
@@ -559,8 +556,6 @@ function toggleVisibility() {
                 icon.classList.add('bi-lock');
                 if (text) text.textContent = 'Private';
             }
-            
-            // Show success notification
             const notif = document.createElement('div');
             notif.className = 'fixed top-20 right-4 z-50 bg-green-500 text-white px-4 py-3 rounded-xl shadow-lg flex items-center gap-2';
             notif.innerHTML = '<i class="bi bi-check-circle"></i><span>Visibility updated!</span>';
@@ -570,8 +565,6 @@ function toggleVisibility() {
     })
     .catch(err => console.error('Error:', err));
 }
-
-// ===== Citation Modal =====
 function showCitation() {
     document.getElementById('citationModal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -598,8 +591,6 @@ function copyCitation() {
         }, 2000);
     });
 }
-
-// Close modal on Escape
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeCitationModal();

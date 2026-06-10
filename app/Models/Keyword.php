@@ -19,9 +19,7 @@ class Keyword extends Model
         'updated_at' => 'datetime',
     ];
     
-  /**
- * Get all datasets that use this keyword
- */
+  
 public function datasets(): BelongsToMany
 {
     return $this->belongsToMany(

@@ -5,7 +5,6 @@
 @section('content')
 <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 <article class="bg-white dark:bg-gray-800">
-    <!-- Hero Image -->
     @if($post->featured_img)
     <div class="w-full h-96 overflow-hidden">
         <img src="{{ Storage::url($post->featured_img) }}" alt="{{ $post->title }}" 
@@ -14,7 +13,6 @@
     @endif
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <!-- Header -->
         <header class="mb-8">
             <div class="flex items-center gap-3 mb-4">
                 <span class="px-3 py-1 rounded-full text-sm font-semibold bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400">
@@ -49,12 +47,10 @@
             </div>
         </header>
 
-        <!-- Content -->
         <div class="prose prose-lg dark:prose-invert max-w-none mb-12">
             {!! $post->body !!}
         </div>
 
-        <!-- Related Posts -->
         @if($relatedPosts->count() > 0)
         <div class="border-t border-gray-200 dark:border-gray-700 pt-12">
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Related Articles</h3>

@@ -18,10 +18,9 @@ class UciDatasetCsvSeeder extends Seeder
             return;
         }
 
-        $this->command->info("📂 Membaca file CSV...");
+        $this->command->info("Membaca file CSV...");
         $handle = fopen($filePath, 'r');
         
-        // Baca header
         $headers = fgetcsv($handle);
         
         $count = 0;
@@ -29,41 +28,32 @@ class UciDatasetCsvSeeder extends Seeder
         
         while (($row = fgetcsv($handle)) !== false) {
             try {
-                // Gabungkan headers dengan row data
                 $data = array_combine($headers, $row);
                 
-                // Parse data dari CSV
                 $name = trim($data['item_page_title'] ?? $data['title'] ?? '');
                 if (empty($name)) continue;
                 
-                // Parse description
                 $description = trim($data['dataset_details'] ?? $data['Additional_Information'] ?? '');
                 
-                // Parse donation date
                 $donatedDate = null;
                 if (!empty($data['Donation_Date'])) {
                     $donatedDate = Carbon::parse($data['Donation_Date'])->startOfDay();
                 }
                 
-                // Parse numeric fields
                 $numInstances = $this->parseNumber($data['Total_Records'] ?? null);
                 
-                // Parse boolean
                 $hasMissing = in_array(strtolower($data['has_missing_values'] ?? ''), ['yes', 'true', '1']);
                 
-                // Create or find related models
                 $licenseId = $this->findOrCreateLicense($data['License'] ?? $data['license'] ?? null);
                 $doiId = $this->findOrCreateDoi($data['DOI'] ?? null);
                 
-                // Prepare additional info
                 $additionalInfo = [
                     'source_url' => $data['item_page_link'] ?? null,
                     'download_size' => $data['download_size'] ?? null,
                     'data_file_structure' => $data['Data_File_Structure'] ?? null,
                     'file_format_description' => $data['File_Format_Description'] ?? null,
                 ];
-                
-                // Create dataset
+              
                 $dataset = Dataset::create([
                     'name' => $name,
                     'description' => $description,
@@ -72,44 +62,42 @@ class UciDatasetCsvSeeder extends Seeder
                     'characteristics' => $data['data'] ?? null,
                     'feature_type' => $data['data_3'] ?? null,
                     'num_instances' => $numInstances,
-                    'num_features' => null, // Tidak ada di CSV
+                    'num_features' => null, 
                     'has_missing_values' => $hasMissing,
                     'additional_info' => $additionalInfo,
                     'attribute_info' => null,
                     'view_count' => $this->parseNumber(str_replace(' views', '', $data['views_count'] ?? '0')),
                     'download_count' => 0,
                     'citation_count' => $this->parseNumber(str_replace(' citations', '', $data['citation_count'] ?? '0')),
-                    'task_id' => null, // Perlu mapping manual
-                    'subject_area_id' => null, // Perlu mapping manual
+                    'task_id' => null,
+                    'subject_area_id' => null, 
                     'license_id' => $licenseId,
                     'doi_id' => $doiId,
                     'status' => 'approved',
                     'is_public' => true,
                 ]);
                 
-                // Sync creators
                 $this->syncCreators($dataset, $data);
-                
-                // Sync keywords
+             
                 $this->syncKeywords($dataset, $data);
                 
                 $count++;
                 
                 if ($count % 50 === 0) {
-                    $this->command->info("✓ Imported {$count} datasets...");
+                    $this->command->info("Imported {$count} datasets...");
                 }
                 
             } catch (\Exception $e) {
                 $failed++;
-                $this->command->error("✗ Failed: " . ($data['item_page_title'] ?? 'Unknown') . " - " . $e->getMessage());
+                $this->command->error("Failed: " . ($data['item_page_title'] ?? 'Unknown') . " - " . $e->getMessage());
             }
         }
         
         fclose($handle);
         
-        $this->command->info("✅ Import completed!");
-        $this->command->info("✓ Success: {$count} datasets");
-        $this->command->info("✗ Failed: {$failed} datasets");
+        $this->command->info("Import completed!");
+        $this->command->info("Success: {$count} datasets");
+        $this->command->info("Failed: {$failed} datasets");
     }
     
     private function parseNumber($value)
@@ -118,7 +106,6 @@ class UciDatasetCsvSeeder extends Seeder
             return null;
         }
         
-        // Remove text like " Instances", "K", "M"
         $value = strtoupper(trim($value));
         $value = str_replace([' INSTANCES', ' FEATURES', ',', ' '], '', $value);
         

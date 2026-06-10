@@ -5,22 +5,19 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
     </div>
     
     <div class="relative max-w-4xl mx-auto">
-        
-        <!-- Breadcrumb -->
+       
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Linking Policy</span>
         </nav>
-        
-        <!-- Header Card -->
+       
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-brand-600 to-sphere-secondary p-8 md:p-10">
                 <div class="flex items-center gap-4">
@@ -39,7 +36,6 @@
             </div>
         </div>
         
-        <!-- Policy Content Card -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                 <div class="flex items-center gap-3">
@@ -54,7 +50,6 @@
             </div>
             
             <div class="p-5 md:p-8">
-                <!-- Policy Rules -->
                 <div class="space-y-4 mb-8">
                     <div class="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-amber-50/50 to-orange-50/50 dark:from-amber-900/10 dark:to-orange-900/10 border border-amber-200/50 dark:border-amber-800/30">
                         <div class="flex-shrink-0 w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
@@ -79,7 +74,6 @@
                     </div>
                 </div>
                 
-                <!-- Contact Info -->
                 <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-start gap-3 mb-8">
                     <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                         <i class="bi bi-envelope text-lg text-blue-600 dark:text-blue-400"></i>
@@ -92,10 +86,8 @@
                     </div>
                 </div>
                 
-                <!-- Divider -->
                 <div class="border-t border-gray-200 dark:border-gray-700 my-8"></div>
                 
-                <!-- Consent Section -->
                 <div>
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">

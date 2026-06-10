@@ -22,7 +22,7 @@ class PasswordResetLinkController extends Controller
         ]);
 
         try {
-            // Log untuk debugging
+            
             Log::info('Password reset requested for: ' . $request->email);
 
             $status = Password::sendResetLink(

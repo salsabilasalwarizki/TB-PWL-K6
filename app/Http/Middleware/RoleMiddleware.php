@@ -10,27 +10,22 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     * @param  string  ...$roles
-     */
+    
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
-        // Cek apakah user sudah login
+        
         if (!Auth::check()) {
             return redirect()->route('login');
         }
 
         $user = Auth::user();
 
-        // Cek apakah user memiliki salah satu role yang diizinkan
+        
         if (in_array($user->role, $roles)) {
             return $next($request);
         }
 
-        // Jika tidak punya akses, redirect dengan pesan error
+        
         abort(403, 'Unauthorized action. You do not have permission to access this area.');
     }
 }

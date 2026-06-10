@@ -9,7 +9,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            // Tambah kolom excerpt jika belum ada
             if (!Schema::hasColumn('posts', 'excerpt')) {
                 $table->text('excerpt')->nullable()->after('body');
             }

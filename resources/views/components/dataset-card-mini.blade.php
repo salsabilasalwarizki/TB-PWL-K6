@@ -14,10 +14,8 @@
 
 <article class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
     
-    <!-- Gradient Border Effect on Hover -->
     <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-500 via-sphere-primary to-sphere-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"></div>
     
-    <!-- Badge -->
     @if($showBadge && $badgeText)
     <div class="absolute top-3 right-3 z-10">
         <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold {{ $badgeClass }} shadow-lg backdrop-blur-sm">
@@ -33,7 +31,6 @@
     </div>
     @endif
     
-    <!-- Thumbnail with Overlay -->
     <div class="relative h-40 overflow-hidden bg-gradient-to-br from-brand-500 via-sphere-primary to-sphere-secondary">
         @if($dataset->thumbnail_url)
             <img src="{{ $dataset->thumbnail_url }}" 
@@ -49,10 +46,8 @@
             </div>
         @endif
         
-        <!-- Gradient Overlay -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
         
-        <!-- Bottom Info on Thumbnail -->
         <div class="absolute bottom-0 left-0 right-0 p-4">
             <div class="flex items-center gap-2 mb-2">
                 @if($dataset->data_type)
@@ -71,21 +66,16 @@
         </div>
     </div>
     
-    <!-- Content -->
     <div class="p-5">
-        <!-- Title -->
         <h3 class="font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
             <a href="{{ route('datasets.show', $dataset) }}" class="inline-block">
                 {{ $dataset->display_name ?? $dataset->name }}
             </a>
         </h3>
-        
-        <!-- Description -->
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2 leading-relaxed">
             {{ Str::limit($dataset->abstract ?? $dataset->description, 100) }}
         </p>
         
-        <!-- Stats -->
         @if($showStats)
         <div class="grid grid-cols-3 gap-2 mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
             @if($dataset->num_instances !== null)
@@ -124,7 +114,6 @@
         </div>
         @endif
         
-        <!-- Meta Info -->
         <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-4">
             @if($dataset->subject_area)
             <span class="flex items-center gap-1 truncate">
@@ -140,7 +129,6 @@
             @endif
         </div>
         
-        <!-- Keywords Preview -->
         @if($dataset->keywords && $dataset->keywords->isNotEmpty())
         <div class="flex flex-wrap gap-1 mb-4">
             @foreach($dataset->keywords->take(3) as $keyword)
@@ -155,8 +143,7 @@
             @endif
         </div>
         @endif
-        
-        <!-- Action Button -->
+      
         <a href="{{ route('datasets.show', $dataset) }}" 
            class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-200 text-sm font-semibold hover:bg-gradient-to-r hover:from-brand-600 hover:to-sphere-secondary hover:text-white transition-all duration-300 group/btn">
             <span>View Dataset</span>
@@ -164,6 +151,5 @@
         </a>
     </div>
     
-    <!-- Decorative Corner Element -->
     <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-brand-500/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 </article>

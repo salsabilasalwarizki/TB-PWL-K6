@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class AdminDatasetController extends Controller
 {
-    /**
-     * Display list of datasets
-     */
+    
     public function index(Request $request)
     {
         $query = Dataset::with(['user', 'keywords', 'files']);
         
-        // Search
+        
         if ($request->filled('search')) {
             $query->where(function($q) use ($request) {
                 $q->where('name', 'like', "%{$request->search}%")
@@ -26,12 +24,12 @@ class AdminDatasetController extends Controller
             });
         }
         
-        // Filter status
+        
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
         
-        // Sort
+        
         $sort = $request->get('sort', 'created_at');
         $order = $request->get('order', 'desc');
         $query->orderBy($sort, $order);
@@ -45,14 +43,11 @@ class AdminDatasetController extends Controller
             'approved' => Dataset::where('status', 'approved')->count(),
             'rejected' => Dataset::where('status', 'rejected')->count(),
         ];
-        // dd($stats);
-        // 6. Return View dengan variabel 'datasets' DAN 'stats'
+        
         return view('admin.datasets.index', compact('datasets', 'stats'));
     }
     
-    /**
-     * Export datasets to CSV
-     */
+    
     public function export(Request $request)
     {
         $query = Dataset::with(['user', 'keywords']);
@@ -99,17 +94,13 @@ class AdminDatasetController extends Controller
         exit;
     }
     
-    /**
-     * Show edit form
-     */
+   
     public function edit(Dataset $dataset)
     {
         return view('admin.datasets.edit', compact('dataset'));
     }
     
-    /**
-     * Update dataset
-     */
+    
     public function update(Request $request, Dataset $dataset)
 {
     $validated = $request->validate([
@@ -143,9 +134,7 @@ class AdminDatasetController extends Controller
     }
 }
     
-    /**
-     * Delete dataset
-     */
+    
     public function destroy(Dataset $dataset)
     {
         try {
@@ -156,9 +145,7 @@ class AdminDatasetController extends Controller
         }
     }
     
-    /**
-     * Approve dataset
-     */
+    
     public function approve(Dataset $dataset)
     {
         $dataset->update([
@@ -170,9 +157,7 @@ class AdminDatasetController extends Controller
         return back()->with('success', 'Dataset approved successfully.');
     }
     
-    /**
-     * Reject dataset
-     */
+    
     public function reject(Request $request, Dataset $dataset)
     {
         $request->validate([
@@ -189,9 +174,7 @@ class AdminDatasetController extends Controller
         return back()->with('success', 'Dataset rejected.');
     }
     
-    /**
-     * Bulk action on datasets
-     */
+    
     public function bulkAction(Request $request)
     {
         $validated = $request->validate([

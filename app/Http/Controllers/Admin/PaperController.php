@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class PaperController extends Controller
 {
-    // app/Http/Controllers/Admin/PaperController.php
+    
 public function upload(Request $request)
 {
     $request->validate([
-        'csv_file' => 'required|file|mimes:csv,txt|max:10240', // Max 10MB
+        'csv_file' => 'required|file|mimes:csv,txt|max:10240', 
     ]);
     
     $file = $request->file('csv_file');

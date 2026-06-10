@@ -48,8 +48,6 @@ class Dataset extends Model
     
     protected $appends = ['url', 'thumbnail'];
     
-    // === RELATIONSHIPS ===
-    
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -65,51 +63,45 @@ class Dataset extends Model
         return $this->belongsTo(Doi::class, 'doi_id');
     }
     
-
-// ✅ Relationship yang benar - gunakan nama unik
-public function descriptionDetails(): HasOne
-{
-    return $this->hasOne(
-        DatasetDescription::class, 
-        'dataset_id', 
-        'dataset_id'
-    );
-}
+    public function descriptionDetails(): HasOne
+    {
+        return $this->hasOne(
+            DatasetDescription::class, 
+            'dataset_id', 
+            'dataset_id'
+        );
+    }
     
     public function descriptions()
     {
-        // Helper accessor for blade compatibility
         return $this->description;
     }
     
-// app/Models/Dataset.php
-
-public function files(): BelongsToMany
-{
-    return $this->belongsToMany(
-        File::class, 
-        'dataset_files', 
-        'dataset_id', 
-        'file_id'
-    )
-    ->withPivot('file_role', 'is_default', 'display_order', 'created_at')
-    // ✅ Gunakan orderByPivot atau nama tabel langsung
-    ->orderByPivot('display_order')
-    ->orderByPivot('is_default', 'desc');
-}
+    public function files(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            File::class, 
+            'dataset_files', 
+            'dataset_id', 
+            'file_id'
+        )
+        ->withPivot('file_role', 'is_default', 'display_order', 'created_at')
+        ->orderByPivot('display_order')
+        ->orderByPivot('is_default', 'desc');
+    }
     
-public function images(): BelongsToMany
-{
-    return $this->belongsToMany(
-        Image::class, 
-        'dataset_images', 
-        'dataset_id', 
-        'image_id'
-    )
-    ->withPivot('role', 'display_order', 'is_primary', 'created_at')
-    ->orderByPivot('display_order')  // ✅ Gunakan orderByPivot, bukan orderBy('pivot.display_order')
-    ->orderByPivot('is_primary', 'desc');
-}
+    public function images(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Image::class, 
+            'dataset_images', 
+            'dataset_id', 
+            'image_id'
+        )
+        ->withPivot('role', 'display_order', 'is_primary', 'created_at')
+        ->orderByPivot('display_order')
+        ->orderByPivot('is_primary', 'desc');
+    }
     
     public function variables(): HasMany
     {
@@ -118,36 +110,31 @@ public function images(): BelongsToMany
             ->orderBy('display_order');
     }
     
-// ✅ keywords() - tidak perlu ordering khusus
-public function keywords(): BelongsToMany
-{
-    return $this->belongsToMany(Keyword::class, 'dataset_keywords', 'dataset_id', 'keyword_id')
-        ->withTimestamps();
-}
-/**
- * Papers relationship
- */
-public function papers(): BelongsToMany
-{
-    return $this->belongsToMany(
-        Paper::class, 
-        'dataset_papers', 
-        'dataset_id', 
-        'paper_id'
-    )
-    ->withPivot('citation_type', 'is_primary', 'created_at')
-    // ✅ BENAR: Gunakan orderByPivot() atau nama tabel langsung
-    ->orderByPivot('is_primary', 'desc')
-    ->orderByPivot('created_at', 'desc');
-    // ❌ JANGAN pakai: ->orderBy('pivot.is_primary', 'desc')
-}
-// ✅ contributors() - pastikan benar
-public function contributors(): BelongsToMany
-{
-    return $this->belongsToMany(Person::class, 'dataset_contributors', 'dataset_id', 'person_id')
-        ->withPivot('contribution_role', 'display_order', 'created_at')
-        ->orderByPivot('display_order');
-}
+    public function keywords(): BelongsToMany
+    {
+        return $this->belongsToMany(Keyword::class, 'dataset_keywords', 'dataset_id', 'keyword_id')
+            ->withTimestamps();
+    }
+
+    public function papers(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Paper::class, 
+            'dataset_papers', 
+            'dataset_id', 
+            'paper_id'
+        )
+        ->withPivot('citation_type', 'is_primary', 'created_at')
+        ->orderByPivot('is_primary', 'desc')
+        ->orderByPivot('created_at', 'desc');
+    }
+
+    public function contributors(): BelongsToMany
+    {
+        return $this->belongsToMany(Person::class, 'dataset_contributors', 'dataset_id', 'person_id')
+            ->withPivot('contribution_role', 'display_order', 'created_at')
+            ->orderByPivot('display_order');
+    }
     
     public function reviews(): HasMany
     {
@@ -161,23 +148,15 @@ public function contributors(): BelongsToMany
         return $this->hasMany(Download::class, 'dataset_id', 'dataset_id');
     }
     
-    // === ACCESSORS ===
-    
-// app/Models/Dataset.php
+    public function getUrlAttribute(): string
+    {
+        if (empty($this->dataset_id)) {
+            return '';
+        }
 
-/**
- * Accessor untuk mendapatkan URL lengkap dataset
- */
-public function getUrlAttribute(): string
-{
-    // Cek apakah dataset sudah punya ID (sudah tersimpan di database)
-    if (empty($this->dataset_id)) {
-        return ''; // Kembalikan string kosong jika ID belum ada
+        return route('datasets.show', ['dataset' => $this->dataset_id]);
     }
 
-    // Gunakan array eksplisit ['dataset' => ...] untuk memastikan parameter terpenuhi
-    return route('datasets.show', ['dataset' => $this->dataset_id]);
-}
     public function getThumbnailAttribute(): ?string
     {
         if ($this->thumbnail_url) return $this->thumbnail_url;
@@ -195,8 +174,6 @@ public function getUrlAttribute(): string
         return $this->files->where('pivot.is_default', true)->first() 
             ?? $this->files->first();
     }
-    
-    // === SCOPES FOR FILTERING ===
     
     public function scopeApproved(Builder $query): Builder
     {
@@ -301,8 +278,6 @@ public function getUrlAttribute(): string
         };
     }
     
-    // === HELPER METHODS ===
-    
     public function incrementView(): void
     {
         $this->increment('view_count');
@@ -321,50 +296,44 @@ public function getUrlAttribute(): string
         ]);
     }
     
-    /**
- * Generate BibTeX citation string
- */
-public function getCitationBibTeX(): string
-{
-    $authors = $this->contributors
-        ->where('pivot.contribution_role', 'creator')
-        ->pluck('name')
-        ->join(', ');
-    
-    $authorString = !empty($authors) ? $authors : 'Dataset Contributors';
-    $doiLine = $this->doi ? "  doi = {{$this->doi->doi_string}}," . PHP_EOL : '';
-    $accessDate = date('Y-m-d');
-    
-    return "@dataset{$this->dataset_id}," . PHP_EOL .
-           "  title = {{$this->name}}," . PHP_EOL .
-           "  author = {{$authorString}}," . PHP_EOL .
-           "  year = {{$this->created_at->year}}," . PHP_EOL .
-           "  url = {{$this->url}}," . PHP_EOL .
-           $doiLine .
-           "  note = {Accessed: {$accessDate}}" . PHP_EOL .
-           "}" . PHP_EOL;
-}
-// Di dalam class Dataset:
+    public function getCitationBibTeX(): string
+    {
+        $authors = $this->contributors
+            ->where('pivot.contribution_role', 'creator')
+            ->pluck('name')
+            ->join(', ');
+        
+        $authorString = !empty($authors) ? $authors : 'Dataset Contributors';
+        $doiLine = $this->doi ? "  doi = {{$this->doi->doi_string}}," . PHP_EOL : '';
+        $accessDate = date('Y-m-d');
+        
+        return "@dataset{$this->dataset_id}," . PHP_EOL .
+               "  title = {{$this->name}}," . PHP_EOL .
+               "  author = {{$authorString}}," . PHP_EOL .
+               "  year = {{$this->created_at->year}}," . PHP_EOL .
+               "  url = {{$this->url}}," . PHP_EOL .
+               $doiLine .
+               "  note = {Accessed: {$accessDate}}" . PHP_EOL .
+               "}" . PHP_EOL;
+    }
 
-public function task(): BelongsTo
-{
-    return $this->belongsTo(Task::class, 'task_id', 'task_id');
-}
+    public function task(): BelongsTo
+    {
+        return $this->belongsTo(Task::class, 'task_id', 'task_id');
+    }
 
-public function subjectArea(): BelongsTo
-{
-    return $this->belongsTo(SubjectArea::class, 'subject_area_id', 'area_id');
-}
+    public function subjectArea(): BelongsTo
+    {
+        return $this->belongsTo(SubjectArea::class, 'subject_area_id', 'area_id');
+    }
 
-// Accessor untuk backward compatibility dengan field lama:
-public function getTaskTypeAttribute($value)
-{
-    // Prioritaskan relationship jika ada, fallback ke enum field
-    return $this->task?->task_name ?? $value;
-}
+    public function getTaskTypeAttribute($value)
+    {
+        return $this->task?->task_name ?? $value;
+    }
 
-public function getSubjectAreaAttribute($value)
-{
-    return $this->subjectArea?->area_name ?? $value;
-}
+    public function getSubjectAreaAttribute($value)
+    {
+        return $this->subjectArea?->area_name ?? $value;
+    }
 }

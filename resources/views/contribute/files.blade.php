@@ -5,7 +5,6 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,7 +12,6 @@
     
     <div class="relative max-w-5xl mx-auto">
         
-        <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
@@ -24,7 +22,7 @@
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Donate Dataset</span>
         </nav>
         
-        <!-- Header Card -->
+        
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-brand-600 to-sphere-secondary p-8 md:p-10">
                 <div class="flex items-center gap-4 mb-4">
@@ -42,7 +40,7 @@
                 </div>
             </div>
             
-            <!-- Modern Progress Bar -->
+            
             <div class="p-6 md:p-8 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-800">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
@@ -56,7 +54,7 @@
                     </span>
                 </div>
                 
-                <!-- Step indicators -->
+                
                 <div class="hidden md:flex items-center gap-1 mb-3">
                     @for($i = 1; $i <= 7; $i++)
                         <div class="flex-1 h-2 rounded-full {{ $i <= 4 ? 'bg-gradient-to-r from-amber-500 to-orange-500' : 'bg-gray-200 dark:bg-gray-700' }}"></div>
@@ -66,7 +64,7 @@
                     <div class="h-full bg-gradient-to-r from-amber-500 to-orange-500" style="width: 57%"></div>
                 </div>
                 
-                <!-- Step labels -->
+                
                 <div class="hidden md:grid grid-cols-7 gap-1 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
                     <span class="text-center font-semibold text-amber-700 dark:text-amber-400">Basic</span>
                     <span class="text-center font-semibold text-amber-700 dark:text-amber-400">Paper</span>
@@ -79,7 +77,7 @@
             </div>
         </div>
         
-        <!-- Error Alert -->
+        
         @if($errors->any())
         <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-5 mb-6 flex items-start gap-3">
             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
@@ -104,9 +102,9 @@
         <form action="{{ route('contribute.files.store') }}" method="POST" enctype="multipart/form-data" id="filesForm">
             @csrf
             
-            <!-- ============================================ -->
-            <!-- SECTION 1: File Format Selection -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -124,7 +122,7 @@
                 
                 <div class="p-5 md:p-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- Tabular Option -->
+                        
                         <label class="group relative flex items-start gap-4 p-5 rounded-xl bg-gray-50 dark:bg-gray-700/30 border-2 border-gray-200 dark:border-gray-700 hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/10 cursor-pointer transition-all has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50 dark:has-[:checked]:bg-emerald-900/20 has-[:checked]:shadow-lg">
                             <input type="radio" 
                                    name="file_format" 
@@ -147,7 +145,7 @@
                             </div>
                         </label>
                         
-                        <!-- Other Option -->
+                        
                         <label class="group relative flex items-start gap-4 p-5 rounded-xl bg-gray-50 dark:bg-gray-700/30 border-2 border-gray-200 dark:border-gray-700 hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/10 cursor-pointer transition-all has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50 dark:has-[:checked]:bg-emerald-900/20 has-[:checked]:shadow-lg">
                             <input type="radio" 
                                    name="file_format" 
@@ -173,12 +171,12 @@
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- TABULAR SECTION -->
-            <!-- ============================================ -->
+            
+            
+            
             <div id="tabular_section">
                 
-                <!-- Tabular Options -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                     <div class="bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                         <div class="flex items-center gap-3">
@@ -193,7 +191,7 @@
                     </div>
                     
                     <div class="p-5 md:p-6 space-y-4">
-                        <!-- Has Header -->
+                        
                         <label class="group flex items-center justify-between p-4 rounded-xl bg-gray-50 dark:bg-gray-700/30 border-2 border-gray-200 dark:border-gray-700 hover:border-cyan-500 hover:bg-cyan-50 dark:hover:bg-cyan-900/10 cursor-pointer transition-all has-[:checked]:border-cyan-500 has-[:checked]:bg-cyan-50 dark:has-[:checked]:bg-cyan-900/20">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center group-has-[:checked]:bg-cyan-500 group-has-[:checked]:text-white transition-colors">
@@ -217,7 +215,7 @@
                             </div>
                         </label>
                         
-                        <!-- Has Missing Values -->
+                        
                         <label class="group flex items-center justify-between p-4 rounded-xl bg-gray-50 dark:bg-gray-700/30 border-2 border-gray-200 dark:border-gray-700 hover:border-cyan-500 hover:bg-cyan-50 dark:hover:bg-cyan-900/10 cursor-pointer transition-all has-[:checked]:border-cyan-500 has-[:checked]:bg-cyan-50 dark:has-[:checked]:bg-cyan-900/20">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-lg bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center group-has-[:checked]:bg-cyan-500 group-has-[:checked]:text-white transition-colors">
@@ -243,7 +241,7 @@
                     </div>
                 </div>
                 
-                <!-- Main Tabular File Upload -->
+                
 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
     <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
         <div class="flex items-center gap-3">
@@ -261,7 +259,7 @@
     
     <div class="p-5 md:p-6">
         <div id="tabularDropZone" class="relative border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 md:p-10 text-center hover:border-green-500 hover:bg-green-50/50 dark:hover:bg-green-900/10 transition-all cursor-pointer">
-            {{-- HAPUS required dari sini --}}
+            
             <input type="file" 
                    id="tabular_file" 
                    name="tabular_file" 
@@ -284,7 +282,7 @@
         </div>
     </div>
 </div>
-                <!-- Variables Table -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                     <div class="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                         <div class="flex items-center justify-between flex-wrap gap-3">
@@ -306,7 +304,7 @@
                     </div>
                     
                     <div class="p-5 md:p-6">
-                        <!-- Info Alert -->
+                        
                         <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-start gap-3 mb-5">
                             <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                                 <i class="bi bi-info-circle text-lg text-blue-600 dark:text-blue-400"></i>
@@ -316,7 +314,7 @@
                             </div>
                         </div>
                         
-                        <!-- Desktop Table View -->
+                        
                         <div class="hidden lg:block overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
                             <table class="w-full" id="variables_table">
                                 <thead class="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-gray-800 dark:to-gray-800">
@@ -398,7 +396,7 @@
                             </table>
                         </div>
                         
-                        <!-- Mobile Card View -->
+                        
                         <div class="lg:hidden space-y-3" id="mobileVariablesContainer">
                             @foreach($oldVars as $idx => $var)
                             <div class="mobile-variable-card bg-gradient-to-br from-violet-50/50 to-purple-50/50 dark:from-gray-700/30 dark:to-gray-700/30 border-2 border-violet-200 dark:border-violet-800/50 rounded-xl p-4">
@@ -441,7 +439,7 @@
                             @endforeach
                         </div>
                         
-                        <!-- Action Buttons -->
+                        
                         <div class="flex flex-col sm:flex-row gap-3 mt-5">
                             <button type="button" 
                                     onclick="addVariableRow()"
@@ -459,7 +457,7 @@
                     </div>
                 </div>
                 
-                <!-- Other Data File -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                     <div class="bg-gradient-to-r from-teal-50 to-cyan-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                         <div class="flex items-center gap-3">
@@ -496,7 +494,7 @@
                     </div>
                 </div>
                 
-                <!-- Test Data File -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                     <div class="bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                         <div class="flex items-center gap-3">
@@ -535,12 +533,12 @@
                 
             </div>
             
-            <!-- ============================================ -->
-            <!-- OTHER FORMAT SECTION -->
-            <!-- ============================================ -->
+            
+            
+            
             <div id="other_section" style="display: none;">
                 
-                <!-- Dataset File (Other Format) -->
+                
 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
     <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
         <div class="flex items-center gap-3">
@@ -558,7 +556,7 @@
     
     <div class="p-5 md:p-6">
         <div id="datasetDropZone" class="relative border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 md:p-10 text-center hover:border-green-500 hover:bg-green-50/50 dark:hover:bg-green-900/10 transition-all cursor-pointer">
-            {{-- HAPUS required dari sini --}}
+            
             <input type="file" 
                    id="dataset_file" 
                    name="dataset_file" 
@@ -579,7 +577,7 @@
         </div>
     </div>
 </div>
-                <!-- Test Data File (Other Format) -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                     <div class="bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                         <div class="flex items-center gap-3">
@@ -618,9 +616,9 @@
                 
             </div>
             
-            <!-- ============================================ -->
-            <!-- Navigation -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('contribute.creators') }}" 
@@ -650,8 +648,6 @@
 
 @push('scripts')
 <script>
-    // Toggle between Tabular and Other format
-        // Toggle between Tabular and Other format
     function toggleFormat() {
         const isTabular = document.getElementById('format_tabular').checked;
         const tabularSection = document.getElementById('tabular_section');
@@ -662,18 +658,15 @@
         if (isTabular) {
             tabularSection.style.display = 'block';
             otherSection.style.display = 'none';
-            // Set required hanya pada input yang terlihat
             tabularInput.setAttribute('required', 'required');
             datasetInput.removeAttribute('required');
         } else {
             tabularSection.style.display = 'none';
             otherSection.style.display = 'block';
-            // Set required hanya pada input yang terlihat
             tabularInput.removeAttribute('required');
             datasetInput.setAttribute('required', 'required');
         }
     }
-    // Add variable row
     function addVariableRow() {
         const table = document.getElementById('variables_table');
         const tbody = table.querySelector('tbody');
@@ -728,8 +721,6 @@
         `;
         
         tbody.appendChild(newRow);
-        
-        // Add mobile card too
         const mobileContainer = document.getElementById('mobileVariablesContainer');
         const mobileCard = document.createElement('div');
         mobileCard.className = 'mobile-variable-card bg-gradient-to-br from-violet-50/50 to-purple-50/50 dark:from-gray-700/30 dark:to-gray-700/30 border-2 border-violet-200 dark:border-violet-800/50 rounded-xl p-4';
@@ -773,14 +764,10 @@
         mobileContainer.appendChild(mobileCard);
         
         updateVarCount();
-        
-        // Scroll to new row
         setTimeout(() => {
             newRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 100);
     }
-    
-    // Delete variable row
     function deleteVariableRow() {
         const table = document.getElementById('variables_table');
         const tbody = table.querySelector('tbody');
@@ -809,8 +796,6 @@
             el.textContent = idx + 1;
         });
     }
-    
-    // File upload preview
     function setupFileUpload(inputId, contentId, previewId, dropZoneId) {
         const input = document.getElementById(inputId);
         const content = document.getElementById(contentId);
@@ -825,8 +810,6 @@
                 showFilePreview(file, content, preview);
             }
         });
-        
-        // Drag & drop visual feedback
         if (dropZone) {
             ['dragenter', 'dragover'].forEach(eventName => {
                 dropZone.addEventListener(eventName, (e) => {
@@ -891,15 +874,11 @@
         preview.innerHTML = '';
         content.classList.remove('hidden');
     }
-    
-    // Setup all file uploads
     setupFileUpload('tabular_file', 'tabularContent', 'tabular-preview', 'tabularDropZone');
     setupFileUpload('other_file', 'otherContent', 'other-preview', 'otherDropZone');
     setupFileUpload('test_file', 'testContent', 'test-preview', 'testDropZone');
     setupFileUpload('dataset_file', 'datasetContent', 'dataset-preview', 'datasetDropZone');
     setupFileUpload('test_file_other', 'testOtherContent', 'testOther-preview', 'testOtherDropZone');
-    
-    // Form validation yang diperbaiki
     document.getElementById('filesForm').addEventListener('submit', function(e) {
         const isTabular = document.getElementById('format_tabular').checked;
         
@@ -920,8 +899,6 @@
                 return false;
             }
         }
-        
-        // Show loading state
         const btn = document.getElementById('nextBtn');
         btn.disabled = true;
         btn.innerHTML = `
@@ -932,8 +909,6 @@
             <span>Uploading...</span>
         `;
     });
-    
-    // Initialize - set required berdasarkan format default
     document.addEventListener('DOMContentLoaded', function() {
         toggleFormat();
         updateVarCount();

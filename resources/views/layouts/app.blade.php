@@ -7,14 +7,14 @@
     <meta name="description" content="@yield('meta_desc', 'DataSphere Machine Learning Repository - A curated collection of datasets for ML research')">
     <title>@yield('title', 'DataSphere Machine Learning Repository')</title>
     
-    <!-- ===== EXTERNAL RESOURCES ===== -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- ===== TAILWIND CONFIG ===== -->
+    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -51,7 +51,7 @@
         }
     </script>
     
-    <!-- ===== THEME INIT ===== -->
+    
     <script>
         (function() {
             const theme = localStorage.getItem('datasphere-theme') || 
@@ -60,9 +60,9 @@
         })();
     </script>
     
-    <!-- ===== CUSTOM STYLES ===== -->
+    
     <style>
-        /* ===== RESET & BASE ===== */
+        
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -83,7 +83,7 @@
             position: relative;
         }
         
-        /* ===== NAVBAR STICKY & GLASS EFFECT ===== */
+        
         .navbar-glass {
             position: fixed;
             top: 0;
@@ -119,11 +119,11 @@
             border-bottom: 1px solid rgba(55, 65, 81, 0.5);
         }
         
-        /* Logo Animation */
+        
         .logo-sphere { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .logo-sphere:hover { transform: rotate(360deg) scale(1.1); }
         
-        /* Theme Toggle */
+        
         .theme-toggle {
             position: relative;
             width: 40px; height: 40px;
@@ -145,7 +145,7 @@
         .dark .theme-toggle .sun { opacity: 1; transform: rotate(0deg) scale(1); }
         .dark .theme-toggle .moon { opacity: 0; transform: rotate(90deg) scale(0); }
         
-        /* Nav Links */
+        
         .nav-link-custom {
             position: relative;
             padding: 0.5rem 1rem;
@@ -164,7 +164,7 @@
         .nav-link-custom:hover::after,
         .nav-link-custom.active::after { width: 70%; }
         
-        /* Dropdown */
+        
         .dropdown-menu-custom {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
@@ -195,7 +195,7 @@
             transform: translateX(4px);
         }
         
-        /* Search */
+        
         .search-input {
             background: rgba(243, 244, 246, 0.8);
             border: 1px solid transparent;
@@ -213,7 +213,7 @@
             border-color: #818cf8;
         }
         
-        /* Avatar */
+        
         .avatar-btn {
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
             transition: all 0.3s ease;
@@ -224,7 +224,7 @@
             box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
         }
         
-        /* Gradient Text */
+        
         .gradient-text {
             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
             -webkit-background-clip: text;
@@ -232,7 +232,7 @@
             background-clip: text;
         }
         
-        /* Scrollbar */
+        
         ::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb {
@@ -241,7 +241,7 @@
         }
         ::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.5); }
         
-        /* Footer */
+        
         .footer-glass {
             background: linear-gradient(180deg, rgba(249, 250, 251, 0.5) 0%, rgba(243, 244, 246, 0.8) 100%);
             backdrop-filter: blur(10px);
@@ -260,14 +260,14 @@
         }
         .footer-link:hover::before { width: 100%; }
         
-        /* Flash Messages */
+        
         .flash-message { animation: slideInDown 0.4s ease; }
         @keyframes slideInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Mobile Menu */
+        
         #mobileMenu {
             display: none;
             position: fixed;
@@ -308,7 +308,7 @@
             transform: scale(0.98);
         }
         
-        /* Newsletter Loading */
+        
         .newsletter-btn.loading {
             pointer-events: none;
             opacity: 0.7;
@@ -332,7 +332,7 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Main content padding for fixed navbar */
+        
         main {
             padding-top: 80px;
         }
@@ -342,14 +342,14 @@
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased transition-colors duration-300">
 
-    <!-- ============================================ -->
-    <!-- ================ NAVBAR ==================== -->
-    <!-- ============================================ -->
+    
+    
+    
     <nav class="navbar-glass" id="mainNavbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 
-                <!-- Logo -->
+                
                 <a href="{{ route('home') }}" class="flex items-center gap-2 lg:gap-3 group flex-shrink-0">
                     <div class="logo-sphere relative">
                         <svg width="36" height="36" viewBox="0 0 40 40" fill="none" class="lg:w-10 lg:h-10">
@@ -383,7 +383,7 @@
                     </div>
                 </a>
                 
-                <!-- Desktop Navigation -->
+                
                 <div class="hidden lg:flex items-center gap-1">
                     @auth
                         @if(auth()->user()->role === 'admin' || auth()->user()->role === 'superadmin')
@@ -400,7 +400,7 @@
                         Datasets
                     </a>
                     
-                    <!-- Contribute Dropdown -->
+                    
                     <div class="relative group">
                         <button class="nav-link-custom text-gray-700 dark:text-gray-200 hover:text-brand-600 dark:hover:text-brand-400 text-sm flex items-center gap-1">
                             <span>Contribute</span>
@@ -425,7 +425,7 @@
                         </div>
                     </div>
                     
-                    <!-- About Dropdown -->
+                    
                     <div class="relative group">
                         <button class="nav-link-custom text-gray-700 dark:text-gray-200 hover:text-brand-600 dark:hover:text-brand-400 text-sm flex items-center gap-1">
                             <span>About</span>
@@ -450,9 +450,9 @@
                     </div>
                 </div>
                 
-                <!-- Right Actions -->
+                
                 <div class="flex items-center gap-2 lg:gap-3">
-                    <!-- Desktop Search -->
+                    
                     <form action="{{ route('datasets.index') }}" method="GET" class="hidden md:block flex-shrink-0">
                         <div class="relative">
                             <i class="bi bi-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
@@ -461,19 +461,19 @@
                         </div>
                     </form>
                     
-                    <!-- Mobile Search Toggle -->
+                    
                     <button class="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex-shrink-0" 
                             onclick="toggleMobileSearch()" aria-label="Search">
                         <i class="bi bi-search text-gray-600 dark:text-gray-300"></i>
                     </button>
                     
-                    <!-- Theme Toggle -->
+                    
                     <button onclick="toggleTheme()" class="theme-toggle flex-shrink-0" aria-label="Toggle theme">
                         <i class="bi bi-moon-stars-fill icon moon text-gray-700 dark:text-yellow-300"></i>
                         <i class="bi bi-sun-fill icon sun text-yellow-500"></i>
                     </button>
                     
-                    <!-- Desktop User Menu -->
+                    
                     @auth
                         <div class="hidden lg:block relative group flex-shrink-0">
                             <button class="avatar-btn w-9 h-9 rounded-full flex items-center justify-center text-white font-semibold text-sm">
@@ -510,7 +510,7 @@
                         </a>
                     @endauth
                     
-                    <!-- Mobile Menu Toggle -->
+                    
                     <button class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex-shrink-0" 
                             onclick="toggleMobileMenu()" aria-label="Menu">
                         <i class="bi bi-list text-xl text-gray-600 dark:text-gray-300"></i>
@@ -518,7 +518,7 @@
                 </div>
             </div>
             
-            <!-- Mobile Search (Expandable) -->
+            
             <div id="mobileSearch" class="hidden lg:hidden pb-3">
                 <form action="{{ route('datasets.index') }}" method="GET">
                     <div class="relative">
@@ -531,20 +531,20 @@
         </div>
     </nav>
 
-    <!-- ============================================ -->
-    <!-- ============ MOBILE MENU ================== -->
-    <!-- ============================================ -->
+    
+    
+    
     <div id="mobileMenu">
-        <!-- Backdrop -->
+        
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" 
              onclick="toggleMobileMenu()" id="mobileMenuBackdrop"></div>
         
-        <!-- Panel -->
+        
         <div class="absolute right-0 top-0 h-full w-full max-w-sm bg-white dark:bg-gray-900 shadow-2xl" 
              id="mobileMenuPanel">
             <div class="flex flex-col h-full">
                 
-                <!-- Header -->
+                
                 <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
                     <div class="flex items-center gap-2">
                         <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-sphere-secondary flex items-center justify-center">
@@ -558,7 +558,7 @@
                     </button>
                 </div>
                 
-                <!-- Menu Items -->
+                
                 <div class="flex-1 overflow-y-auto py-4">
                     <div class="px-4 space-y-1">
                         
@@ -630,7 +630,7 @@
                     </div>
                 </div>
                 
-                <!-- Footer -->
+                
                 <div class="p-4 border-t border-gray-200 dark:border-gray-700 space-y-2 bg-gray-50 dark:bg-gray-800/50">
                     @auth
                         <div class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
@@ -662,9 +662,9 @@
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- =========== FLASH MESSAGES ================= -->
-    <!-- ============================================ -->
+    
+    
+    
     @if(session('success'))
     <div class="flash-message fixed top-20 right-4 z-[1200] max-w-sm">
         <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200 px-4 py-3 rounded-xl shadow-lg flex items-start gap-3">
@@ -689,20 +689,20 @@
     </div>
     @endif
 
-    <!-- ============================================ -->
-    <!-- ============= MAIN CONTENT ================= -->
-    <!-- ============================================ -->
+    
+    
+    
     <main class="w-full">
         @yield('content')
     </main>
 
-    <!-- ============================================ -->
-    <!-- ================ FOOTER ==================== -->
-    <!-- ============================================ -->
+    
+    
+    
     <footer class="footer-glass border-t border-gray-200 dark:border-gray-800 mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <!-- Newsletter Section -->
+            
             <div class="py-12 border-b border-gray-200 dark:border-gray-800">
                 <div class="max-w-3xl mx-auto text-center">
                     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-brand-500/10 to-sphere-secondary/10 border border-brand-500/20 mb-4">
@@ -716,7 +716,7 @@
                         Get the latest datasets, research papers, and ML insights delivered to your inbox.
                     </p>
                     
-                    <!-- Newsletter Form -->
+                    
                     <form id="newsletterForm" action="{{ route('newsletter.subscribe') }}" method="POST" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                         @csrf
                         <input type="email" name="email" required placeholder="Enter your email"
@@ -740,10 +740,10 @@
                 </div>
             </div>
             
-            <!-- Main Footer -->
+            
             <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 
-                <!-- Brand -->
+                
                 <div class="lg:col-span-2">
                     <div class="flex items-center gap-3 mb-4">
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -767,7 +767,7 @@
                     </p>
                 </div>
                 
-                <!-- The Project -->
+                
                 <div>
                     <h5 class="font-bold text-sm uppercase tracking-wider text-gray-900 dark:text-gray-100 mb-4">The Project</h5>
                     <ul class="space-y-3">
@@ -778,7 +778,7 @@
                     </ul>
                 </div>
                 
-                <!-- Navigation -->
+                
                 <div>
                     <h5 class="font-bold text-sm uppercase tracking-wider text-gray-900 dark:text-gray-100 mb-4">Navigation</h5>
                     <ul class="space-y-3">
@@ -789,7 +789,7 @@
                     </ul>
                 </div>
                 
-                <!-- Resources -->
+                
                 <div>
                     <h5 class="font-bold text-sm uppercase tracking-wider text-gray-900 dark:text-gray-100 mb-4">Resources</h5>
                     <ul class="space-y-3">
@@ -801,7 +801,7 @@
                 </div>
             </div>
             
-            <!-- Bottom Bar -->
+            
             <div class="py-6 border-t border-gray-200 dark:border-gray-800">
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                     <div class="flex flex-wrap justify-center md:justify-start gap-6 text-xs text-gray-600 dark:text-gray-400">
@@ -824,18 +824,15 @@
         </div>
     </footer>
 
-    <!-- ============================================ -->
-    <!-- ============== SCRIPTS ===================== -->
-    <!-- ============================================ -->
+    
+    
+    
     <script>
-        // ===== THEME TOGGLE =====
         function toggleTheme() {
             const html = document.documentElement;
             const isDark = html.classList.toggle('dark');
             localStorage.setItem('datasphere-theme', isDark ? 'dark' : 'light');
         }
-        
-        // ===== MOBILE MENU =====
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
@@ -846,8 +843,6 @@
                 document.body.style.overflow = '';
             }
         }
-        
-        // ===== MOBILE SEARCH =====
         function toggleMobileSearch() {
             const search = document.getElementById('mobileSearch');
             search.classList.toggle('hidden');
@@ -855,8 +850,6 @@
                 search.querySelector('input').focus();
             }
         }
-        
-        // ===== CLOSE MOBILE MENU ON LINK CLICK =====
         document.querySelectorAll('#mobileMenu a').forEach(link => {
             link.addEventListener('click', () => {
                 if (!link.getAttribute('href')?.startsWith('#')) {
@@ -864,8 +857,6 @@
                 }
             });
         });
-        
-        // ===== CLOSE MOBILE MENU ON ESCAPE =====
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 const menu = document.getElementById('mobileMenu');
@@ -874,8 +865,6 @@
                 }
             }
         });
-        
-        // ===== NAVBAR SCROLL EFFECT =====
         const navbar = document.getElementById('mainNavbar');
         let lastScroll = 0;
         
@@ -890,12 +879,8 @@
             
             lastScroll = currentScroll;
         }
-        
-        // Run on load and scroll
         window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll(); // Check initial scroll position
-        
-        // ===== AUTO-HIDE FLASH MESSAGES =====
         document.querySelectorAll('.flash-message').forEach(msg => {
             setTimeout(() => {
                 msg.style.transition = 'all 0.4s ease';
@@ -904,8 +889,6 @@
                 setTimeout(() => msg.remove(), 400);
             }, 5000);
         });
-        
-        // ===== NEWSLETTER FORM (AJAX) =====
         const newsletterForm = document.getElementById('newsletterForm');
         const newsletterBtn = document.getElementById('newsletterBtn');
         
@@ -969,8 +952,6 @@
                 });
             });
         }
-        
-        // ===== SHOW FLASH MESSAGE =====
         function showFlashMessage(type, message) {
             const flashContainer = document.createElement('div');
             flashContainer.className = 'flash-message fixed top-20 right-4 z-[1200] max-w-sm';

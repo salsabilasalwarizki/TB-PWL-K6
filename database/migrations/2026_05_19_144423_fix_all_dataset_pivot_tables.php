@@ -9,21 +9,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Fix dataset_images
         if (!Schema::hasColumn('dataset_images', 'display_order')) {
             Schema::table('dataset_images', function (Blueprint $table) {
                 $table->unsignedInteger('display_order')->default(0)->after('role');
             });
         }
         
-        // Fix dataset_files (jika belum ada)
         if (!Schema::hasColumn('dataset_files', 'display_order')) {
             Schema::table('dataset_files', function (Blueprint $table) {
                 $table->unsignedInteger('display_order')->default(0)->after('is_default');
             });
         }
         
-        // Fix dataset_contributors (jika belum ada)
         if (!Schema::hasColumn('dataset_contributors', 'display_order')) {
             Schema::table('dataset_contributors', function (Blueprint $table) {
                 $table->unsignedInteger('display_order')->default(0)->after('contribution_role');

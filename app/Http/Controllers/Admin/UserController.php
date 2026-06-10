@@ -10,16 +10,14 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    /**
-     * Display listing of users
-     */
+    
     public function index(Request $request)
     {
         $query = User::query()
             ->withCount('datasets')
             ->with(['person' => fn($q) => $q->select('person_id', 'user_id', 'affiliation')]);
         
-        // Search filter
+        
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function($q) use ($search) {
@@ -28,12 +26,12 @@ class UserController extends Controller
             });
         }
         
-        // Role filter
+       
         if ($request->filled('role')) {
             $query->where('role', $request->role);
         }
         
-        // Status filter
+        
         if ($request->filled('status')) {
             match ($request->status) {
                 'active' => $query->whereNotNull('last_login_at')->whereNull('banned_at'),
@@ -45,7 +43,7 @@ class UserController extends Controller
         
         $users = $query->orderBy('created_at', 'desc')->paginate(20)->withQueryString();
         
-        // Stats for cards
+        
         $stats = [
             'total' => User::count(),
             'active' => User::whereNotNull('last_login_at')->whereNull('banned_at')->count(),
@@ -56,9 +54,7 @@ class UserController extends Controller
         return view('admin.users.index', compact('users', 'stats'));
     }
     
-    /**
-     * Show user profile/details
-     */
+    
     public function show(User $user)
     {
         $user->load(['datasets' => fn($q) => $q->latest()->take(10), 'person']);
@@ -66,17 +62,13 @@ class UserController extends Controller
         return view('admin.users.show', compact('user'));
     }
     
-    /**
-     * Show edit form
-     */
+    
     public function edit(User $user)
     {
         return view('admin.users.edit', compact('user'));
     }
     
-    /**
-     * Update user
-     */
+    
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
@@ -95,14 +87,14 @@ class UserController extends Controller
             'password.confirmed' => 'Konfirmasi password tidak cocok',
         ]);
 
-        // Update password hanya jika diisi
+       
         if (!empty($validated['password'])) {
             $validated['password'] = Hash::make($validated['password']);
         } else {
             unset($validated['password']);
         }
 
-        // Handle is_active
+        
         if (isset($validated['is_active'])) {
             $validated['is_active'] = $validated['is_active'] == 1;
         }
@@ -119,14 +111,12 @@ class UserController extends Controller
         }
     }
     
-    /**
-     * Toggle ban status (AJAX)
-     */
+    
     public function toggleBan(Request $request, User $user)
     {
         $request->validate(['ban' => 'required|boolean']);
         
-        // Prevent banning self or superadmins
+        
         if ($user->id === auth()->id() || $user->role === 'superadmin') {
             return response()->json(['success' => false, 'message' => 'Action not allowed'], 403);
         }
@@ -138,9 +128,7 @@ class UserController extends Controller
         return response()->json(['success' => true]);
     }
     
-    /**
-     * Bulk action on users
-     */
+    
     public function bulkAction(Request $request)
     {
         $validated = $request->validate([
@@ -169,12 +157,10 @@ class UserController extends Controller
         return back()->with('success', 'Bulk action applied successfully');
     }
     
-    /**
-     * Export users to CSV
-     */
+    
     public function export(Request $request)
     {
-        // Simple CSV export (consider using Laravel Excel for production)
+        
         $users = User::withCount('datasets')->get();
         
         $headers = [

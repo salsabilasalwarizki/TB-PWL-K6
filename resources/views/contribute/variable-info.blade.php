@@ -5,7 +5,7 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
+    
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,7 +13,7 @@
     
     <div class="relative max-w-6xl mx-auto">
         
-        <!-- Breadcrumb -->
+        
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
@@ -24,7 +24,7 @@
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Donate Dataset</span>
         </nav>
         
-        <!-- Header Card -->
+        
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-brand-600 to-sphere-secondary p-8 md:p-10">
                 <div class="flex items-center gap-4 mb-4">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             
-            <!-- Modern Progress Bar -->
+            
             <div class="p-6 md:p-8 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-800">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
@@ -56,7 +56,7 @@
                     </span>
                 </div>
                 
-                <!-- Step indicators -->
+                
                 <div class="hidden md:flex items-center gap-1 mb-3">
                     @for($i = 1; $i <= 7; $i++)
                         <div class="flex-1 h-2 rounded-full {{ $i <= 6 ? 'bg-gradient-to-r from-amber-500 to-orange-500' : 'bg-gray-200 dark:bg-gray-700' }}"></div>
@@ -66,7 +66,7 @@
                     <div class="h-full bg-gradient-to-r from-amber-500 to-orange-500" style="width: 85.5%"></div>
                 </div>
                 
-                <!-- Step labels -->
+                
                 <div class="hidden md:grid grid-cols-7 gap-1 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
                     <span class="text-center font-semibold text-amber-700 dark:text-amber-400">Basic</span>
                     <span class="text-center font-semibold text-amber-700 dark:text-amber-400">Paper</span>
@@ -79,7 +79,7 @@
             </div>
         </div>
         
-        <!-- Error Alert -->
+        
         @if($errors->any())
         <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-5 mb-6 flex items-start gap-3">
             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
@@ -104,9 +104,9 @@
         <form action="{{ route('contribute.variable-info.store') }}" method="POST" id="variablesForm">
             @csrf
             
-            <!-- ============================================ -->
-            <!-- SECTION: Variables Information -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center justify-between flex-wrap gap-3">
@@ -127,7 +127,7 @@
                 
                 <div class="p-5 md:p-6 space-y-5">
                     
-                    <!-- Info Alert -->
+                    
                     <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-start gap-3">
                         <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                             <i class="bi bi-info-circle text-lg text-blue-600 dark:text-blue-400"></i>
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                     
-                    <!-- Variables Container -->
+                    
                     <div id="variables-container" class="space-y-4">
                         @php
                             $variablesData = old('variables', session('donation_wizard.variables', []));
@@ -159,7 +159,7 @@
                         @endforeach
                     </div>
                     
-                    <!-- Add Variable Button -->
+                    
                     <div class="pt-4 border-t border-gray-100 dark:border-gray-700">
                         <button type="button" 
                                 onclick="addVariable()"
@@ -173,9 +173,9 @@
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- Navigation -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('contribute.keywords') }}" 
@@ -203,7 +203,7 @@
     </div>
 </div>
 
-<!-- Hidden Row Template -->
+
 <template id="variableRowTemplate">
     <div class="variable-item bg-gradient-to-br from-violet-50/50 to-purple-50/50 dark:from-gray-700/30 dark:to-gray-700/30 border-2 border-violet-200 dark:border-violet-800/50 rounded-2xl p-5 md:p-6 transition-all hover:shadow-lg animate-fadeIn" data-index="__INDEX__">
         <div class="flex items-center justify-between mb-5 pb-4 border-b border-violet-200 dark:border-violet-800/50">
@@ -224,9 +224,9 @@
             </button>
         </div>
         
-        <!-- Grid Layout -->
+        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <!-- Variable Name -->
+            
             <div>
                 <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                     <i class="bi bi-code-square me-1 text-violet-500"></i>Variable Name <span class="text-red-500">*</span>
@@ -239,7 +239,7 @@
                        placeholder="column_name">
             </div>
             
-            <!-- Display Name -->
+            
             <div>
                 <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                     <i class="bi bi-person-badge me-1 text-violet-500"></i>Display Name
@@ -251,7 +251,7 @@
                        placeholder="Human readable name">
             </div>
             
-            <!-- Role -->
+            
             <div>
                 <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                     <i class="bi bi-bullseye me-1 text-violet-500"></i>Role <span class="text-red-500">*</span>
@@ -267,7 +267,7 @@
                 </select>
             </div>
             
-            <!-- Variable Type -->
+            
             <div>
                 <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                     <i class="bi bi-diagram-2 me-1 text-violet-500"></i>Type <span class="text-red-500">*</span>
@@ -287,7 +287,7 @@
                 </select>
             </div>
             
-            <!-- Unit -->
+            
             <div>
                 <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                     <i class="bi bi-rulers me-1 text-violet-500"></i>Unit
@@ -299,7 +299,7 @@
                        placeholder="e.g., kg, °C, meters">
             </div>
             
-            <!-- Min Value -->
+            
             <div>
                 <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                     <i class="bi bi-arrow-down-left me-1 text-violet-500"></i>Min Value
@@ -311,7 +311,7 @@
                        placeholder="Minimum">
             </div>
             
-            <!-- Max Value -->
+            
             <div>
                 <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                     <i class="bi bi-arrow-up-right me-1 text-violet-500"></i>Max Value
@@ -323,7 +323,7 @@
                        placeholder="Maximum">
             </div>
             
-            <!-- Description (spans 2 columns on lg) -->
+            
             <div class="lg:col-span-2">
                 <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                     <i class="bi bi-card-text me-1 text-violet-500"></i>Description
@@ -336,7 +336,7 @@
             </div>
         </div>
         
-        <!-- Categories Field (for Categorical type) -->
+        
         <div class="categories-row mt-4 pt-4 border-t border-violet-200 dark:border-violet-800/50 hidden" data-index="__INDEX__">
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                 <i class="bi bi-tags me-1 text-violet-500"></i>Categories <span class="text-xs font-normal text-gray-500">(comma-separated)</span>
@@ -370,8 +370,6 @@
     function updateVarCount() {
         const count = document.querySelectorAll('.variable-item').length;
         document.getElementById('varCount').textContent = count;
-        
-        // Renumber all variables
         document.querySelectorAll('.variable-item').forEach((item, idx) => {
             const numEl = item.querySelector('.var-number');
             if (numEl) numEl.textContent = idx + 1;
@@ -381,8 +379,6 @@
     function addVariable() {
         const template = document.getElementById('variableRowTemplate');
         const clone = template.content.cloneNode(true);
-        
-        // Replace placeholders
         const html = clone.querySelector('.variable-item').outerHTML
             .replace(/__INDEX__/g, varIndex)
             .replace(/__DISPLAY_INDEX__/g, varIndex + 1);
@@ -394,8 +390,6 @@
         
         varIndex++;
         updateVarCount();
-        
-        // Focus on first input
         setTimeout(() => {
             const lastItem = container.querySelector('.variable-item:last-child');
             if (lastItem) {
@@ -411,7 +405,6 @@
     function removeVariable(index) {
         const item = document.querySelector(`.variable-item[data-index="${index}"]`);
         if (item) {
-            // Add exit animation
             item.style.transition = 'all 0.3s ease';
             item.style.opacity = '0';
             item.style.transform = 'translateX(20px)';
@@ -435,18 +428,12 @@
             }
         }
     }
-    
-    // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
         updateVarCount();
-        
-        // Initialize categories visibility
         document.querySelectorAll('.var-type-select').forEach(select => {
             toggleCategoriesField(select);
         });
     });
-    
-    // Form validation
     document.getElementById('variablesForm').addEventListener('submit', function(e) {
         const items = document.querySelectorAll('.variable-item');
         if (items.length === 0) return true;
@@ -470,8 +457,6 @@
             alert('Please fill in all required fields (Variable Name) for each variable.');
             return false;
         }
-        
-        // Show loading state
         const btn = document.getElementById('nextBtn');
         btn.disabled = true;
         btn.innerHTML = `

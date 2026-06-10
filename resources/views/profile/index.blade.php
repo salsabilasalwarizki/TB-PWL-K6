@@ -4,7 +4,7 @@
 @section('content')
 <div class="relative">
     
-    <!-- ===== EMAIL VERIFICATION NOTICE (PROMINENT) ===== -->
+    
     @if(!$user->email_verified_at)
     <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -36,7 +36,7 @@
     </div>
     @endif
 
-    <!-- ===== PROFILE HERO ===== -->
+    
     <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary text-white">
         <div class="absolute inset-0">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
@@ -46,7 +46,7 @@
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
             <div class="flex flex-col md:flex-row items-center md:items-end gap-6">
                 
-                <!-- Avatar -->
+                
                 <div class="relative">
                     <div class="absolute inset-0 bg-white/20 rounded-full blur-2xl"></div>
                     <div class="relative w-28 h-28 md:w-32 md:h-32 rounded-full bg-white/10 backdrop-blur-md border-4 border-white/30 flex items-center justify-center text-5xl md:text-6xl font-bold shadow-2xl">
@@ -63,7 +63,7 @@
                     @endif
                 </div>
                 
-                <!-- User Info -->
+                
                 <div class="flex-1 text-center md:text-left">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-3">
                         <i class="bi bi-patch-check-fill text-yellow-300"></i>
@@ -92,7 +92,7 @@
                     @endif
                 </div>
                 
-                <!-- Quick Stats -->
+                
                 <div class="flex gap-4 md:gap-6">
                     <div class="text-center">
                         <div class="text-2xl md:text-3xl font-bold">{{ $user->datasets->count() ?? 0 }}</div>
@@ -112,11 +112,11 @@
         </div>
     </section>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid lg:grid-cols-[280px_1fr] gap-6">
             
-            <!-- ===== SIDEBAR NAVIGATION ===== -->
+            
             <aside class="lg:sticky lg:top-24 lg:self-start">
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <div class="p-4 border-b border-gray-100 dark:border-gray-700">
@@ -149,7 +149,7 @@
                         </a>
                     </nav>
                     
-                    <!-- Quick Actions -->
+                    
                     <div class="p-4 border-t border-gray-100 dark:border-gray-700">
                         <h3 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">Quick Actions</h3>
                         <a href="{{ route('contribute.policy') }}" 
@@ -161,10 +161,10 @@
                 </div>
             </aside>
 
-            <!-- ===== MAIN CONTENT AREA ===== -->
+            
             <div class="space-y-6">
                 
-                <!-- Flash Messages -->
+                
                 @if(session('success'))
                 <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200 px-4 py-3 rounded-xl flex items-start gap-3">
                     <i class="bi bi-check-circle-fill text-green-500 text-xl mt-0.5"></i>
@@ -185,7 +185,7 @@
                 </div>
                 @endif
 
-                <!-- ===== EMAIL VERIFICATION CARD ===== -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border-2 {{ $user->email_verified_at ? 'border-green-200 dark:border-green-800' : 'border-amber-200 dark:border-amber-800' }} overflow-hidden">
                     <div class="p-6 border-b {{ $user->email_verified_at ? 'border-green-100 dark:border-green-900/30' : 'border-amber-100 dark:border-amber-900/30' }}">
                         <div class="flex items-center gap-3">
@@ -203,7 +203,7 @@
                     
                     <div class="p-6">
                         @if($user->email_verified_at)
-                        <!-- Verified State -->
+                        
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-4">
                                 <div class="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
@@ -221,7 +221,7 @@
                             </span>
                         </div>
                         @else
-                        <!-- Not Verified State -->
+                        
                         <div class="space-y-4">
                             <div class="flex items-start gap-4">
                                 <div class="w-16 h-16 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
@@ -270,7 +270,7 @@
                     </div>
                 </div>
 
-                <!-- ===== PROFILE CARD ===== -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between">
                         <div class="flex items-center gap-3">
@@ -289,7 +289,7 @@
                         </button>
                     </div>
                     
-                    <!-- Display Mode -->
+                    
                     <div id="profileDisplay" class="p-6">
                         <div class="grid md:grid-cols-2 gap-4">
                             <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700">
@@ -357,7 +357,7 @@
                         </div>
                     </div>
                     
-                    <!-- Edit Form (Hidden by default) -->
+                    
                     <div id="editProfileForm" class="hidden border-t border-gray-100 dark:border-gray-700">
                         <form action="{{ route('profile.update') }}" method="POST" class="p-6">
                             @csrf
@@ -416,7 +416,7 @@
                     </div>
                 </div>
 
-                <!-- ===== CHANGE PASSWORD CARD ===== -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <div class="p-6 border-b border-gray-100 dark:border-gray-700">
                         <div class="flex items-center gap-3">
@@ -482,7 +482,7 @@
                     </form>
                 </div>
 
-                <!-- ===== ACCOUNT SECURITY CARD ===== -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
                     <div class="p-6 border-b border-gray-100 dark:border-gray-700">
                         <div class="flex items-center gap-3">

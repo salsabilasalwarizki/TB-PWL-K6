@@ -35,17 +35,13 @@ class NewsletterSubscription extends Model
         });
     }
 
-    /**
-     * Scope untuk subscriber aktif
-     */
+    
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
     }
 
-    /**
-     * Cek apakah email sudah terdaftar
-     */
+   
     public static function isSubscribed($email)
     {
         return static::where('email', $email)->where('is_active', true)->exists();

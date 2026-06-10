@@ -10,7 +10,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('dataset_images', function (Blueprint $table) {
-            // Tambahkan kolom display_order jika belum ada
             if (!Schema::hasColumn('dataset_images', 'display_order')) {
                 $table->unsignedInteger('display_order')->default(0)->after('role');
             }

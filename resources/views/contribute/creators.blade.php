@@ -5,7 +5,6 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,7 +12,6 @@
     
     <div class="relative max-w-4xl mx-auto">
         
-        <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
@@ -24,7 +22,6 @@
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Donate Dataset</span>
         </nav>
         
-        <!-- Header Card -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-brand-600 to-sphere-secondary p-8 md:p-10">
                 <div class="flex items-center gap-4 mb-4">
@@ -42,7 +39,6 @@
                 </div>
             </div>
             
-            <!-- Description -->
             <div class="p-6 md:p-8 border-b border-gray-100 dark:border-gray-700">
                 <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
                     We offer users the option to upload their dataset data to our repository.
@@ -52,8 +48,7 @@
                     Donators are free to edit their donated datasets, but edits must be approved before finalizing.
                 </p>
             </div>
-            
-            <!-- Modern Progress Bar -->
+          
             <div class="p-6 md:p-8 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-800">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
@@ -67,7 +62,6 @@
                     </span>
                 </div>
                 
-                <!-- Step indicators -->
                 <div class="hidden md:flex items-center gap-1 mb-3">
                     @for($i = 1; $i <= 7; $i++)
                         <div class="flex-1 h-2 rounded-full {{ $i <= 3 ? 'bg-gradient-to-r from-amber-500 to-orange-500' : 'bg-gray-200 dark:bg-gray-700' }}"></div>
@@ -77,7 +71,6 @@
                     <div class="h-full bg-gradient-to-r from-amber-500 to-orange-500" style="width: 42.5%"></div>
                 </div>
                 
-                <!-- Step labels -->
                 <div class="hidden md:grid grid-cols-7 gap-1 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
                     <span class="text-center font-semibold text-amber-700 dark:text-amber-400">Basic</span>
                     <span class="text-center font-semibold text-amber-700 dark:text-amber-400">Paper</span>
@@ -89,14 +82,10 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Form -->
+       
         <form action="{{ route('contribute.creators.store') }}" method="POST" id="creatorsForm">
             @csrf
-            
-            <!-- ============================================ -->
-            <!-- SECTION: Creators -->
-            <!-- ============================================ -->
+           
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-rose-50 to-pink-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center gap-3">
@@ -114,8 +103,7 @@
                 </div>
                 
                 <div class="p-5 md:p-6 space-y-5">
-                    
-                    <!-- Info Alert -->
+                   
                     <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-start gap-3">
                         <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                             <i class="bi bi-info-circle text-lg text-blue-600 dark:text-blue-400"></i>
@@ -125,7 +113,6 @@
                         </div>
                     </div>
                     
-                    <!-- Creators List -->
                     <div id="creators-container" class="space-y-4">
                         @php
                             $creators = old('creators', $creatorsData ?? []);
@@ -149,8 +136,7 @@
                             </div>
                         @endforelse
                     </div>
-                    
-                    <!-- Add Creator Button -->
+                   
                     <div class="pt-4 border-t border-gray-100 dark:border-gray-700">
                         <button type="button" 
                                 id="addCreatorBtn"
@@ -164,10 +150,7 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- ============================================ -->
-            <!-- Navigation -->
-            <!-- ============================================ -->
+           
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('contribute.paper') }}" 
@@ -195,7 +178,6 @@
     </div>
 </div>
 
-<!-- Hidden template for new creator -->
 <template id="creator-template">
     <div class="creator-item bg-gradient-to-br from-rose-50/50 to-pink-50/50 dark:from-gray-700/30 dark:to-gray-700/30 border-2 border-rose-200 dark:border-rose-800/50 rounded-2xl p-5 md:p-6 transition-all hover:shadow-lg animate-fadeIn" data-index="__INDEX__">
         <div class="flex items-center justify-between mb-5 pb-4 border-b border-rose-200 dark:border-rose-800/50">
@@ -217,7 +199,6 @@
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Name -->
             <div>
                 <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                     <i class="bi bi-person me-1 text-rose-500"></i>Name <span class="text-red-500">*</span>
@@ -228,8 +209,7 @@
                        placeholder="e.g., John Doe"
                        required>
             </div>
-            
-            <!-- Affiliation -->
+           
             <div>
                 <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                     <i class="bi bi-building me-1 text-rose-500"></i>Affiliation
@@ -239,8 +219,7 @@
                        name="creators[__INDEX__][affiliation]"
                        placeholder="e.g., University of California">
             </div>
-            
-            <!-- Email -->
+           
             <div>
                 <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                     <i class="bi bi-envelope me-1 text-rose-500"></i>Email
@@ -251,7 +230,6 @@
                        placeholder="creator@example.com">
             </div>
             
-            <!-- ORCID -->
             <div>
                 <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                     <i class="bi bi-person-badge me-1 text-rose-500"></i>ORCID
@@ -264,8 +242,7 @@
                     <i class="bi bi-info-circle"></i>Format: 0000-0000-0000-0000
                 </p>
             </div>
-            
-            <!-- Contribution Role -->
+           
             <div class="md:col-span-2">
                 <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                     <i class="bi bi-award me-1 text-rose-500"></i>Contribution Role
@@ -301,7 +278,6 @@
         const count = document.querySelectorAll('.creator-item').length;
         document.getElementById('creatorCount').textContent = count;
         
-        // Toggle no creators message
         const noCreatorsMsg = document.getElementById('no-creators-msg');
         const addBtnText = document.getElementById('addCreatorText');
         
@@ -312,8 +288,7 @@
             if (noCreatorsMsg) noCreatorsMsg.style.display = 'none';
             if (addBtnText) addBtnText.textContent = 'ADD ANOTHER CREATOR';
         }
-        
-        // Update all creator numbers
+       
         document.querySelectorAll('.creator-item').forEach((item, index) => {
             const numEl = item.querySelector('.creator-number');
             if (numEl) numEl.textContent = index + 1;
@@ -324,12 +299,10 @@
         const template = document.getElementById('creator-template');
         const clone = template.content.cloneNode(true);
         
-        // Replace placeholders
         const html = clone.querySelector('.creator-item').outerHTML
             .replace(/__INDEX__/g, creatorIndex)
             .replace(/__DISPLAY_INDEX__/g, creatorIndex + 1);
         
-        // Add to container
         const container = document.getElementById('creators-container');
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = html;
@@ -338,7 +311,6 @@
         creatorIndex++;
         updateCreatorCount();
         
-        // Focus on first input of new creator
         setTimeout(() => {
             const lastCreator = container.querySelector('.creator-item:last-child');
             if (lastCreator) {
@@ -354,7 +326,6 @@
     function removeCreator(index) {
         const creatorItem = document.querySelector(`.creator-item[data-index="${index}"]`);
         if (creatorItem) {
-            // Add exit animation
             creatorItem.style.transition = 'all 0.3s ease';
             creatorItem.style.opacity = '0';
             creatorItem.style.transform = 'translateX(20px)';
@@ -366,14 +337,11 @@
         }
     }
     
-    // Initial count update
     updateCreatorCount();
     
-    // ORCID format validation
     document.addEventListener('input', function(e) {
         if (e.target.name && e.target.name.includes('[orcid]')) {
             let value = e.target.value.replace(/[^0-9-]/g, '');
-            // Auto-format: XXXX-XXXX-XXXX-XXXX
             if (value.length > 0 && !value.includes('-')) {
                 value = value.replace(/(.{4})/g, '$1-').slice(0, 19);
             }
@@ -381,16 +349,13 @@
         }
     });
     
-    // Form validation before submit
     document.getElementById('creatorsForm').addEventListener('submit', function(e) {
         const creators = document.querySelectorAll('.creator-item');
         
         if (creators.length === 0) {
-            // Allow submission with no creators (optional)
             return true;
         }
         
-        // Validate each creator has at least a name
         let valid = true;
         creators.forEach(creator => {
             const nameInput = creator.querySelector('input[name*="[name]"]');
@@ -400,7 +365,6 @@
                 nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             
-            // Validate ORCID format if provided
             const orcidInput = creator.querySelector('input[name*="[orcid]"]');
             if (orcidInput && orcidInput.value.trim()) {
                 const orcidRegex = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
@@ -417,7 +381,6 @@
             return false;
         }
         
-        // Show loading state
         const btn = document.getElementById('nextBtn');
         btn.disabled = true;
         btn.innerHTML = `
@@ -433,7 +396,6 @@
 
 @push('styles')
 <style>
-    /* Creator Item Component - untuk Blade partial jika dibutuhkan */
     .creator-item {
         background: linear-gradient(135deg, rgba(244, 63, 94, 0.02), rgba(236, 72, 153, 0.02));
     }

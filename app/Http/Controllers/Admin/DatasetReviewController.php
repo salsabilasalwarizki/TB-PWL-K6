@@ -10,17 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class DatasetReviewController extends Controller
 {
-    // List Dataset dengan Filter
+    
     public function index(Request $request)
     {
         $query = Dataset::with(['contributors', 'user']);
 
-        // Filter Status
+
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
 
-        // Search
+        
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function($q) use ($search) {
@@ -34,7 +34,7 @@ class DatasetReviewController extends Controller
         return view('admin.datasets.index', compact('datasets'));
     }
 
-    // Detail Review Dataset
+    
     public function review($datasetId)
     {
         $dataset = Dataset::with([
@@ -49,7 +49,7 @@ class DatasetReviewController extends Controller
         return view('admin.datasets.review', compact('dataset'));
     }
 
-    // Approve Dataset
+    
     public function approve($datasetId, Request $request)
     {
         $dataset = Dataset::findOrFail($datasetId);
@@ -63,7 +63,7 @@ class DatasetReviewController extends Controller
                 'admin_notes' => $request->admin_notes ?? null,
             ]);
 
-            // Optional: Send notification to donor here
+            
 
             DB::commit();
             return redirect()->back()->with('success', 'Dataset approved successfully!');
@@ -73,7 +73,7 @@ class DatasetReviewController extends Controller
         }
     }
 
-    // Reject Dataset
+    
     public function reject($datasetId, Request $request)
     {
         $dataset = Dataset::findOrFail($datasetId);
@@ -99,7 +99,7 @@ class DatasetReviewController extends Controller
         }
     }
 
-    // Bulk Approve
+    
     public function bulkApprove(Request $request)
     {
         $request->validate([

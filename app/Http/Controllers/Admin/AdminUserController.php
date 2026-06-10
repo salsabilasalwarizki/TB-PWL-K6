@@ -13,7 +13,6 @@ class AdminUserController extends Controller
     {
         $query = User::withCount('datasets');
         
-        // Search
         if ($request->filled('search')) {
             $query->where(function($q) use ($request) {
                 $q->where('name', 'like', "%{$request->search}%")
@@ -21,28 +20,23 @@ class AdminUserController extends Controller
             });
         }
         
-        // Filter role
         if ($request->filled('role')) {
             $query->where('role', $request->role);
         }
         
-        // Filter status - SESUAIKAN DENGAN KOLOM YANG ADA
         if ($request->filled('status')) {
             switch ($request->status) {
                 case 'active':
-                    // Gunakan is_active jika ada, atau asumsikan semua user aktif
                     $query->where('is_active', 1);
                     break;
                 case 'inactive':
                     $query->where('is_active', 0);
                     break;
-                // Hapus case 'banned' dan 'unverified' jika kolom tidak ada
             }
         }
         
         $users = $query->latest()->paginate(15)->withQueryString();
         
-        // Statistics - SESUAIKAN DENGAN KOLOM YANG ADA
         $stats = [
             'total' => User::count(),
             'active' => User::where('is_active', 1)->count(),
@@ -112,10 +106,8 @@ class AdminUserController extends Controller
         return back()->with('success', 'User deleted successfully.');
     }
     
-    // Hapus atau update method toggleBan jika kolom banned_at tidak ada
     public function toggleBan(User $user)
     {
-        // Jika kolom is_active ada, gunakan itu
         if (\Schema::hasColumn('users', 'is_active')) {
             $user->update([
                 'is_active' => $user->is_active ? 0 : 1

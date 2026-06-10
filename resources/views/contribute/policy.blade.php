@@ -5,7 +5,7 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
+    
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,7 +13,7 @@
     
     <div class="relative max-w-4xl mx-auto">
         
-        <!-- Header Card -->
+        
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-8">
             <div class="bg-gradient-to-r from-brand-600 to-sphere-secondary p-8 md:p-10">
                 <div class="flex items-center gap-4 mb-4">
@@ -30,7 +30,7 @@
             </div>
         </div>
         
-        <!-- Important Information -->
+        
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-6 md:p-8 mb-8">
             <div class="flex items-center gap-3 mb-6">
                 <div class="w-10 h-10 rounded-lg bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center">
@@ -46,7 +46,7 @@
             </p>
             
             <div class="space-y-4">
-                <!-- Item 1 -->
+                
                 <div class="flex gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
                     <div class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
                         <span class="text-sm font-bold text-brand-600 dark:text-brand-400">1</span>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 
-                <!-- Item 2 -->
+                
                 <div class="flex gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
                     <div class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
                         <span class="text-sm font-bold text-brand-600 dark:text-brand-400">2</span>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 
-                <!-- Item 3 -->
+                
                 <div class="flex gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
                     <div class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
                         <span class="text-sm font-bold text-brand-600 dark:text-brand-400">3</span>
@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 
-                <!-- Item 4 -->
+                
                 <div class="flex gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
                     <div class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
                         <span class="text-sm font-bold text-brand-600 dark:text-brand-400">4</span>
@@ -102,7 +102,7 @@
             </div>
         </div>
         
-        <!-- Contact Information -->
+        
         <div class="bg-gradient-to-r from-brand-50 to-sphere-secondary/10 dark:from-gray-800 dark:to-gray-800 rounded-2xl shadow-xl border border-brand-200 dark:border-gray-700 p-6 mb-8">
             <div class="flex items-start gap-4">
                 <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
@@ -123,7 +123,7 @@
             </div>
         </div>
         
-        <!-- Consent Section -->
+        
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden">
             <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-6 md:p-8">
                 <div class="flex items-center gap-3 mb-4">
@@ -141,7 +141,7 @@
             
             <div class="p-6 md:p-8">
                 @auth
-                    <!-- User sudah login -->
+                    
                     <form action="{{ route('contribute.metadata') }}" method="GET" class="consent-form">
                         <input type="hidden" name="agreed" value="1">
                         <button type="submit" class="w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-sphere-secondary text-white font-bold text-base shadow-lg hover:shadow-xl hover:shadow-brand-500/30 hover:-translate-y-0.5 transition-all">
@@ -150,7 +150,7 @@
                         </button>
                     </form>
                 @else
-                    <!-- User belum login -->
+                    
                     <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-6">
                         <div class="flex items-start gap-3 mb-4">
                             <i class="bi bi-info-circle-fill text-xl text-amber-600 dark:text-amber-400 mt-0.5"></i>

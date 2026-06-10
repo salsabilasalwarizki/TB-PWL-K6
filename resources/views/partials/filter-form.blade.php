@@ -1,6 +1,3 @@
-{{-- ============================================ --}}
-{{-- ============ SEARCH FILTER ================= --}}
-{{-- ============================================ --}}
 <div class="pb-4 border-b border-gray-100 dark:border-gray-700">
     <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
         <i class="bi bi-search me-1"></i>Search
@@ -15,9 +12,6 @@
     </div>
 </div>
 
-{{-- ============================================ --}}
-{{-- ============ KEYWORDS FILTER =============== --}}
-{{-- ============================================ --}}
 <div class="pb-4 border-b border-gray-100 dark:border-gray-700">
     <button type="button" 
             class="w-full flex items-center justify-between mb-2 group" 
@@ -62,9 +56,6 @@
     </div>
 </div>
 
-{{-- ============================================ --}}
-{{-- ============ DATA TYPE FILTER ============== --}}
-{{-- ============================================ --}}
 <div class="pb-4 border-b border-gray-100 dark:border-gray-700">
     <button type="button" 
             class="w-full flex items-center justify-between mb-2" 
@@ -127,9 +118,6 @@
     </div>
 </div>
 
-{{-- ============================================ --}}
-{{-- ============ TASK TYPE FILTER ============== --}}
-{{-- ============================================ --}}
 <div class="pb-4 border-b border-gray-100 dark:border-gray-700">
     <button type="button" 
             class="w-full flex items-center justify-between mb-2" 
@@ -188,9 +176,6 @@
     </div>
 </div>
 
-{{-- ============================================ --}}
-{{-- ============ SUBJECT AREA FILTER =========== --}}
-{{-- ============================================ --}}
 <div class="pb-4 border-b border-gray-100 dark:border-gray-700">
     <button type="button" 
             class="w-full flex items-center justify-between mb-2" 
@@ -237,9 +222,6 @@
     </div>
 </div>
 
-{{-- ============================================ --}}
-{{-- ============ INSTANCES RANGE =============== --}}
-{{-- ============================================ --}}
 <div class="pb-4 border-b border-gray-100 dark:border-gray-700">
     <button type="button" 
             class="w-full flex items-center justify-between mb-2" 
@@ -292,9 +274,6 @@
     </div>
 </div>
 
-{{-- ============================================ --}}
-{{-- ============ FEATURES RANGE ================ --}}
-{{-- ============================================ --}}
 <div class="pb-4 border-b border-gray-100 dark:border-gray-700">
     <button type="button" 
             class="w-full flex items-center justify-between mb-2" 
@@ -347,9 +326,6 @@
     </div>
 </div>
 
-{{-- ============================================ --}}
-{{-- ============ QUICK FILTERS ================= --}}
-{{-- ============================================ --}}
 <div class="pb-4">
     <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
         <i class="bi bi-lightning-charge me-1"></i>Quick Filters
@@ -365,9 +341,6 @@
     </label>
 </div>
 
-{{-- ============================================ --}}
-{{-- ============ DESKTOP ACTIONS =============== --}}
-{{-- ============================================ --}}
 @if(!isset($isMobile))
 <div class="space-y-2 pt-2">
     <button type="submit" 

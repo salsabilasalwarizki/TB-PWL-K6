@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->string('contribution_role')->nullable();
             $table->primary(['dataset_id', 'creator_id']);
             
-            // Foreign keys eksplisit (hindari constrained() untuk custom PK names)
+            
             $table->foreign('dataset_id')
                   ->references('dataset_id')
                   ->on('datasets')

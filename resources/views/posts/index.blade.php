@@ -4,7 +4,6 @@
 
 @section('content')
 <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-<!-- Hero Section -->
 <section class="bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary text-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Latest Articles</h1>
@@ -14,11 +13,8 @@
     </div>
 </section>
 
-<!-- Main Content -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid lg:grid-cols-4 gap-8">
-        
-        <!-- Sidebar Filters -->
         <aside class="lg:col-span-1">
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 sticky top-24">
                 <h3 class="font-bold text-lg mb-4 text-gray-900 dark:text-white">
@@ -41,9 +37,7 @@
             </div>
         </aside>
 
-        <!-- Posts Grid -->
         <div class="lg:col-span-3">
-            <!-- Search Bar -->
             <form action="{{ route('posts.index') }}" method="GET" class="mb-8">
                 <div class="relative">
                     <input type="text" name="search" value="{{ request('search') }}" 
@@ -101,7 +95,6 @@
                 @endforeach
             </div>
 
-            <!-- Pagination -->
             <div class="mt-12">
                 {{ $posts->links() }}
             </div>

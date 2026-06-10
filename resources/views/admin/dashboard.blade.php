@@ -6,7 +6,6 @@
 <div class="min-h-screen bg-ink-50 dark:bg-ink-950 bg-grid">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        <!-- Page Header -->
         <div class="mb-8 animate-slide-up">
             <h1 class="text-3xl font-bold text-ink-900 dark:text-white mb-2">
                 <i class="bi bi-speedometer2 me-2"></i>Admin Dashboard
@@ -14,9 +13,7 @@
             <p class="text-ink-600 dark:text-ink-400">Manage datasets, users, and repository settings</p>
         </div>
 
-        <!-- Stats Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <!-- Total Datasets -->
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card border border-ink-200 dark:border-ink-800 p-6 hover:shadow-elev hover:-translate-y-1 transition-all duration-300 animate-slide-up" style="animation-delay: 0.1s;">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-soft">
@@ -29,7 +26,6 @@
                 </div>
             </div>
             
-            <!-- Pending Review -->
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card border border-ink-200 dark:border-ink-800 p-6 hover:shadow-elev hover:-translate-y-1 transition-all duration-300 animate-slide-up" style="animation-delay: 0.2s;">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-soft">
@@ -48,8 +44,7 @@
                 </div>
                 @endif
             </div>
-            
-            <!-- Approved -->
+           
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card border border-ink-200 dark:border-ink-800 p-6 hover:shadow-elev hover:-translate-y-1 transition-all duration-300 animate-slide-up" style="animation-delay: 0.3s;">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-soft">
@@ -61,8 +56,7 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Total Users -->
+           
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card border border-ink-200 dark:border-ink-800 p-6 hover:shadow-elev hover:-translate-y-1 transition-all duration-300 animate-slide-up" style="animation-delay: 0.4s;">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center shadow-soft">
@@ -76,10 +70,8 @@
             </div>
         </div>
 
-        <!-- Main Content -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-slide-up" style="animation-delay: 0.5s;">
             
-            <!-- Left Column: Pending Datasets -->
             <div class="lg:col-span-2">
                 <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card border border-ink-200 dark:border-ink-800 overflow-hidden">
                     <div class="px-6 py-4 border-b border-ink-200 dark:border-ink-800 flex items-center justify-between bg-gradient-to-r from-ink-50 to-ink-100 dark:from-ink-900 dark:to-ink-800">
@@ -170,10 +162,8 @@
                 </div>
             </div>
             
-            <!-- Right Column: Charts & Activity -->
             <div class="space-y-6">
                 
-                <!-- Monthly Submissions Chart -->
                 <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card border border-ink-200 dark:border-ink-800 overflow-hidden">
                     <div class="px-6 py-4 border-b border-ink-200 dark:border-ink-800 bg-gradient-to-r from-ink-50 to-ink-100 dark:from-ink-900 dark:to-ink-800">
                         <h2 class="text-lg font-semibold text-ink-900 dark:text-white">
@@ -185,7 +175,6 @@
                     </div>
                 </div>
                 
-                <!-- Recent Activity -->
                 <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card border border-ink-200 dark:border-ink-800 overflow-hidden">
                     <div class="px-6 py-4 border-b border-ink-200 dark:border-ink-800 bg-gradient-to-r from-ink-50 to-ink-100 dark:from-ink-900 dark:to-ink-800">
                         <h2 class="text-lg font-semibold text-ink-900 dark:text-white">
@@ -226,8 +215,7 @@
                 
             </div>
         </div>
-        
-        <!-- Quick Actions -->
+       
         <div class="mt-8 pt-6 border-t border-ink-200 dark:border-ink-800 animate-slide-up" style="animation-delay: 0.6s;">
             <div class="flex flex-wrap gap-3 justify-center">
                 <a href="{{ route('admin.users.index') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-ink-700 dark:text-ink-300 bg-white dark:bg-ink-900 border border-ink-300 dark:border-ink-700 rounded-lg hover:bg-ink-50 dark:hover:bg-ink-800 hover:shadow-soft hover:-translate-y-0.5 transition-all duration-200">

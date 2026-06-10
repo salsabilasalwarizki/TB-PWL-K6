@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    /**
-     * Show user profile page
-     */
+    
     public function index()
     {
         $user = Auth::user();
@@ -18,9 +16,7 @@ class ProfileController extends Controller
         return view('profile.index', compact('user'));
     }
 
-    /**
-     * Update user profile information
-     */
+    
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -47,9 +43,7 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 
-    /**
-     * Update user password
-     */
+    
     public function updatePassword(Request $request)
     {
         $validated = $request->validate([
@@ -65,9 +59,7 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Password updated successfully.');
     }
 
-    /**
-     * Show user's donated datasets
-     */
+    
     public function datasets()
     {
         $user = Auth::user();
@@ -76,7 +68,7 @@ class ProfileController extends Controller
             return redirect()->route('login')->with('error', 'Please login first.');
         }
         
-        // ✅ Load relationships dengan null safety
+       
         $datasets = Dataset::where('user_id', $user->id)
             ->with(['task', 'subjectArea', 'contributors', 'files', 'license', 'doi'])
             ->orderBy('donated_date', 'desc')
@@ -85,9 +77,7 @@ class ProfileController extends Controller
         return view('profile.datasets', compact('datasets'));
     }
 
-    /**
-     * Show dataset detail view
-     */
+    
     public function showDataset(Dataset $dataset)
     {
         $user = Auth::user();
@@ -96,13 +86,13 @@ class ProfileController extends Controller
             return redirect()->route('login')->with('error', 'Please login first.');
         }
         
-        // ✅ Cek ownership dengan null safety
+        
         $isOwner = false;
         
         if ($dataset->user_id === $user->id) {
             $isOwner = true;
         } else {
-            // Cek via contributors
+            
             $isOwner = $dataset->contributors()
                 ->where('people.email', $user->email)
                 ->orWhere('people.name', $user->name)
@@ -113,7 +103,7 @@ class ProfileController extends Controller
             abort(403, 'Unauthorized access.');
         }
         
-        // ✅ Load all relationships
+        
         $dataset->load([
             'task',
             'subjectArea', 
@@ -128,11 +118,11 @@ class ProfileController extends Controller
             'variables'
         ]);
         
-        // Parse additional_info JSON dengan null safety
+        
         $additionalInfo = json_decode($dataset->additional_info ?? '{}', true) ?? [];
         $descriptiveInfo = $additionalInfo['descriptive'] ?? [];
         
-        // Calculate statistics
+       
         $totalViews = $dataset->view_count ?? 0;
         $totalDownloads = $dataset->download_count ?? 0;
         $totalCitations = $dataset->citation_count ?? 0;
@@ -146,14 +136,12 @@ class ProfileController extends Controller
         ));
     }
 
-    /**
-     * Update dataset status (for admin)
-     */
+   
     public function updateDatasetStatus(Request $request, Dataset $dataset)
     {
         $user = Auth::user();
         
-        // Check admin access
+        
         if (!($user->is_admin ?? false)) {
             abort(403, 'Admin access required.');
         }
@@ -183,16 +171,11 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Dataset status updated successfully.');
     }
 
-    /**
-     * Show user's dataset edits/submissions
-     */
-    // app/Http/Controllers/ProfileController.php
+   
 
 public function edits()
 {
-    // Ambil dataset yang:
-    // 1. Dimiliki oleh user yang login
-    // 2. Statusnya 'approved' atau 'available' (bisa diedit)
+    
     $datasets = auth()->user()->datasets()
         ->whereIn('status', ['approved', 'available'])
         ->with(['files', 'keywords', 'contributors'])
@@ -201,12 +184,10 @@ public function edits()
     
     return view('profile.edits', compact('datasets'));
 }
-    /**
- * Update dataset visibility
- */
+    
 public function updateVisibility(Dataset $dataset)
 {
-    // Pastikan user adalah pemilik dataset
+    
     if ($dataset->user_id !== auth()->id()) {
         abort(403, 'Unauthorized action.');
     }
@@ -215,12 +196,10 @@ public function updateVisibility(Dataset $dataset)
         'is_public' => 'required|boolean',
     ]);
 
-    // Update visibility (asumsikan ada kolom is_public atau similar)
-    // Jika tidak ada kolom is_public, mungkin menggunakan status atau kolom lain
+    
     $dataset->update([
         'status' => $validated['is_public'] ? 'available' : 'pending',
-        // atau jika ada kolom is_public:
-        // 'is_public' => $validated['is_public'],
+       
     ]);
 
     return response()->json([

@@ -5,14 +5,14 @@
 @section('content')
 <div class="relative">
     
-    <!-- ===== HERO SECTION ===== -->
+    
     <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary text-white">
-        <!-- Animated Background -->
+        
         <div class="absolute inset-0">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.08)_0%,transparent_50%)]"></div>
             
-            <!-- Floating Particles -->
+            
             <div class="absolute top-[20%] left-[10%] w-2 h-2 bg-white/30 rounded-full animate-float"></div>
             <div class="absolute top-[60%] left-[80%] w-2 h-2 bg-white/30 rounded-full animate-float" style="animation-delay: 1s"></div>
             <div class="absolute top-[40%] left-[90%] w-2 h-2 bg-white/30 rounded-full animate-float" style="animation-delay: 2s"></div>
@@ -23,15 +23,15 @@
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 
-                <!-- Left Content -->
+                
                 <div data-aos="fade-right" data-aos-duration="1000">
-                    <!-- Badge -->
+                    
                     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
                         <i class="bi bi-stars text-yellow-300"></i>
                         <span class="text-sm font-semibold">Trusted by 10M+ Researchers Worldwide</span>
                     </div>
                     
-                    <!-- Title -->
+                    
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                         <span class="block">DataSphere</span>
                         <span class="block bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent">
@@ -39,14 +39,14 @@
                         </span>
                     </h1>
                     
-                    <!-- Description -->
+                    
                     <p class="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-xl">
                         We maintain <strong class="text-white font-bold">{{ number_format($stats['total'] ?? 0) }}</strong> curated datasets 
                         as a service to the machine learning community. Discover, donate, and collaborate on datasets 
                         used by millions of researchers worldwide.
                     </p>
                     
-                    <!-- CTA Buttons -->
+                    
                     <div class="flex flex-wrap gap-4 mb-10">
                         <a href="{{ route('datasets.index') }}" 
                            class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-brand-700 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
@@ -60,7 +60,7 @@
                         </a>
                     </div>
                     
-                    <!-- Quick Stats -->
+                    
                     <div class="flex flex-wrap gap-8">
                         <div>
                             <div class="text-3xl font-bold text-white">{{ number_format($stats['total'] ?? 0) }}</div>
@@ -77,13 +77,13 @@
                     </div>
                 </div>
                 
-                <!-- Right Visual -->
+                
                 <div class="hidden lg:block relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div class="relative">
-                        <!-- Glow Effect -->
+                        
                         <div class="absolute inset-0 bg-white/20 rounded-full blur-3xl animate-pulse-slow"></div>
                         
-                        <!-- Main Icon Card -->
+                        
                         <div class="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 shadow-2xl">
                             <div class="text-center">
                                 <i class="bi bi-database text-8xl text-white/60"></i>
@@ -94,7 +94,7 @@
                             </div>
                         </div>
                         
-                        <!-- Floating Card 1 -->
+                        
                         <div class="absolute -top-4 -left-8 bg-white/95 backdrop-blur-sm rounded-2xl p-3 shadow-xl animate-float">
                             <div class="flex items-center gap-2">
                                 <div class="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center">
@@ -107,7 +107,7 @@
                             </div>
                         </div>
                         
-                        <!-- Floating Card 2 -->
+                        
                         <div class="absolute -bottom-4 -right-8 bg-white/95 backdrop-blur-sm rounded-2xl p-3 shadow-xl animate-float" style="animation-delay: 2s">
                             <div class="flex items-center gap-2">
                                 <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
@@ -125,7 +125,7 @@
             </div>
         </div>
         
-        <!-- Scroll Indicator -->
+        
         <div class="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce">
             <a href="#content" class="flex flex-col items-center gap-1 text-white/70 hover:text-white transition-colors">
                 <span class="text-xs font-medium">Explore</span>
@@ -134,14 +134,14 @@
         </div>
     </section>
 
-    <!-- ===== STATS SECTION ===== -->
+    
     <section class="py-16 bg-gray-50 dark:bg-gray-900" id="content">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <!-- Stats Cards -->
+            
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 
-                <!-- Total Datasets -->
+                
                 <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="0">
                     <div class="flex items-center justify-between mb-4">
                         <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-900/30 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -156,7 +156,7 @@
                     </div>
                 </div>
                 
-                <!-- Data Types -->
+                
                 <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center justify-between mb-4">
                         <div class="w-12 h-12 rounded-xl bg-green-50 dark:bg-green-900/30 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -171,7 +171,7 @@
                     </div>
                 </div>
                 
-                <!-- Task Types -->
+                
                 <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center justify-between mb-4">
                         <div class="w-12 h-12 rounded-xl bg-cyan-50 dark:bg-cyan-900/30 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -186,7 +186,7 @@
                     </div>
                 </div>
                 
-                <!-- Downloads -->
+                
                 <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="300">
                     <div class="flex items-center justify-between mb-4">
                         <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -203,7 +203,7 @@
                 
             </div>
             
-            <!-- Chart Section -->
+            
             <div class="mt-12 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="400">
                 <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-gray-700">
                     <div class="flex items-center justify-between mb-6">
@@ -217,7 +217,7 @@
                         </div>
                     </div>
                     
-                    <!-- Tab Navigation -->
+                    
                     <div class="flex gap-2 mb-6 border-b border-gray-200 dark:border-gray-700">
                         <button onclick="switchChart('dataType')" id="tab-dataType" 
                                 class="chart-tab px-4 py-2 text-sm font-semibold border-b-2 border-brand-600 text-brand-600 dark:text-brand-400 transition-all">
@@ -239,7 +239,7 @@
                 </div>
             </div>
 
-            <!-- Monthly Growth Chart -->
+            
             <div class="mt-8 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="500">
                 <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-gray-700">
                     <div class="flex items-center justify-between mb-6">
@@ -263,13 +263,13 @@
         </div>
     </section>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
         @if($popularDatasets->isNotEmpty() || $newDatasets->isNotEmpty())
             <div class="space-y-16">
                 
-                <!-- Popular Datasets -->
+                
                 @if($popularDatasets->isNotEmpty())
                 <section data-aos="fade-up">
                     <div class="flex items-center justify-between mb-8">
@@ -305,7 +305,7 @@
                 </section>
                 @endif
 
-                <!-- New Datasets -->
+                
                 @if($newDatasets->isNotEmpty())
                 <section data-aos="fade-up">
                     <div class="flex items-center justify-between mb-8">
@@ -343,7 +343,7 @@
 
             </div>
         @else
-            <!-- Empty State -->
+            
             <section class="text-center py-20" data-aos="zoom-in">
                 <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
                     <i class="bi bi-database text-5xl text-gray-300 dark:text-gray-600"></i>
@@ -360,7 +360,7 @@
             </section>
         @endif
 
-        <!-- ===== BROWSE BY CATEGORY ===== -->
+        
         <section class="mt-20" data-aos="fade-up">
             <div class="text-center mb-10">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 dark:bg-brand-900/30 mb-4">
@@ -373,7 +373,7 @@
             
             <div class="grid md:grid-cols-2 gap-6">
                 
-                <!-- Data Types Card -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300" data-aos="fade-right">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-900/30 flex items-center justify-center">
@@ -394,7 +394,7 @@
                     </div>
                 </div>
                 
-                <!-- Task Types Card -->
+                
                 <div class="bg-white dark:bg-gray-800 rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300" data-aos="fade-left">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 rounded-xl bg-cyan-50 dark:bg-cyan-900/30 flex items-center justify-center">
@@ -418,7 +418,7 @@
             </div>
         </section>
 
-        <!-- ===== LATEST POSTS SECTION (NEW) ===== -->
+        
         @if($latestPosts->isNotEmpty())
         <section class="mt-20" data-aos="fade-up">
             <div class="flex items-center justify-between mb-8">
@@ -441,7 +441,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($latestPosts as $index => $post)
                 <article class="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
-                    <!-- Featured Image -->
+                    
                     @if($post->featured_img)
                     <div class="relative h-48 overflow-hidden">
                         <img src="{{ Storage::url($post->featured_img) }}" alt="{{ $post->title }}" 
@@ -454,9 +454,9 @@
                     </div>
                     @endif
                     
-                    <!-- Content -->
+                    
                     <div class="p-6">
-                        <!-- Category Badge -->
+                        
                         <div class="flex items-center gap-2 mb-3">
                             <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400">
                                 {{ $post->category->name }}
@@ -466,19 +466,19 @@
                             </span>
                         </div>
                         
-                        <!-- Title -->
+                        
                         <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
                             <a href="{{ route('posts.show', $post) }}">
                                 {{ $post->title }}
                             </a>
                         </h3>
                         
-                        <!-- Excerpt -->
+                        
                         <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
                             {{ $post->excerpt ?: Str::limit(strip_tags($post->body), 120) }}
                         </p>
                         
-                        <!-- Author & Date -->
+                        
                         <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
                             <div class="flex items-center gap-2">
                                 <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-500 to-sphere-secondary flex items-center justify-center text-white text-xs font-bold">
@@ -495,7 +495,7 @@
                 @endforeach
             </div>
             
-            <!-- Mobile View All Button -->
+            
             <div class="mt-8 text-center sm:hidden">
                 <a href="{{ route('posts.index') }}" 
                    class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-600 text-white font-semibold hover:bg-brand-700 transition-colors">
@@ -506,7 +506,7 @@
         </section>
         @endif
 
-        <!-- ===== BROWSE POSTS BY CATEGORY (NEW) ===== -->
+        
         @if($categories->isNotEmpty())
         <section class="mt-20" data-aos="fade-up">
             <div class="text-center mb-10">
@@ -535,10 +535,10 @@
         </section>
         @endif
         
-        <!-- ===== CTA SECTION ===== -->
+        
         <section class="mt-20" data-aos="zoom-in">
             <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary text-white">
-                <!-- Background Pattern -->
+                
                 <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
                 
                 <div class="relative p-8 md:p-12 lg:p-16">
@@ -575,11 +575,11 @@
 @endsection
 
 @push('styles')
-<!-- AOS Animation Library -->
+
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <style>
-    /* Custom Animations */
+    
     @keyframes float {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-10px); }
@@ -598,12 +598,12 @@
         animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
     
-    /* Smooth scroll */
+    
     html {
         scroll-behavior: smooth;
     }
     
-    /* Custom scrollbar */
+    
     ::-webkit-scrollbar {
         width: 10px;
         height: 10px;
@@ -622,7 +622,7 @@
         background: rgba(99, 102, 241, 0.5);
     }
     
-    /* Line clamp utilities */
+    
     .line-clamp-2 {
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -637,7 +637,7 @@
         overflow: hidden;
     }
     
-    /* Accessibility */
+    
     @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
             animation-duration: 0.01ms !important;
@@ -649,21 +649,18 @@
 @endpush
 
 @push('scripts')
-<!-- AOS Animation Library -->
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<!-- Chart.js -->
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 <script>
-// Initialize AOS
 AOS.init({
     duration: 800,
     easing: 'ease-out-cubic',
     once: true,
     offset: 50
 });
-
-// ===== DATA DARI DATABASE (via Blade) =====
 const chartData = {
     dataType: {
         labels: @json(($stats['by_data_type'] ?? collect())->keys()->toArray()),
@@ -689,19 +686,13 @@ const chartData = {
 let currentChart = null;
 let growthChart = null;
 let activeTab = 'dataType';
-
-// ===== INITIALIZE CHARTS =====
 document.addEventListener('DOMContentLoaded', function() {
     initMainChart('dataType');
     initGrowthChart();
-    
-    // Auto-refresh setiap 5 menit
     setInterval(() => {
         fetchCurrentStats();
     }, 300000);
 });
-
-// ===== MAIN CHART (Distribution) =====
 function initMainChart(type) {
     const ctx = document.getElementById('statsChart');
     if (!ctx) return;
@@ -779,8 +770,6 @@ function initMainChart(type) {
         }
     });
 }
-
-// ===== GROWTH CHART (Line) =====
 function initGrowthChart() {
     const ctx = document.getElementById('growthChart');
     if (!ctx) return;
@@ -846,8 +835,6 @@ function initGrowthChart() {
         }
     });
 }
-
-// ===== SWITCH CHART TAB =====
 function switchChart(type) {
     document.querySelectorAll('.chart-tab').forEach(tab => {
         tab.classList.remove('border-brand-600', 'text-brand-600', 'dark:text-brand-400');
@@ -861,8 +848,6 @@ function switchChart(type) {
     initMainChart(type);
     activeTab = type;
 }
-
-// ===== FETCH CURRENT STATS =====
 function fetchCurrentStats() {
     fetch('{{ route("home") }}', {
         headers: { 'X-Requested-With': 'XMLHttpRequest' }
@@ -873,8 +858,6 @@ function fetchCurrentStats() {
     })
     .catch(err => console.warn('Failed to refresh stats:', err));
 }
-
-// ===== UPDATE CHART ON THEME CHANGE =====
 const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
         if (mutation.attributeName === 'class') {

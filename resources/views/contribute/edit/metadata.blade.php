@@ -5,7 +5,6 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,7 +12,6 @@
     
     <div class="relative max-w-4xl mx-auto">
         
-        <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
@@ -23,8 +21,7 @@
             <i class="bi bi-chevron-right text-xs"></i>
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Edit Metadata</span>
         </nav>
-        
-        <!-- Header -->
+       
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-8 md:p-10">
                 <div class="flex items-center justify-between">
@@ -49,7 +46,6 @@
             </div>
         </div>
         
-        <!-- Alert Info -->
         <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-2xl p-5 mb-6 flex items-start gap-3">
             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                 <i class="bi bi-info-circle-fill text-xl text-blue-600 dark:text-blue-400"></i>
@@ -63,13 +59,11 @@
                 </p>
             </div>
         </div>
-        
-        <!-- Edit Form -->
+       
         <form action="{{ route('contribute.edit.metadata.update', $dataset) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            
-            <!-- Current Status -->
+           
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-800 p-5 md:p-6 flex items-center justify-between">
                     <div class="flex items-center gap-3">
@@ -88,8 +82,7 @@
                     </span>
                 </div>
             </div>
-            
-            <!-- Edit Form Card -->
+           
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800 p-5 md:p-6 border-b border-gray-200 dark:border-gray-700">
                     <div class="flex items-center gap-3">
@@ -105,7 +98,6 @@
                 
                 <div class="p-5 md:p-6 space-y-5">
                     
-                    <!-- Dataset Name -->
                     <div>
                         <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-tag me-1 text-blue-500"></i>Dataset Name <span class="text-red-500">*</span>
@@ -125,7 +117,6 @@
                         <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">Use a clear, descriptive name for your dataset</p>
                     </div>
                     
-                    <!-- Abstract -->
                     <div>
                         <label for="abstract" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-card-text me-1 text-blue-500"></i>Abstract <span class="text-red-500">*</span>
@@ -148,8 +139,7 @@
                             <p class="text-xs text-gray-500 dark:text-gray-400"><span id="abstractCount">{{ strlen(old('abstract', $dataset->abstract ?? '')) }}</span>/2000</p>
                         </div>
                     </div>
-                    
-                    <!-- Detailed Description -->
+                   
                     <div>
                         <label for="description" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-file-text me-1 text-blue-500"></i>Detailed Description
@@ -166,7 +156,6 @@
                         @enderror
                     </div>
                     
-                    <!-- Subject Area & Data Type -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label for="subject_area" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -213,8 +202,7 @@
                             @enderror
                         </div>
                     </div>
-                    
-                    <!-- Task Type -->
+                   
                     <div>
                         <label for="task_type" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-bullseye me-1 text-blue-500"></i>Associated Task
@@ -236,7 +224,6 @@
                         @enderror
                     </div>
                     
-                    <!-- Number of Instances & Features -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label for="num_instances" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -276,7 +263,6 @@
                 </div>
             </div>
             
-            <!-- Submit Buttons -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('profile.edits') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">
@@ -298,7 +284,6 @@
 
 @push('scripts')
 <script>
-// Character counter for abstract
 function updateCharCount(textarea, max) {
     const count = textarea.value.length;
     const counterId = textarea.id + 'Count';
@@ -313,7 +298,6 @@ function updateCharCount(textarea, max) {
     }
 }
 
-// Initialize character counter
 document.addEventListener('DOMContentLoaded', function() {
     const abstract = document.getElementById('abstract');
     if (abstract) {
@@ -321,7 +305,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Form submission with loading state
 document.querySelector('form').addEventListener('submit', function(e) {
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;

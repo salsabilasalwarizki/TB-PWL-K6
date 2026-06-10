@@ -8,24 +8,18 @@ use Illuminate\Support\Str;
 
 class UCIDatasetImporter extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        echo "🚀 Starting UCI Dataset Import...\n";
-        
-        // Baca file CSV
+        echo "Starting UCI Dataset Import...\n";
+       
         $csvTable = $this->readCSV(database_path('seeders/data/UCI table.csv'));
         $csvDatabase = $this->readCSV(database_path('seeders/data/UCI database.csv'));
         
-        echo "✓ Loaded " . count($csvTable) . " datasets from UCI table.csv\n";
-        echo "✓ Loaded " . count($csvDatabase) . " datasets from UCI database.csv\n";
-        
-        // Index data by name untuk matching
+        echo "Loaded " . count($csvTable) . " datasets from UCI table.csv\n";
+        echo "Loaded " . count($csvDatabase) . " datasets from UCI database.csv\n";
+       
         $dbIndexed = collect($csvDatabase)->keyBy('Name');
-        
-        // Buat atau ambil default license
+       
         $defaultLicense = License::firstOrCreate(
             ['license_name' => 'CC BY 4.0'],
             ['license_url' => 'https://creativecommons.org/licenses/by/4.0/']
@@ -37,24 +31,20 @@ class UCIDatasetImporter extends Seeder
         foreach ($csvTable as $index => $row) {
             try {
                 echo "\n[" . ($index + 1) . "/" . count($csvTable) . "] Processing: " . $row['Name'] . "\n";
-                
-                // Cari data tambahan dari CSV database
+             
                 $dbData = $dbIndexed->get($row['Name'], []);
-                
-                // ===== 1. HANDLE TASK =====
+             
                 $taskId = null;
                 if (!empty($row['Default Task'])) {
                     $taskName = $row['Default Task'];
                     $task = Task::firstOrCreate(['task_name' => $taskName]);
                     $taskId = $task->task_id;
-                    echo "  ✓ Task: {$taskName}\n";
+                    echo "Task: {$taskName}\n";
                 }
-                
-                // ===== 2. HANDLE SUBJECT AREA =====
+              
                 $subjectAreaId = null;
                 $characteristics = $row['Data Types'] ?? null;
-                
-                // Tentukan subject area berdasarkan karakteristik
+            
                 if (Str::contains(strtolower($characteristics ?? ''), 'text')) {
                     $subjectArea = SubjectArea::firstOrCreate(['area_name' => 'Computer Science']);
                     $subjectAreaId = $subjectArea->area_id;
@@ -68,11 +58,9 @@ class UCIDatasetImporter extends Seeder
                     $subjectArea = SubjectArea::firstOrCreate(['area_name' => 'Computer Science']);
                     $subjectAreaId = $subjectArea->area_id;
                 }
-                
-                // ===== 3. PARSE TAHUN =====
+            
                 $year = !empty($row['Year']) ? (int)$row['Year'] : date('Y');
-                
-                // ===== 4. CREATE DATASET =====
+              
                 $dataset = Dataset::create([
                     'name' => $row['Name'],
                     'description' => $dbData['Abstract'] ?? $row['Name'],
@@ -97,17 +85,15 @@ class UCIDatasetImporter extends Seeder
                     ]),
                 ]);
                 
-                echo "  ✓ Dataset created: {$dataset->name}\n";
-                
-                // ===== 5. ADD CREATOR (UCI) =====
+                echo "Dataset created: {$dataset->name}\n";
+            
                 $creator = Creator::firstOrCreate(
                     ['name' => 'UCI Machine Learning Repository'],
                     ['email' => 'archive@ics.uci.edu']
                 );
                 $dataset->creators()->attach($creator->creator_id, ['contribution_role' => 'Donor']);
-                echo "  ✓ Creator attached\n";
-                
-                // ===== 6. ADD KEYWORDS =====
+                echo "Creator attached\n";
+            
                 if (!empty($characteristics)) {
                     $chars = explode(',', $characteristics);
                     foreach ($chars as $char) {
@@ -117,25 +103,22 @@ class UCIDatasetImporter extends Seeder
                             $dataset->keywords()->attach($keyword->keyword_id);
                         }
                     }
-                    echo "  ✓ Keywords added\n";
+                    echo "Keywords added\n";
                 }
                 
                 $count++;
                 
             } catch (\Exception $e) {
-                echo "  ✗ Error: " . $e->getMessage() . "\n";
+                echo "Error: " . $e->getMessage() . "\n";
                 $failed++;
             }
         }
         
-        echo "\n✅ Import completed!\n";
-        echo "✓ Success: {$count} datasets\n";
-        echo "✗ Failed: {$failed} datasets\n";
+        echo "\nImport completed!\n";
+        echo "Success: {$count} datasets\n";
+        echo "Failed: {$failed} datasets\n";
     }
     
-    /**
-     * Read CSV file
-     */
     private function readCSV($filePath)
     {
         $data = [];

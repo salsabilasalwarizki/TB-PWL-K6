@@ -6,11 +6,11 @@
     <meta name="description" content="@yield('meta_desc', 'DataSphere Machine Learning Repository')">
     <title>@yield('title', 'DataSphere ML Repository')</title>
     
-    <!-- Tailwind CSS -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Bootstrap Icons -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Google Fonts -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
@@ -199,12 +199,12 @@
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased transition-colors duration-300">
 
-    <!-- ===== NAVBAR ===== -->
+    
     <nav class="navbar-glass sticky top-0 z-50 transition-all duration-300" id="mainNavbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 
-                <!-- Logo -->
+                
                 <a href="{{ route('home') }}" class="flex items-center gap-2 lg:gap-3 group flex-shrink-0">
                     <div class="logo-sphere relative">
                         <svg width="36" height="36" viewBox="0 0 40 40" fill="none" class="lg:w-10 lg:h-10">
@@ -238,7 +238,7 @@
                     </div>
                 </a>
                 
-                <!-- Desktop Navigation -->
+                
                 <div class="hidden xl:flex items-center gap-1">
                     @auth
                         @if(auth()->user()->role === 'admin' || auth()->user()->role === 'superadmin')
@@ -255,7 +255,7 @@
                         Datasets
                     </a>
                     
-                    <!-- Contribute Dropdown -->
+                    
                     <div class="relative group">
                         <button class="nav-link-custom text-gray-700 dark:text-gray-200 hover:text-brand-600 dark:hover:text-brand-400 text-sm flex items-center gap-1">
                             <span>Contribute</span>
@@ -280,7 +280,7 @@
                         </div>
                     </div>
                     
-                    <!-- About Dropdown -->
+                    
                     <div class="relative group">
                         <button class="nav-link-custom text-gray-700 dark:text-gray-200 hover:text-brand-600 dark:hover:text-brand-400 text-sm flex items-center gap-1">
                             <span>About</span>
@@ -305,9 +305,9 @@
                     </div>
                 </div>
                 
-                <!-- Right Actions -->
+                
                 <div class="flex items-center gap-2 lg:gap-3">
-                    <!-- Desktop Search -->
+                    
                     <form action="{{ route('datasets.index') }}" method="GET" class="hidden lg:block flex-shrink-0">
                         <div class="relative">
                             <i class="bi bi-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
@@ -316,19 +316,19 @@
                         </div>
                     </form>
                     
-                    <!-- Mobile Search Toggle -->
+                    
                     <button class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex-shrink-0" 
                             onclick="toggleMobileSearch()" aria-label="Search">
                         <i class="bi bi-search text-gray-600 dark:text-gray-300"></i>
                     </button>
                     
-                    <!-- Theme Toggle -->
+                    
                     <button onclick="toggleTheme()" class="theme-toggle flex-shrink-0" aria-label="Toggle theme">
                         <i class="bi bi-moon-stars-fill icon moon text-gray-700 dark:text-yellow-300"></i>
                         <i class="bi bi-sun-fill icon sun text-yellow-500"></i>
                     </button>
                     
-                    <!-- Desktop User Menu -->
+                    
                     @auth
                         <div class="hidden lg:block relative group flex-shrink-0">
                             <button class="avatar-btn w-9 h-9 rounded-full flex items-center justify-center text-white font-semibold text-sm">
@@ -365,7 +365,7 @@
                         </a>
                     @endauth
                     
-                    <!-- Mobile Menu Toggle -->
+                    
                     <button class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex-shrink-0" 
                             onclick="toggleMobileMenu()" aria-label="Menu">
                         <i class="bi bi-list text-xl text-gray-600 dark:text-gray-300"></i>
@@ -373,7 +373,7 @@
                 </div>
             </div>
             
-            <!-- Mobile Search -->
+            
             <div id="mobileSearch" class="hidden lg:hidden pb-3">
                 <form action="{{ route('datasets.index') }}" method="GET">
                     <div class="relative">
@@ -386,7 +386,7 @@
         </div>
     </nav>
 
-    <!-- ===== MOBILE MENU ===== -->
+    
     <div id="mobileMenu" class="fixed inset-0 z-[60] hidden lg:hidden">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="toggleMobileMenu()" id="mobileMenuBackdrop"></div>
         <div class="mobile-panel absolute right-0 top-0 h-full w-full max-w-sm bg-white dark:bg-gray-900 shadow-2xl translate-x-full" id="mobileMenuPanel">
@@ -491,16 +491,16 @@
         </div>
     </div>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    
     <main class="min-h-[calc(100vh-64px)]">
         @yield('content')
     </main>
 
-    <!-- ===== FOOTER (SAMA PERSIS dengan app.blade.php) ===== -->
+    
     <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <!-- Newsletter Section -->
+            
             <div class="py-12 border-b border-gray-200 dark:border-gray-800">
                 <div class="max-w-3xl mx-auto text-center">
                     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-brand-500/10 to-sphere-secondary/10 border border-brand-500/20 mb-4">
@@ -528,10 +528,10 @@
                 </div>
             </div>
             
-            <!-- Main Footer Content -->
+            
             <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 
-                <!-- Brand -->
+                
                 <div class="lg:col-span-2">
                     <div class="flex items-center gap-3 mb-4">
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -555,7 +555,7 @@
                     </p>
                 </div>
                 
-                <!-- The Project -->
+                
                 <div>
                     <h5 class="font-bold text-sm uppercase tracking-wider text-gray-900 dark:text-gray-100 mb-4">The Project</h5>
                     <ul class="space-y-3">
@@ -566,7 +566,7 @@
                     </ul>
                 </div>
                 
-                <!-- Navigation -->
+                
                 <div>
                     <h5 class="font-bold text-sm uppercase tracking-wider text-gray-900 dark:text-gray-100 mb-4">Navigation</h5>
                     <ul class="space-y-3">
@@ -577,7 +577,7 @@
                     </ul>
                 </div>
                 
-                <!-- Resources -->
+                
                 <div>
                     <h5 class="font-bold text-sm uppercase tracking-wider text-gray-900 dark:text-gray-100 mb-4">Resources</h5>
                     <ul class="space-y-3">
@@ -589,7 +589,7 @@
                 </div>
             </div>
             
-            <!-- Bottom Bar -->
+            
             <div class="py-6 border-t border-gray-200 dark:border-gray-800">
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                     <div class="flex flex-wrap justify-center md:justify-start gap-6 text-xs text-gray-600 dark:text-gray-400">
@@ -612,7 +612,7 @@
         </div>
     </footer>
 
-    <!-- ===== SCRIPTS ===== -->
+    
     <script>
         function toggleTheme() {
             const html = document.documentElement;

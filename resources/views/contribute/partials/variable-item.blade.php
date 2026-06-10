@@ -7,8 +7,7 @@
 --}}
 
 <div class="variable-item bg-gradient-to-br from-violet-50/50 to-purple-50/50 dark:from-gray-700/30 dark:to-gray-700/30 border-2 border-violet-200 dark:border-violet-800/50 rounded-2xl p-5 md:p-6 transition-all hover:shadow-lg" data-index="{{ $index }}">
-    
-    <!-- Header -->
+   
     <div class="flex items-center justify-between mb-5 pb-4 border-b border-violet-200 dark:border-violet-800/50">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm shadow-md">
@@ -29,10 +28,8 @@
         @endif
     </div>
     
-    <!-- Grid Layout -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         
-        <!-- Variable Name -->
         <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                 <i class="bi bi-code-square me-1 text-violet-500"></i>Variable Name <span class="text-red-500">*</span>
@@ -51,7 +48,6 @@
             @enderror
         </div>
         
-        <!-- Display Name -->
         <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                 <i class="bi bi-person-badge me-1 text-violet-500"></i>Display Name
@@ -64,7 +60,6 @@
                    placeholder="Human readable name">
         </div>
         
-        <!-- Role -->
         <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                 <i class="bi bi-bullseye me-1 text-violet-500"></i>Role <span class="text-red-500">*</span>
@@ -85,7 +80,6 @@
             @enderror
         </div>
         
-        <!-- Variable Type -->
         <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                 <i class="bi bi-diagram-2 me-1 text-violet-500"></i>Type <span class="text-red-500">*</span>
@@ -105,7 +99,6 @@
             @enderror
         </div>
         
-        <!-- Unit -->
         <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                 <i class="bi bi-rulers me-1 text-violet-500"></i>Unit
@@ -118,7 +111,6 @@
                    placeholder="e.g., kg, °C, meters">
         </div>
         
-        <!-- Min Value -->
         <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                 <i class="bi bi-arrow-down-left me-1 text-violet-500"></i>Min Value
@@ -131,7 +123,6 @@
                    placeholder="Minimum">
         </div>
         
-        <!-- Max Value -->
         <div>
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                 <i class="bi bi-arrow-up-right me-1 text-violet-500"></i>Max Value
@@ -144,7 +135,6 @@
                    placeholder="Maximum">
         </div>
         
-        <!-- Description -->
         <div class="lg:col-span-2">
             <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
                 <i class="bi bi-card-text me-1 text-violet-500"></i>Description
@@ -158,7 +148,6 @@
         </div>
     </div>
     
-    <!-- Categories Field (for Categorical type) -->
     <div class="categories-row mt-4 pt-4 border-t border-violet-200 dark:border-violet-800/50 {{ ($var['variable_type'] ?? '') == 'Categorical' ? '' : 'hidden' }}" data-index="{{ $index }}">
         <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
             <i class="bi bi-tags me-1 text-violet-500"></i>Categories <span class="text-xs font-normal text-gray-500">(comma-separated)</span>

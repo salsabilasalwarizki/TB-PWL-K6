@@ -5,7 +5,7 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
+    
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,14 +13,14 @@
     
     <div class="relative max-w-4xl mx-auto">
         
-        <!-- Breadcrumb -->
+        
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Link External Dataset</span>
         </nav>
         
-        <!-- Header Card -->
+        
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-8 md:p-10">
                 <div class="flex items-center gap-4">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             
-            <!-- Progress Bar -->
+            
             <div class="p-6 md:p-8 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-800">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
@@ -52,7 +52,7 @@
                     </span>
                 </div>
                 
-                <!-- Progress indicators -->
+                
                 <div class="hidden md:flex items-center gap-1 mb-3">
                     <div class="flex-1 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></div>
                     <div class="flex-1 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></div>
@@ -66,7 +66,7 @@
                     <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500" style="width: 66.67%"></div>
                 </div>
                 
-                <!-- Step labels -->
+                
                 <div class="hidden md:grid grid-cols-6 gap-1 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
                     <span class="text-center font-semibold text-indigo-700 dark:text-indigo-400">Basic</span>
                     <span class="text-center font-semibold text-indigo-700 dark:text-indigo-400">Paper</span>
@@ -81,7 +81,7 @@
         <form action="{{ route('contribute.linking.keywords.store') }}" method="POST" id="keywordsForm">
             @csrf
             
-            <!-- Keywords Section -->
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center justify-between flex-wrap gap-3">
@@ -102,7 +102,7 @@
                 
                 <div class="p-5 md:p-6 space-y-5">
                     
-                    <!-- Info Alert -->
+                    
                     <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-start gap-3">
                         <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                             <i class="bi bi-info-circle text-lg text-blue-600 dark:text-blue-400"></i>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     
-                    <!-- Keyword Input with Autocomplete -->
+                    
                     <div class="relative">
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-search text-amber-500 me-1"></i>Search Keywords
@@ -133,7 +133,7 @@
                             </div>
                         </div>
                         
-                        <!-- Autocomplete Dropdown -->
+                        
                         <div id="keywordDropdown" class="absolute left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg overflow-hidden z-50 hidden">
                             <div class="px-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700">
                                 <p class="text-xs font-semibold text-gray-700 dark:text-gray-300">
@@ -144,7 +144,7 @@
                         </div>
                     </div>
                     
-                    <!-- Keyword Tags -->
+                    
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                             <i class="bi bi-tags text-amber-500 me-1"></i>Selected Keywords
@@ -163,7 +163,7 @@
                 </div>
             </div>
             
-            <!-- Navigation -->
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('contribute.linking.creators') }}" 
@@ -203,8 +203,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let keywords = [];
     let allKeywords = @json($allKeywords ?? []);
     let activeIndex = -1;
-
-    // Load existing keywords
     const existing = @json(old('keywords', $keywordsData ?? []));
     if (existing && existing.length > 0) {
         keywords = existing;
@@ -278,8 +276,6 @@ document.addEventListener('DOMContentLoaded', function() {
         input.value = '';
         dropdown.classList.add('hidden');
     }
-
-    // Input event - filter keywords
     input.addEventListener('input', function() {
         const val = this.value.toLowerCase().trim();
         if (val.length === 0) {
@@ -291,8 +287,6 @@ document.addEventListener('DOMContentLoaded', function() {
         );
         showDropdown(filtered);
     });
-
-    // Keyboard navigation
     input.addEventListener('keydown', function(e) {
         const items = dropdownList.querySelectorAll('button');
         
@@ -328,8 +322,6 @@ document.addEventListener('DOMContentLoaded', function() {
             dropdown.classList.add('hidden');
         }
     });
-
-    // Remove keyword
     tagsContainer.addEventListener('click', function(e) {
         if (e.target.classList.contains('remove-tag') || e.target.closest('.remove-tag')) {
             const btn = e.target.closest('.remove-tag');
@@ -339,15 +331,11 @@ document.addEventListener('DOMContentLoaded', function() {
             updateHiddenInput();
         }
     });
-
-    // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
         if (!input.contains(e.target) && !dropdown.contains(e.target)) {
             dropdown.classList.add('hidden');
         }
     });
-
-    // Form submit - loading state
     document.getElementById('keywordsForm').addEventListener('submit', function(e) {
         const btn = document.getElementById('nextBtn');
         btn.disabled = true;

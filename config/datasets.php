@@ -1,7 +1,6 @@
 <?php
 
 return [
-    // Tambahkan di array return:
 'filters' => [
     'data_types' => [
         'Multivariate', 'Text', 'Image', 'Time-Series', 'Sequential', 
@@ -14,6 +13,5 @@ return [
     'variable_types' => [
         'Categorical', 'Integer', 'Real', 'Text', 'Binary', 'Ordinal', 'Nominal', 'DateTime'
     ],
-    // ... lainnya
 ],
 ];

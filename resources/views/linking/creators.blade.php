@@ -5,7 +5,7 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 py-8 md:py-12 px-4 sm:px-6 lg:px-8">
     
-    <!-- Background Decoration -->
+    
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
@@ -13,14 +13,14 @@
     
     <div class="relative max-w-4xl mx-auto">
         
-        <!-- Breadcrumb -->
+        
         <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
             <a href="{{ route('home') }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
             <i class="bi bi-chevron-right text-xs"></i>
             <span class="text-brand-600 dark:text-brand-400 font-semibold">Link External Dataset</span>
         </nav>
         
-        <!-- Header Card -->
+        
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
             <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-8 md:p-10">
                 <div class="flex items-center gap-4">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             
-            <!-- Progress Bar -->
+            
             <div class="p-6 md:p-8 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-800">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
@@ -52,7 +52,7 @@
                     </span>
                 </div>
                 
-                <!-- Progress bar -->
+                
                 <div class="hidden md:flex items-center gap-1 mb-3">
                     <div class="flex-1 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></div>
                     <div class="flex-1 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></div>
@@ -65,7 +65,7 @@
                     <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500" style="width: 50%"></div>
                 </div>
                 
-                <!-- Step labels -->
+                
                 <div class="hidden md:grid grid-cols-6 gap-1 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
                     <span class="text-center font-semibold text-indigo-700 dark:text-indigo-400">Basic</span>
                     <span class="text-center font-semibold text-indigo-700 dark:text-indigo-400">Paper</span>
@@ -80,9 +80,9 @@
         <form action="{{ route('contribute.linking.creators.store') }}" method="POST" id="creatorsForm">
             @csrf
             
-            <!-- ============================================ -->
-            <!-- SECTION: Creators -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden mb-6">
                 <div class="bg-gradient-to-r from-rose-50 to-pink-50 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
                     <div class="flex items-center justify-between flex-wrap gap-3">
@@ -103,7 +103,7 @@
                 
                 <div class="p-5 md:p-6 space-y-5">
                     
-                    <!-- Note Box -->
+                    
                     <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-start gap-3">
                         <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                             <i class="bi bi-info-circle text-lg text-blue-600 dark:text-blue-400"></i>
@@ -113,9 +113,9 @@
                         </div>
                     </div>
                     
-                    <!-- Creators Container -->
+                    
                     <div id="creatorsContainer" class="space-y-4">
-                        <!-- Initial Creator (Creator 1) -->
+                        
                         <div class="creator-card bg-gradient-to-br from-rose-50/50 to-pink-50/50 dark:from-gray-700/30 dark:to-gray-700/30 border-2 border-rose-200 dark:border-rose-800/50 rounded-2xl p-5 md:p-6 transition-all hover:shadow-lg" data-index="0">
                             <div class="flex items-center justify-between mb-5 pb-4 border-b border-rose-200 dark:border-rose-800/50">
                                 <div class="flex items-center gap-3">
@@ -167,7 +167,7 @@
                         </div>
                     </div>
                     
-                    <!-- Add More Button -->
+                    
                     <div class="pt-4 border-t border-gray-100 dark:border-gray-700">
                         <button type="button" id="addCreatorBtn" class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border-2 border-dashed border-rose-300 dark:border-rose-700 text-rose-600 dark:text-rose-400 font-semibold hover:border-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/10 hover:-translate-y-0.5 transition-all">
                             <div class="w-8 h-8 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center">
@@ -179,9 +179,9 @@
                 </div>
             </div>
             
-            <!-- ============================================ -->
-            <!-- Navigation -->
-            <!-- ============================================ -->
+            
+            
+            
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-5 md:p-6 sticky bottom-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('contribute.linking.paper') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all">
@@ -204,7 +204,7 @@
     </div>
 </div>
 
-<!-- Hidden Template for JavaScript -->
+
 <template id="creator-template">
     <div class="creator-card bg-gradient-to-br from-rose-50/50 to-pink-50/50 dark:from-gray-700/30 dark:to-gray-700/30 border-2 border-rose-200 dark:border-rose-800/50 rounded-2xl p-5 md:p-6 transition-all hover:shadow-lg animate-fadeIn" data-index="__INDEX__">
         <div class="flex items-center justify-between mb-5 pb-4 border-b border-rose-200 dark:border-rose-800/50">
@@ -280,8 +280,6 @@ document.getElementById('addCreatorBtn').addEventListener('click', function() {
     container.appendChild(newRow.firstElementChild);
     updateCreatorCount();
     updateDeleteButtons();
-    
-    // Scroll to new creator
     setTimeout(() => {
         const lastCreator = container.querySelector('.creator-card:last-child');
         if (lastCreator) {
@@ -301,8 +299,6 @@ document.addEventListener('click', function(e) {
 function updateCreatorCount() {
     const count = document.querySelectorAll('.creator-card').length;
     document.getElementById('creatorCount').textContent = count;
-    
-    // Update all creator numbers
     document.querySelectorAll('.creator-card').forEach((card, index) => {
         const numEl = card.querySelector('.creator-number');
         if (numEl) numEl.textContent = index + 1;
@@ -322,8 +318,6 @@ function updateDeleteButtons() {
         }
     });
 }
-
-// Form validation
 document.getElementById('creatorsForm').addEventListener('submit', function(e) {
     const cards = document.querySelectorAll('.creator-card');
     let valid = true;
@@ -347,8 +341,6 @@ document.getElementById('creatorsForm').addEventListener('submit', function(e) {
         alert('Please fill in all required fields (First Name and Last Name) for each creator.');
         return false;
     }
-    
-    // Show loading state
     const btn = document.getElementById('nextBtn');
     btn.disabled = true;
     btn.innerHTML = `

@@ -6,12 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
-        // database/migrations/xxxx_create_dataset_keywords_table.php
 Schema::create('dataset_keywords', function (Blueprint $table) {
     $table->foreignId('dataset_id')->constrained('datasets', 'dataset_id')->onDelete('cascade');
     $table->foreignId('keyword_id')->constrained('keywords', 'keyword_id')->onDelete('cascade');
@@ -20,9 +17,7 @@ Schema::create('dataset_keywords', function (Blueprint $table) {
 });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('dataset_keywords');

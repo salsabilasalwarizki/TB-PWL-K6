@@ -6,13 +6,9 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
-    /**
-     * The application's global HTTP middleware stack.
-     *
-     * @var array<int, class-string|string>
-     */
+    
     protected $middleware = [
-        // \App\Http\Middleware\TrustHosts::class,
+        
         \App\Http\Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
@@ -21,11 +17,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
-    /**
-     * The application's route middleware groups.
-     *
-     * @var array<string, array<int, class-string|string>>
-     */
+    
     protected $middlewareGroups = [
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
@@ -37,17 +29,13 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
-    /**
-     * The application's middleware aliases.
-     *
-     * @var array<string, class-string|string>
-     */
+   
     protected $middlewareAliases = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
@@ -60,15 +48,11 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-        // Custom Middleware
+    
         'role' => \App\Http\Middleware\RoleMiddleware::class,
     ];
 
-    /**
-     * The priority-sorted list of middleware.
-     *
-     * @var array<int, class-string|string>
-     */
+    
     protected $middlewarePriority = [
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
@@ -79,7 +63,7 @@ class Kernel extends HttpKernel
         \Illuminate\Auth\Middleware\Authorize::class,
     ];
     protected $routeMiddleware = [
-    // ...
+    
     'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
 ];
 }

@@ -6,7 +6,6 @@
 <div class="min-h-screen bg-ink-50 dark:bg-ink-950 bg-grid py-8 px-4 sm:px-6 lg:px-8 animate-slide-up">
     <div class="max-w-6xl mx-auto">
         
-        <!-- Header -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
             <div>
                 <h2 class="text-3xl font-bold text-ink-900 dark:text-white">
@@ -20,7 +19,6 @@
             </a>
         </div>
 
-        <!-- Alert Info -->
         <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mb-6 flex items-start gap-3">
             <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                 <i class="bi bi-info-circle text-xl text-blue-600 dark:text-blue-400"></i>
@@ -31,12 +29,10 @@
             </div>
         </div>
 
-        <!-- Edit Form -->
         <form id="editForm" action="{{ route('admin.datasets.update', $dataset) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
-            <!-- Basic Information -->
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card mb-6 animate-slide-up" style="animation-delay: 0.1s;">
                 <div class="p-6 border-b border-ink-200 dark:border-ink-800">
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white flex items-center gap-2">
@@ -45,8 +41,7 @@
                     </h3>
                 </div>
                 <div class="p-6 space-y-5">
-                    
-                    <!-- Name -->
+               
                     <div>
                         <label for="name" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
                             Dataset Name <span class="text-red-500">*</span>
@@ -65,7 +60,6 @@
                         @enderror
                     </div>
 
-                    <!-- Display Name -->
                     <div>
                         <label for="display_name" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
                             Display Name
@@ -83,7 +77,6 @@
                         @enderror
                     </div>
 
-                    <!-- Description -->
                     <div>
                         <label for="description" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
                             Description <span class="text-red-500">*</span>
@@ -101,7 +94,6 @@
                         @enderror
                     </div>
 
-                    <!-- Abstract -->
                     <div>
                         <label for="abstract" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
                             Abstract
@@ -118,7 +110,6 @@
                         @enderror
                     </div>
 
-                    <!-- Subject Area & Data Type -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
                             <label for="subject_area" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
@@ -160,7 +151,6 @@
                         </div>
                     </div>
 
-                    <!-- Task Type & Domain -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
                             <label for="task_type" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
@@ -202,7 +192,6 @@
                 </div>
             </div>
 
-            <!-- Dataset Statistics -->
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card mb-6 animate-slide-up" style="animation-delay: 0.2s;">
                 <div class="p-6 border-b border-ink-200 dark:border-ink-800">
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white flex items-center gap-2">
@@ -267,7 +256,6 @@
                 </div>
             </div>
 
-            <!-- Status & Visibility -->
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card mb-6 animate-slide-up" style="animation-delay: 0.3s;">
                 <div class="p-6 border-b border-ink-200 dark:border-ink-800">
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white flex items-center gap-2">
@@ -315,7 +303,6 @@
                         </div>
                     </div>
 
-                    <!-- Admin Notes -->
                     <div class="mt-5">
                         <label for="admin_notes" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
                             Admin Notes
@@ -335,7 +322,6 @@
                 </div>
             </div>
 
-            <!-- External Links -->
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card mb-6 animate-slide-up" style="animation-delay: 0.4s;">
                 <div class="p-6 border-b border-ink-200 dark:border-ink-800">
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white flex items-center gap-2">
@@ -380,7 +366,6 @@
                 </div>
             </div>
 
-            <!-- Submit Buttons -->
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card p-6 flex flex-col sm:flex-row justify-end gap-3 animate-slide-up" style="animation-delay: 0.5s;">
                 <a href="{{ route('admin.datasets.index') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-ink-800 border border-ink-300 dark:border-ink-600 rounded-lg hover:bg-ink-50 dark:hover:bg-ink-700 transition-colors">
                     <i class="bi bi-x-circle"></i>
@@ -395,7 +380,6 @@
             </div>
         </form>
 
-        <!-- Additional Info -->
         <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card mt-6 p-6 animate-slide-up" style="animation-delay: 0.6s;">
             <h3 class="text-lg font-bold text-ink-900 dark:text-white mb-4">Dataset Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -423,19 +407,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('submitBtn');
     
     if (!form || !btn) return;
-    
-    // Cek apakah ada validation error dari session
+  
     const hasErrors = {{ $errors->any() ? 'true' : 'false' }};
     
     if (hasErrors) {
-        // Reset button jika ada validation error
         btn.disabled = false;
         btn.innerHTML = '<i class="bi bi-check-circle"></i><span>Update Dataset</span>';
     }
-    
-    // Handle form submit
+ 
     form.addEventListener('submit', function(e) {
-        // Disable button dan tampilkan loading
         btn.disabled = true;
         btn.innerHTML = `
             <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

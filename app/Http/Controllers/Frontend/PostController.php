@@ -13,7 +13,7 @@ class PostController extends Controller
     {
         $query = Post::published()->with(['user', 'category']);
 
-        // Search
+        
         if ($request->filled('search')) {
             $query->where(function($q) use ($request) {
                 $q->where('title', 'like', "%{$request->search}%")
@@ -21,7 +21,7 @@ class PostController extends Controller
             });
         }
 
-        // Filter by category
+       
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
@@ -36,10 +36,10 @@ class PostController extends Controller
     {
         $post->load(['user', 'category']);
         
-        // Increment view count
+        
         $post->increment('view_count');
 
-        // Related posts
+       
         $relatedPosts = Post::published()
             ->where('category_id', $post->category_id)
             ->where('id', '!=', $post->id)

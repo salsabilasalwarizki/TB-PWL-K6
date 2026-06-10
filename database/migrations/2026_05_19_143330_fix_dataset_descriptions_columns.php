@@ -10,7 +10,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('dataset_descriptions', function (Blueprint $table) {
-            // Pastikan semua kolom adalah TEXT/VARCHAR, bukan JSON
             $table->text('purpose')->nullable()->change();
             $table->text('funding')->nullable()->change();
             $table->text('instances_represent')->nullable()->change();
@@ -25,7 +24,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('dataset_descriptions', function (Blueprint $table) {
-            // Rollback ke ukuran sebelumnya jika perlu
             $table->string('purpose', 1000)->nullable()->change();
             $table->string('funding', 1000)->nullable()->change();
             $table->string('instances_represent', 1000)->nullable()->change();

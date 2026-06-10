@@ -5,7 +5,6 @@
 @section('content')
 <div class="space-y-6 animate-fade-in">
     
-    <!-- Page Header -->
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
             <h2 class="text-2xl font-bold text-ink-900 dark:text-white">Statistics Dashboard</h2>
@@ -17,7 +16,6 @@
         </a>
     </div>
 
-    <!-- Stats Cards Row 1 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-slide-up">
         <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 p-6 hover:-translate-y-0.5 hover:shadow-elev transition-all duration-300">
             <div class="flex flex-col items-center text-center">
@@ -76,7 +74,6 @@
         </div>
     </div>
 
-    <!-- Stats Cards Row 2 -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 animate-slide-up" style="animation-delay: 0.1s;">
         <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 p-6 hover:-translate-y-0.5 hover:shadow-elev transition-all duration-300">
             <div class="flex items-center justify-between">
@@ -109,9 +106,7 @@
         </div>
     </div>
 
-    <!-- Charts Row -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-slide-up" style="animation-delay: 0.2s;">
-        <!-- Datasets by Status Chart -->
         <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 overflow-hidden">
             <div class="px-6 py-4 border-b border-ink-200 dark:border-ink-700">
                 <h3 class="text-lg font-semibold text-ink-900 dark:text-white flex items-center gap-2">
@@ -124,7 +119,6 @@
             </div>
         </div>
 
-        <!-- Datasets by Data Type Chart -->
         <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 overflow-hidden">
             <div class="px-6 py-4 border-b border-ink-200 dark:border-ink-700">
                 <h3 class="text-lg font-semibold text-ink-900 dark:text-white flex items-center gap-2">
@@ -138,9 +132,7 @@
         </div>
     </div>
 
-    <!-- Charts Row 2 -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-slide-up" style="animation-delay: 0.3s;">
-        <!-- Datasets by Subject Area Chart -->
         <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 overflow-hidden">
             <div class="px-6 py-4 border-b border-ink-200 dark:border-ink-700">
                 <h3 class="text-lg font-semibold text-ink-900 dark:text-white flex items-center gap-2">
@@ -153,7 +145,6 @@
             </div>
         </div>
 
-        <!-- Monthly Growth Chart -->
         <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 overflow-hidden">
             <div class="px-6 py-4 border-b border-ink-200 dark:border-ink-700">
                 <h3 class="text-lg font-semibold text-ink-900 dark:text-white flex items-center gap-2">
@@ -167,9 +158,7 @@
         </div>
     </div>
 
-    <!-- Top Keywords and Recent Activity -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-slide-up" style="animation-delay: 0.4s;">
-        <!-- Top Keywords -->
         <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 overflow-hidden">
             <div class="px-6 py-4 border-b border-ink-200 dark:border-ink-700">
                 <h3 class="text-lg font-semibold text-ink-900 dark:text-white flex items-center gap-2">
@@ -203,7 +192,6 @@
             </div>
         </div>
 
-        <!-- Recent Downloads -->
         <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 overflow-hidden">
             <div class="px-6 py-4 border-b border-ink-200 dark:border-ink-700">
                 <h3 class="text-lg font-semibold text-ink-900 dark:text-white flex items-center gap-2">
@@ -240,12 +228,10 @@
     </div>
 </div>
 
-<!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Datasets by Status Chart (Pie Chart)
     const statusCtx = document.getElementById('statusChart').getContext('2d');
     const statusData = @json($stats['datasets_by_status'] ?? []);
     
@@ -256,11 +242,11 @@ document.addEventListener('DOMContentLoaded', function() {
             datasets: [{
                 data: Object.values(statusData),
                 backgroundColor: [
-                    '#10b981', // approved - green
-                    '#f59e0b', // pending - amber
-                    '#ef4444', // rejected - red
-                    '#06b6d4', // available - cyan
-                    '#64748b'  // deprecated - slate
+                    '#10b981', 
+                    '#f59e0b', 
+                    '#ef4444', 
+                    '#06b6d4', 
+                    '#64748b'  
                 ],
                 borderWidth: 3,
                 borderColor: '#ffffff'
@@ -284,7 +270,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Datasets by Data Type Chart (Bar Chart)
     const dataTypeCtx = document.getElementById('dataTypeChart').getContext('2d');
     const dataTypeData = @json($stats['data_type_counts'] ?? []);
     
@@ -335,11 +320,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Datasets by Subject Area Chart (Horizontal Bar Chart)
     const subjectAreaCtx = document.getElementById('subjectAreaChart').getContext('2d');
     const subjectAreaData = @json($stats['by_subject_area'] ?? []);
-    
-    // Sort by count and take top 10
+   
     const sortedSubjectAreas = Object.entries(subjectAreaData)
         .sort(([,a], [,b]) => b - a)
         .slice(0, 10);
@@ -380,7 +363,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Monthly Growth Chart (Line Chart)
     const monthlyGrowthCtx = document.getElementById('monthlyGrowthChart').getContext('2d');
     const monthlyGrowthData = @json($stats['monthly_growth'] ?? []);
     

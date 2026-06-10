@@ -44,12 +44,10 @@ class ResetDatasets extends Command
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
-        // Reset auto-increment
         DB::statement('ALTER TABLE datasets AUTO_INCREMENT = 1;');
         
         $this->info('Tables truncated successfully');
         
-        // Optional: run seeder
         if ($this->option('seed')) {
             $this->info('Running seeder...');
             $this->call('db:seed', [

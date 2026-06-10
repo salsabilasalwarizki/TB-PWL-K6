@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('datasets', function (Blueprint $table) {
-            $table->string('status')->default('pending')->after('license_id'); // pending, approved, rejected
+            $table->string('status')->default('pending')->after('license_id'); 
             $table->text('admin_notes')->nullable()->after('status');
             $table->boolean('is_public')->default(false)->after('admin_notes');
         });
