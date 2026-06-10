@@ -4,19 +4,16 @@
 
 @section('content')
 <div class="min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-12 bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
-    
-    <!-- Background Decoration -->
+   
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
     </div>
     
     <div class="relative w-full max-w-md">
-        
-        <!-- Auth Card -->
+  
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-8 md:p-10">
-            
-            <!-- Logo & Header -->
+         
             <div class="text-center mb-8">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 to-sphere-secondary mb-4 shadow-lg">
                     <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
@@ -37,20 +34,17 @@
                     Sign in to continue to <span class="font-semibold gradient-text">DataSphere</span>
                 </p>
             </div>
-            
-            <!-- Success Message -->
+          
             @if(session('status'))
             <div class="mb-6 p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 flex items-start gap-3">
                 <i class="bi bi-check-circle-fill text-green-500 text-xl mt-0.5 flex-shrink-0"></i>
                 <p class="text-sm text-green-800 dark:text-green-200 font-medium">{{ session('status') }}</p>
             </div>
             @endif
-            
-            <!-- Login Form -->
+        
             <form class="space-y-5" method="POST" action="{{ route('login') }}">
                 @csrf
-                
-                <!-- Email -->
+               
                 <div>
                     <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                         <i class="bi bi-envelope me-1"></i>Email Address
@@ -72,7 +66,6 @@
                     @enderror
                 </div>
                 
-                <!-- Password -->
                 <div>
                     <label for="password" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                         <i class="bi bi-lock me-1"></i>Password
@@ -98,8 +91,7 @@
                         </p>
                     @enderror
                 </div>
-                
-                <!-- Remember Me & Forgot Password -->
+              
                 <div class="flex items-center justify-between">
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" 
@@ -116,16 +108,14 @@
                         </a>
                     @endif
                 </div>
-                
-                <!-- Submit Button -->
+             
                 <button type="submit" 
                         class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 to-sphere-secondary text-white font-semibold shadow-lg hover:shadow-xl hover:shadow-brand-500/30 hover:-translate-y-0.5 transition-all">
                     <i class="bi bi-box-arrow-in-right me-2"></i>
                     Sign In
                 </button>
             </form>
-            
-            <!-- Divider -->
+          
             <div class="relative my-8">
                 <div class="absolute inset-0 flex items-center">
                     <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
@@ -136,8 +126,7 @@
                     </span>
                 </div>
             </div>
-            
-            <!-- Social Login Buttons -->
+         
             <div class="grid grid-cols-2 gap-3">
                 <!-- Google -->
                 <a href="{{ route('google.login') }}" 
@@ -150,8 +139,7 @@
                     </svg>
                     <span>Google</span>
                 </a>
-                
-                <!-- GitHub -->
+              
                 <a href="{{ route('github.login') }}" 
                    class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-900 dark:bg-gray-700 border border-gray-900 dark:border-gray-600 text-white font-semibold text-sm hover:bg-gray-800 dark:hover:bg-gray-600 hover:-translate-y-0.5 transition-all">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -161,7 +149,6 @@
                 </a>
             </div>
             
-            <!-- Sign Up Link -->
             <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-8">
                 Don't have an account? 
                 <a href="{{ route('register') }}" class="font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors">
@@ -171,7 +158,6 @@
             
         </div>
         
-        <!-- Footer Info -->
         <div class="text-center mt-6">
             <p class="text-xs text-gray-500 dark:text-gray-400">
                 <i class="bi bi-shield-check me-1"></i>
@@ -184,7 +170,6 @@
 
 @push('scripts')
 <script>
-    // Toggle Password Visibility
     function togglePassword() {
         const passwordInput = document.getElementById('password');
         const toggleIcon = document.getElementById('toggleIcon');
