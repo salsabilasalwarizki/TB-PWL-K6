@@ -5,7 +5,6 @@
 @section('content')
 <div class="relative">
     
-    <!-- ===== HERO SECTION ===== -->
     <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary text-white">
         <div class="absolute inset-0">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
@@ -13,7 +12,7 @@
         </div>
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-            <!-- Breadcrumb -->
+       
             <nav class="flex items-center gap-2 text-sm text-white/70 mb-4">
                 <a href="{{ route('home') }}" class="hover:text-white transition-colors">Home</a>
                 <i class="bi bi-chevron-right text-xs"></i>
@@ -46,11 +45,9 @@
         </div>
     </section>
 
-    <!-- ===== MAIN CONTENT ===== -->
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="space-y-8">
             
-            <!-- About Section -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                 <div class="flex items-start gap-4">
                     <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-900/30 flex items-center justify-center flex-shrink-0">
@@ -70,7 +67,6 @@
                 </div>
             </div>
 
-            <!-- Mission & Vision -->
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
                     <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center mb-4">
@@ -95,7 +91,6 @@
                 </div>
             </div>
 
-            <!-- History Section -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center">
@@ -141,7 +136,6 @@
                 </div>
             </div>
 
-            <!-- What We Offer -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-10 h-10 rounded-xl bg-green-50 dark:bg-green-900/30 flex items-center justify-center">
@@ -193,7 +187,6 @@
                 </div>
             </div>
 
-            <!-- Stats Section -->
             <div class="bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary rounded-2xl p-6 md:p-8 text-white shadow-xl">
                 <div class="text-center mb-6">
                     <h2 class="text-2xl font-bold mb-2">Our Impact</h2>
@@ -216,7 +209,6 @@
                 </div>
             </div>
 
-            <!-- Team Section -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center">
@@ -229,7 +221,7 @@
                 </div>
                 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Salsabila Salwa Rizki -->
+                   
                     <div class="text-center p-6 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow">
                         <div class="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden border-4 border-brand-500 dark:border-brand-400">
                             <img src="{{ asset('images/about/ourmembers/salwa.png') }}" alt="Salsabila Salwa Rizki" class="w-full h-full object-cover">
@@ -242,7 +234,6 @@
                         </div>
                     </div>
 
-                    <!-- Jesqueen Maria Purba -->
                     <div class="text-center p-6 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow">
                         <div class="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden border-4 border-brand-500 dark:border-brand-400">
                             <img src="{{ asset('images/about/ourmembers/jesqueen.png') }}" alt="Jesqueen Maria Purba" class="w-full h-full object-cover">
@@ -254,7 +245,6 @@
                         </div>
                     </div>
 
-                    <!-- Fadila Lisma Sari -->
                     <div class="text-center p-6 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow">
                         <div class="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden border-4 border-brand-500 dark:border-brand-400">
                             <img src="{{ asset('images/about/ourmembers/fadila.png') }}" alt="Fadila Lisma Sari" class="w-full h-full object-cover">
@@ -266,7 +256,6 @@
                         </div>
                     </div>
 
-                    <!-- Syifa Nazira -->
                     <div class="text-center p-6 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow">
                         <div class="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden border-4 border-brand-500 dark:border-brand-400">
                             <img src="{{ asset('images/about/ourmembers/syifa.png') }}" alt="Syifa Nazira" class="w-full h-full object-cover">
@@ -278,7 +267,6 @@
                         </div>
                     </div>
 
-                    <!-- Jelita Hati Sinurat -->
                     <div class="text-center p-6 rounded-xl bg-gray-50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow md:col-span-2 lg:col-span-1 lg:col-start-2">
                         <div class="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden border-4 border-brand-500 dark:border-brand-400">
                             <img src="{{ asset('images/about/ourmembers/jelita.png') }}" alt="Jelita Hati Sinurat" class="w-full h-full object-cover">
@@ -293,7 +281,6 @@
                 </div>
             </div>
 
-            <!-- Project Info -->
             <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl p-6 md:p-8">
                 <div class="flex items-start gap-4">
                     <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
@@ -320,7 +307,6 @@
                 </div>
             </div>
 
-            <!-- Contact CTA -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-4">
                     <div class="flex items-start gap-4">
