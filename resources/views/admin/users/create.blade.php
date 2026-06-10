@@ -11,7 +11,6 @@
     </a>
 </div>
 
-<!-- Search & Filter -->
 <div class="bg-white rounded-lg shadow p-4 mb-6">
     <form action="{{ route('admin.posts.index') }}" method="GET" class="flex gap-4">
         <input type="text" name="search" placeholder="Search posts..." 
@@ -29,7 +28,6 @@
     </form>
 </div>
 
-<!-- Posts Table -->
 <div class="bg-white rounded-lg shadow overflow-hidden">
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
