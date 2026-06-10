@@ -3,14 +3,14 @@
 
 @section('content')
 <div class="min-h-screen flex items-center justify-center px-4 py-12 bg-gradient-to-br from-gray-50 via-white to-brand-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-brand-950/20">
-    <!-- Background Decoration -->
+   
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
     </div>
 
     <div class="relative w-full max-w-md">
-        <!-- Logo -->
+        
         <div class="text-center mb-8">
             <a href="{{ route('home') }}" class="inline-flex items-center gap-3 group">
                 <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 via-sphere-primary to-sphere-secondary flex items-center justify-center shadow-lg shadow-brand-500/30">
@@ -34,9 +34,8 @@
             </div>
         </div>
 
-        <!-- Card -->
         <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-8">
-            <!-- Header -->
+           
             <div class="text-center mb-6">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-100 to-brand-200 dark:from-brand-900/30 dark:to-brand-800/30 mb-4">
                     <i class="bi bi-shield-lock text-3xl text-brand-600 dark:text-brand-400"></i>
@@ -47,7 +46,6 @@
                 </p>
             </div>
 
-            <!-- Success Message -->
             @if(session('status'))
             <div class="mb-6 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl p-4 flex items-start gap-3">
                 <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center">
@@ -60,11 +58,9 @@
             </div>
             @endif
 
-            <!-- Form -->
             <form id="forgotPasswordForm" method="POST" action="{{ route('password.email') }}" class="space-y-4">
                 @csrf
-                
-                <!-- Email Field -->
+            
                 <div>
                     <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                         <i class="bi bi-envelope me-1 text-gray-400"></i>
@@ -87,7 +83,6 @@
                     @enderror
                 </div>
 
-                <!-- Submit Button -->
                 <button type="submit" 
                         id="submitBtn"
                         class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-brand-600 to-sphere-secondary text-white font-semibold rounded-xl shadow-lg shadow-brand-500/30 hover:shadow-xl hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all duration-300">
@@ -100,7 +95,6 @@
                 </button>
             </form>
 
-            <!-- Divider -->
             <div class="relative my-6">
                 <div class="absolute inset-0 flex items-center">
                     <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
@@ -110,7 +104,6 @@
                 </div>
             </div>
 
-            <!-- Back to Login -->
             <div class="text-center">
                 <a href="{{ route('login') }}" 
                    class="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors group">
@@ -120,7 +113,6 @@
             </div>
         </div>
 
-        <!-- Copyright -->
         <div class="mt-8 text-center">
             <p class="text-xs text-gray-400 dark:text-gray-500">
                 © {{ date('Y') }} <span class="font-semibold">DataSphere</span> ML Repository
@@ -138,16 +130,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnLoader = document.getElementById('btnLoader');
 
     form.addEventListener('submit', function(e) {
-        // Show loading state
         submitBtn.disabled = true;
         btnText.textContent = 'Sending...';
         btnLoader.classList.remove('hidden');
-
-        // Form akan submit secara normal
-        // Jika ada error dari server, button akan di-enable kembali
     });
 
-    // Jika ada error validation dari server, enable button kembali
     @if($errors->any())
     submitBtn.disabled = false;
     btnText.textContent = 'Send Reset Link';
