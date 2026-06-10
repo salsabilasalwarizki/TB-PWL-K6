@@ -11,7 +11,7 @@
         </div>
         
         <div class="p-6">
-            <!-- Drop Zone -->
+        
             <div id="dropZone" class="relative border-2 border-dashed border-ink-300 dark:border-ink-600 rounded-xl p-8 text-center cursor-pointer hover:border-brand-500 dark:hover:border-brand-400 hover:bg-brand-50/50 dark:hover:bg-brand-900/10 transition-all duration-300 group">
                 <input type="file" 
                        name="csv_file" 
@@ -35,7 +35,6 @@
                 </div>
             </div>
             
-            <!-- File Preview -->
             <div id="filePreview" class="hidden mt-4">
                 <div class="flex items-center gap-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl">
                     <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
@@ -53,7 +52,6 @@
                 </div>
             </div>
             
-            <!-- Error Message -->
             <div id="errorMessage" class="hidden mt-4">
                 <div class="flex items-center gap-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl">
                     <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center flex-shrink-0">
@@ -66,7 +64,6 @@
             </div>
         </div>
         
-        <!-- Submit Button -->
         <div class="px-6 py-4 bg-ink-50 dark:bg-ink-900/50 border-t border-ink-200 dark:border-ink-800">
             <button type="submit" 
                     id="submitBtn"
@@ -91,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const errorText = document.getElementById('errorText');
     const submitBtn = document.getElementById('submitBtn');
     
-    // Format file size
     function formatFileSize(bytes) {
         if (bytes === 0) return '0 Bytes';
         const k = 1024;
@@ -99,8 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
     }
-    
-    // Handle file selection
+
     function handleFile(file) {
         errorMessage.classList.add('hidden');
         
@@ -109,8 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = true;
             return;
         }
-        
-        // Validate file type
+    
         if (!file.name.endsWith('.csv')) {
             errorMessage.classList.remove('hidden');
             errorText.textContent = 'Invalid file type. Only CSV files are accepted.';
@@ -120,19 +114,16 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Show file preview
         fileName.textContent = file.name;
         fileSize.textContent = formatFileSize(file.size);
         filePreview.classList.remove('hidden');
         submitBtn.disabled = false;
     }
     
-    // File input change
     fileInput.addEventListener('change', function(e) {
         handleFile(e.target.files[0]);
     });
-    
-    // Drag and drop events
+   
     dropZone.addEventListener('dragover', function(e) {
         e.preventDefault();
         dropZone.classList.add('border-brand-500', 'bg-brand-50/50', 'dark:bg-brand-900/10');
@@ -154,7 +145,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Remove file
     removeFile.addEventListener('click', function() {
         fileInput.value = '';
         filePreview.classList.add('hidden');
@@ -162,7 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.disabled = true;
     });
     
-    // Form submit with loading state
     document.getElementById('uploadForm').addEventListener('submit', function(e) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = `
