@@ -4,19 +4,16 @@
 
 @section('content')
 <div class="min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-12 bg-gradient-to-br from-gray-50 via-brand-50/30 to-sphere-secondary/10 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
-    
-    <!-- Background Decoration -->
+   
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-10 w-96 h-96 bg-sphere-secondary/10 rounded-full blur-3xl"></div>
     </div>
     
     <div class="relative w-full max-w-md">
-        
-        <!-- Auth Card -->
+      
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-8 md:p-10">
-            
-            <!-- Logo & Header -->
+        
             <div class="text-center mb-8">
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 to-sphere-secondary mb-4 shadow-lg">
                     <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
@@ -37,12 +34,10 @@
                     Create your account to start exploring
                 </p>
             </div>
-            
-            <!-- Registration Form -->
+          
             <form class="space-y-4" method="POST" action="{{ route('register') }}" id="registerForm">
                 @csrf
                 
-                <!-- Name -->
                 <div>
                     <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                         <i class="bi bi-person me-1"></i>Full Name
@@ -63,8 +58,7 @@
                         </p>
                     @enderror
                 </div>
-                
-                <!-- Email -->
+          
                 <div>
                     <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                         <i class="bi bi-envelope me-1"></i>Email Address
@@ -85,7 +79,6 @@
                     @enderror
                 </div>
                 
-                <!-- Password -->
                 <div>
                     <label for="password" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                         <i class="bi bi-lock me-1"></i>Password
@@ -105,8 +98,7 @@
                             <i class="bi bi-eye" id="toggleIcon1"></i>
                         </button>
                     </div>
-                    
-                    <!-- Password Strength Indicator -->
+               
                     <div class="mt-2">
                         <div class="flex gap-1 mb-1">
                             <div id="strength-1" class="h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></div>
@@ -124,8 +116,7 @@
                         </p>
                     @enderror
                 </div>
-                
-                <!-- Confirm Password -->
+            
                 <div>
                     <label for="password_confirmation" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                         <i class="bi bi-lock-fill me-1"></i>Confirm Password
@@ -149,8 +140,7 @@
                         Passwords do not match
                     </p>
                 </div>
-                
-                <!-- Terms and Conditions -->
+              
                 <div class="pt-2">
                     <label class="flex items-start gap-2 cursor-pointer">
                         <input type="checkbox" 
@@ -166,8 +156,7 @@
                         </span>
                     </label>
                 </div>
-                
-                <!-- Submit Button -->
+              
                 <button type="submit" 
                         id="submitBtn"
                         class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 to-sphere-secondary text-white font-semibold shadow-lg hover:shadow-xl hover:shadow-brand-500/30 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0">
@@ -175,8 +164,7 @@
                     Create Account
                 </button>
             </form>
-            
-            <!-- Divider -->
+          
             <div class="relative my-8">
                 <div class="absolute inset-0 flex items-center">
                     <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
@@ -187,8 +175,7 @@
                     </span>
                 </div>
             </div>
-            
-            <!-- Social Signup Buttons -->
+         
             <div class="grid grid-cols-2 gap-3">
                 <!-- Google -->
                 <a href="{{ route('google.login') }}" 
@@ -201,8 +188,7 @@
                     </svg>
                     <span>Google</span>
                 </a>
-                
-                <!-- GitHub -->
+               
                 <a href="{{ route('github.login') }}" 
                    class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-900 dark:bg-gray-700 border border-gray-900 dark:border-gray-600 text-white font-semibold text-sm hover:bg-gray-800 dark:hover:bg-gray-600 hover:-translate-y-0.5 transition-all">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -212,7 +198,6 @@
                 </a>
             </div>
             
-            <!-- Sign In Link -->
             <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-8">
                 Already have an account? 
                 <a href="{{ route('login') }}" class="font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors">
@@ -221,8 +206,7 @@
             </p>
             
         </div>
-        
-        <!-- Footer Info -->
+       
         <div class="text-center mt-6">
             <p class="text-xs text-gray-500 dark:text-gray-400">
                 <i class="bi bi-shield-check me-1"></i>
@@ -235,7 +219,6 @@
 
 @push('scripts')
 <script>
-    // Toggle Password Visibility
     function togglePassword(inputId, iconId) {
         const input = document.getElementById(inputId);
         const icon = document.getElementById(iconId);
@@ -251,7 +234,6 @@
         }
     }
     
-    // Password Strength Checker
     function checkPasswordStrength(password) {
         let strength = 0;
         const strengthText = document.getElementById('strengthText');
@@ -262,7 +244,6 @@
             document.getElementById('strength-4')
         ];
         
-        // Reset all bars
         bars.forEach(bar => {
             bar.className = 'h-1 flex-1 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors';
         });
@@ -272,14 +253,12 @@
             strengthText.className = 'text-xs text-gray-500 dark:text-gray-400';
             return;
         }
-        
-        // Check password criteria
+    
         if (password.length >= 8) strength++;
         if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
         if (password.match(/\d/)) strength++;
         if (password.match(/[^a-zA-Z\d]/)) strength++;
         
-        // Update bars and text
         const colors = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500'];
         const texts = ['Weak', 'Fair', 'Good', 'Strong'];
         const textColors = ['text-red-500', 'text-orange-500', 'text-yellow-500', 'text-green-500'];
@@ -289,13 +268,10 @@
         }
         
         strengthText.textContent = texts[strength - 1] || 'Too short';
-        strengthText.className = `text-xs ${textColors[strength - 1] || 'text-gray-500'} font-semibold`;
-        
-        // Check password match
+        strengthText.className = `text-xs ${textColors[strength - 1] || 'text-gray-500'} font-semibold`
         checkPasswordMatch();
     }
-    
-    // Check Password Match
+   
     function checkPasswordMatch() {
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('password_confirmation').value;
@@ -307,11 +283,8 @@
             matchError.classList.add('hidden');
         }
     }
-    
-    // Add event listener to confirm password
+
     document.getElementById('password_confirmation').addEventListener('input', checkPasswordMatch);
-    
-    // Form submission validation
     document.getElementById('registerForm').addEventListener('submit', function(e) {
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('password_confirmation').value;
