@@ -5,8 +5,7 @@
 @section('content')
 <div class="min-h-screen bg-ink-50 dark:bg-ink-950 bg-grid py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
-        
-        <!-- Header -->
+  
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
             <div>
                 <h2 class="text-3xl font-bold text-ink-900 dark:text-white">
@@ -20,7 +19,6 @@
             </a>
         </div>
 
-        <!-- Account Information -->
         <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mb-6">
             <div class="flex items-start gap-3">
                 <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -50,12 +48,10 @@
             </div>
         </div>
 
-        <!-- Edit Form -->
         <form id="editUserForm" action="{{ route('admin.users.update', $user) }}" method="POST">
             @csrf
             @method('PUT')
-            
-            <!-- Basic Information -->
+           
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card mb-6">
                 <div class="p-6 border-b border-ink-200 dark:border-ink-800">
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white flex items-center gap-2">
@@ -64,8 +60,7 @@
                     </h3>
                 </div>
                 <div class="p-6 space-y-5">
-                    
-                    <!-- Name -->
+
                     <div>
                         <label for="name" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
                             Name <span class="text-red-500">*</span>
@@ -85,7 +80,6 @@
                         @enderror
                     </div>
 
-                    <!-- Email -->
                     <div>
                         <label for="email" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
                             Email <span class="text-red-500">*</span>
@@ -104,7 +98,6 @@
                         @enderror
                     </div>
 
-                    <!-- Role -->
                     <div>
                         <label for="role" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
                             Role <span class="text-red-500">*</span>
@@ -144,7 +137,6 @@
                 </div>
             </div>
 
-            <!-- Password Section -->
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card mb-6">
                 <div class="p-6 border-b border-ink-200 dark:border-ink-800">
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white flex items-center gap-2">
@@ -155,7 +147,6 @@
                 </div>
                 <div class="p-6 space-y-5">
                     
-                    <!-- Password -->
                     <div>
                         <label for="password" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
                             New Password <span class="text-muted">(leave blank to keep current)</span>
@@ -173,7 +164,6 @@
                         <p class="mt-2 text-xs text-ink-500 dark:text-ink-400">Minimum 8 characters</p>
                     </div>
 
-                    <!-- Password Confirmation -->
                     <div>
                         <label for="password_confirmation" class="block text-sm font-semibold text-ink-700 dark:text-ink-300 mb-2">
                             Confirm New Password
@@ -188,7 +178,6 @@
                 </div>
             </div>
 
-            <!-- Action Buttons -->
             <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card p-6 flex flex-col sm:flex-row justify-end gap-3">
                 <a href="{{ route('admin.users.index') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-ink-800 border border-ink-300 dark:border-ink-600 rounded-lg hover:bg-ink-50 dark:hover:bg-ink-700 transition-colors">
                     <i class="bi bi-x-circle"></i>
@@ -212,19 +201,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('submitBtn');
     
     if (!form || !btn) return;
-    
-    // Cek apakah ada validation error dari session
     const hasErrors = {{ $errors->any() ? 'true' : 'false' }};
     
     if (hasErrors) {
-        // Reset button jika ada validation error
         btn.disabled = false;
         btn.innerHTML = '<i class="bi bi-check-circle"></i><span>Update User</span>';
     }
     
-    // Handle form submit
     form.addEventListener('submit', function(e) {
-        // Disable button dan tampilkan loading
         btn.disabled = true;
         btn.innerHTML = `
             <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
