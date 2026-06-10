@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="space-y-6">
-    <!-- Header -->
+   
     <div class="flex justify-between items-center">
         <div>
             <h2 class="text-2xl font-bold text-ink-900 dark:text-white">Categories</h2>
@@ -18,7 +18,6 @@
         </a>
     </div>
 
-    <!-- Categories Grid -->
     <div class="grid gap-4">
         @forelse($categories as $category)
         <div class="bg-white dark:bg-ink-800 rounded-xl shadow-card border border-ink-200 dark:border-ink-700 p-6">
