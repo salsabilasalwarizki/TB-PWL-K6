@@ -5,7 +5,6 @@
 @section('content')
 <div class="relative">
     
-    <!-- ===== HERO SECTION ===== -->
     <section class="relative overflow-hidden bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary text-white">
         <div class="absolute inset-0">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
@@ -46,11 +45,9 @@
         </div>
     </section>
 
-    <!-- ===== MAIN CONTENT ===== -->
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="space-y-8">
-            
-            <!-- Introduction -->
+          
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                 <div class="flex items-start gap-4">
                     <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-900/30 flex items-center justify-center flex-shrink-0">
@@ -83,7 +80,6 @@
                 </div>
             </div>
 
-            <!-- General Citation Format -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center">
@@ -113,7 +109,6 @@
                 </div>
             </div>
 
-            <!-- BibTeX Format -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center gap-3">
@@ -155,7 +150,6 @@
                 </div>
             </div>
 
-            <!-- APA Format -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-10 h-10 rounded-xl bg-green-50 dark:bg-green-900/30 flex items-center justify-center">
@@ -181,7 +175,6 @@
                 </div>
             </div>
 
-            <!-- Best Practices -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:p-8">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-10 h-10 rounded-xl bg-cyan-50 dark:bg-cyan-900/30 flex items-center justify-center">
@@ -233,7 +226,6 @@
                 </div>
             </div>
 
-            <!-- Quick Actions -->
             <div class="bg-gradient-to-br from-brand-600 via-sphere-primary to-sphere-secondary rounded-2xl p-6 md:p-8 text-white shadow-xl">
                 <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                     <div>
