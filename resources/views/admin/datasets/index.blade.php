@@ -4,8 +4,7 @@
 
 @section('content')
 <div class="space-y-6">
-    
-    <!-- Page Header -->
+  
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
             <h2 class="text-2xl font-bold text-ink-900 dark:text-white">Datasets</h2>
@@ -23,7 +22,6 @@
         </div>
     </div>
 
-    <!-- Stats Cards -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card border border-ink-200 dark:border-ink-800 p-5 hover:-translate-y-0.5 hover:shadow-elev transition-all">
             <div class="flex items-center gap-4">
@@ -71,7 +69,6 @@
         </div>
     </div>
 
-    <!-- Filters -->
     <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card border border-ink-200 dark:border-ink-800 p-5">
         <form method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
@@ -112,7 +109,6 @@
         </form>
     </div>
 
-    <!-- Table -->
     <div class="bg-white dark:bg-ink-900 rounded-xl shadow-card border border-ink-200 dark:border-ink-800 overflow-hidden">
         <form method="POST" action="{{ route('admin.datasets.bulk-action') }}" id="bulkForm">
             @csrf
