@@ -1,8 +1,7 @@
-@extends('layouts.app')
-@section('title', 'Browse Datasets - DataSphere')
-@section('meta_desc', 'Explore our curated collection of machine learning datasets')
+<?php $__env->startSection('title', 'Browse Datasets - DataSphere'); ?>
+<?php $__env->startSection('meta_desc', 'Explore our curated collection of machine learning datasets'); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="relative">
     
     <!-- ===== HERO SECTION ===== -->
@@ -21,10 +20,10 @@
                     </div>
                     <h1 class="text-3xl md:text-4xl font-bold mb-2">Browse Datasets</h1>
                     <p class="text-white/80 text-sm md:text-base max-w-xl">
-                        Discover <strong class="text-white">{{ number_format($datasets->total() ?? 0) }}</strong> curated datasets for your machine learning projects
+                        Discover <strong class="text-white"><?php echo e(number_format($datasets->total() ?? 0)); ?></strong> curated datasets for your machine learning projects
                     </p>
                 </div>
-                <a href="{{ route('contribute.policy') }}" 
+                <a href="<?php echo e(route('contribute.policy')); ?>" 
                    class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-brand-700 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
                     <i class="bi bi-plus-circle"></i>
                     <span>Contribute Dataset</span>
@@ -50,8 +49,8 @@
                     </div>
                     
                     <div class="p-4 space-y-4 max-h-[calc(100vh-160px)] overflow-y-auto custom-scrollbar">
-                        <form method="GET" action="{{ route('datasets.index') }}" id="desktopFilterForm">
-                            @include('partials.filter-form')
+                        <form method="GET" action="<?php echo e(route('datasets.index')); ?>" id="desktopFilterForm">
+                            <?php echo $__env->make('partials.filter-form', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
                         </form>
                     </div>
                 </div>
@@ -65,11 +64,12 @@
                     <button onclick="openMobileFilter()" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                         <i class="bi bi-funnel-fill text-brand-600 dark:text-brand-400"></i>
                         <span>Filters</span>
-                        @if(request()->except('page', 'view', 'sort', 'order'))
+                        <?php if(request()->except('page', 'view', 'sort', 'order')): ?>
                         <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-600 text-white text-xs font-bold">
-                            {{ count(request()->except('page', 'view', 'sort', 'order')) }}
+                            <?php echo e(count(request()->except('page', 'view', 'sort', 'order'))); ?>
+
                         </span>
-                        @endif
+                        <?php endif; ?>
                     </button>
                     <button id="mobileSortBtn" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                         <i class="bi bi-sort-down text-brand-600 dark:text-brand-400"></i>
@@ -79,47 +79,47 @@
                 
                 <!-- Mobile Sort Dropdown -->
                 <div id="mobileSortDropdown" class="hidden lg:hidden bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 p-2">
-                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'view_count', 'order' => 'desc']) }}" 
-                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 {{ request('sort') == 'view_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : '' }}">
+                    <a href="<?php echo e(request()->fullUrlWithQuery(['sort' => 'view_count', 'order' => 'desc'])); ?>" 
+                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 <?php echo e(request('sort') == 'view_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : ''); ?>">
                         <i class="bi bi-eye"></i><span>Most Viewed</span>
                     </a>
-                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'download_count', 'order' => 'desc']) }}" 
-                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 {{ request('sort') == 'download_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : '' }}">
+                    <a href="<?php echo e(request()->fullUrlWithQuery(['sort' => 'download_count', 'order' => 'desc'])); ?>" 
+                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 <?php echo e(request('sort') == 'download_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : ''); ?>">
                         <i class="bi bi-cloud-download"></i><span>Most Downloaded</span>
                     </a>
-                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'citation_count', 'order' => 'desc']) }}" 
-                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 {{ request('sort') == 'citation_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : '' }}">
+                    <a href="<?php echo e(request()->fullUrlWithQuery(['sort' => 'citation_count', 'order' => 'desc'])); ?>" 
+                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 <?php echo e(request('sort') == 'citation_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : ''); ?>">
                         <i class="bi bi-chat-quote"></i><span>Most Cited</span>
                     </a>
                     <div class="h-px bg-gray-100 dark:bg-gray-700 my-1"></div>
-                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'name', 'order' => 'asc']) }}" 
-                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 {{ request('sort') == 'name' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : '' }}">
+                    <a href="<?php echo e(request()->fullUrlWithQuery(['sort' => 'name', 'order' => 'asc'])); ?>" 
+                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 <?php echo e(request('sort') == 'name' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : ''); ?>">
                         <i class="bi bi-sort-alpha-down"></i><span>Name A-Z</span>
                     </a>
-                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'created_at', 'order' => 'desc']) }}" 
-                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 {{ request('sort') == 'created_at' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : '' }}">
+                    <a href="<?php echo e(request()->fullUrlWithQuery(['sort' => 'created_at', 'order' => 'desc'])); ?>" 
+                       class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 <?php echo e(request('sort') == 'created_at' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : ''); ?>">
                         <i class="bi bi-clock"></i><span>Newest First</span>
                     </a>
                 </div>
                 
                 <!-- Search Results Alert -->
-                @if(request('search'))
+                <?php if(request('search')): ?>
                 <div class="bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 rounded-xl md:rounded-2xl p-3 md:p-4 flex items-center justify-between">
                     <div class="flex items-center gap-2 md:gap-3 min-w-0">
                         <i class="bi bi-search text-brand-600 dark:text-brand-400 text-lg md:text-xl flex-shrink-0"></i>
                         <div class="min-w-0">
                             <p class="text-xs md:text-sm font-semibold text-brand-900 dark:text-brand-200 truncate">
-                                Search: "{{ request('search') }}"
+                                Search: "<?php echo e(request('search')); ?>"
                             </p>
-                            <p class="text-xs text-brand-700 dark:text-brand-300">{{ $datasets->total() }} found</p>
+                            <p class="text-xs text-brand-700 dark:text-brand-300"><?php echo e($datasets->total()); ?> found</p>
                         </div>
                     </div>
-                    <a href="{{ route('datasets.index') }}" class="inline-flex items-center gap-1 px-2 md:px-3 py-1 md:py-1.5 rounded-lg bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 text-xs font-semibold hover:bg-brand-200 dark:hover:bg-brand-900/50 transition-colors flex-shrink-0 ml-2">
+                    <a href="<?php echo e(route('datasets.index')); ?>" class="inline-flex items-center gap-1 px-2 md:px-3 py-1 md:py-1.5 rounded-lg bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 text-xs font-semibold hover:bg-brand-200 dark:hover:bg-brand-900/50 transition-colors flex-shrink-0 ml-2">
                         <i class="bi bi-x-circle"></i>
                         <span class="hidden sm:inline">Clear</span>
                     </a>
                 </div>
-                @endif
+                <?php endif; ?>
                 
                 <!-- Desktop Toolbar -->
                 <div class="hidden lg:block bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-4">
@@ -129,29 +129,29 @@
                         <div class="relative">
                             <button id="sortBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                                 <i class="bi bi-sort-down"></i>
-                                <span>Sort: {{ $sortLabels[request('sort', 'view_count')] ?? '# Views' }}</span>
+                                <span>Sort: <?php echo e($sortLabels[request('sort', 'view_count')] ?? '# Views'); ?></span>
                                 <i class="bi bi-chevron-down text-xs"></i>
                             </button>
                             <div id="sortDropdown" class="hidden absolute top-full left-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 py-2 z-20">
-                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'view_count', 'order' => 'desc']) }}" 
-                                   class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 {{ request('sort') == 'view_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : '' }}">
+                                <a href="<?php echo e(request()->fullUrlWithQuery(['sort' => 'view_count', 'order' => 'desc'])); ?>" 
+                                   class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 <?php echo e(request('sort') == 'view_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : ''); ?>">
                                     <i class="bi bi-eye"></i><span>Most Viewed</span>
                                 </a>
-                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'download_count', 'order' => 'desc']) }}" 
-                                   class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 {{ request('sort') == 'download_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : '' }}">
+                                <a href="<?php echo e(request()->fullUrlWithQuery(['sort' => 'download_count', 'order' => 'desc'])); ?>" 
+                                   class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 <?php echo e(request('sort') == 'download_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : ''); ?>">
                                     <i class="bi bi-cloud-download"></i><span>Most Downloaded</span>
                                 </a>
-                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'citation_count', 'order' => 'desc']) }}" 
-                                   class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 {{ request('sort') == 'citation_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : '' }}">
+                                <a href="<?php echo e(request()->fullUrlWithQuery(['sort' => 'citation_count', 'order' => 'desc'])); ?>" 
+                                   class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 <?php echo e(request('sort') == 'citation_count' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : ''); ?>">
                                     <i class="bi bi-chat-quote"></i><span>Most Cited</span>
                                 </a>
                                 <div class="h-px bg-gray-100 dark:bg-gray-700 my-1"></div>
-                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'name', 'order' => 'asc']) }}" 
-                                   class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 {{ request('sort') == 'name' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : '' }}">
+                                <a href="<?php echo e(request()->fullUrlWithQuery(['sort' => 'name', 'order' => 'asc'])); ?>" 
+                                   class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 <?php echo e(request('sort') == 'name' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : ''); ?>">
                                     <i class="bi bi-sort-alpha-down"></i><span>Name A-Z</span>
                                 </a>
-                                <a href="{{ request()->fullUrlWithQuery(['sort' => 'created_at', 'order' => 'desc']) }}" 
-                                   class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 {{ request('sort') == 'created_at' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : '' }}">
+                                <a href="<?php echo e(request()->fullUrlWithQuery(['sort' => 'created_at', 'order' => 'desc'])); ?>" 
+                                   class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 <?php echo e(request('sort') == 'created_at' ? 'bg-brand-50 dark:bg-brand-900/20 text-brand-600 dark:text-brand-400' : ''); ?>">
                                     <i class="bi bi-clock"></i><span>Newest First</span>
                                 </a>
                             </div>
@@ -160,10 +160,10 @@
                         <!-- View Toggle & Expand -->
                         <div class="flex items-center gap-2">
                             <div class="flex rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden">
-                                <button type="button" id="listViewBtn" class="px-3 py-2 text-sm transition-colors {{ request('view') != 'grid' ? 'bg-brand-600 text-white' : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600' }}">
+                                <button type="button" id="listViewBtn" class="px-3 py-2 text-sm transition-colors <?php echo e(request('view') != 'grid' ? 'bg-brand-600 text-white' : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600'); ?>">
                                     <i class="bi bi-list-ul"></i>
                                 </button>
-                                <button type="button" id="gridViewBtn" class="px-3 py-2 text-sm transition-colors {{ request('view') == 'grid' ? 'bg-brand-600 text-white' : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600' }}">
+                                <button type="button" id="gridViewBtn" class="px-3 py-2 text-sm transition-colors <?php echo e(request('view') == 'grid' ? 'bg-brand-600 text-white' : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600'); ?>">
                                     <i class="bi bi-grid-3x3-gap"></i>
                                 </button>
                             </div>
@@ -176,54 +176,54 @@
                 </div>
                 
                 <!-- Active Filters -->
-                @if(request()->except('page', 'view', 'sort', 'order'))
+                <?php if(request()->except('page', 'view', 'sort', 'order')): ?>
                 <div class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-3 md:p-4">
                     <div class="flex flex-wrap items-center gap-2">
                         <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Active:</span>
-                        @foreach(request()->except('page', 'view', 'sort', 'order') as $key => $value)
-                            @if(is_array($value))
-                                @foreach($value as $v)
+                        <?php $__currentLoopData = request()->except('page', 'view', 'sort', 'order'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if(is_array($value)): ?>
+                                <?php $__currentLoopData = $value; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <span class="inline-flex items-center gap-1 px-2 md:px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 text-xs font-semibold text-brand-700 dark:text-brand-300">
-                                    <span class="hidden sm:inline">{{ ucwords(str_replace('_', ' ', $key)) }}:</span>
-                                    <span class="truncate max-w-[100px]">{{ $v }}</span>
-                                    <a href="{{ request()->fullUrlWithQuery([$key => array_filter(request($key, []), fn($x) => $x != $v)]) }}" 
+                                    <span class="hidden sm:inline"><?php echo e(ucwords(str_replace('_', ' ', $key))); ?>:</span>
+                                    <span class="truncate max-w-[100px]"><?php echo e($v); ?></span>
+                                    <a href="<?php echo e(request()->fullUrlWithQuery([$key => array_filter(request($key, []), fn($x) => $x != $v)])); ?>" 
                                        class="text-brand-500 hover:text-brand-700 dark:hover:text-brand-200 ml-1">&times;</a>
                                 </span>
-                                @endforeach
-                            @elseif($value)
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php elseif($value): ?>
                             <span class="inline-flex items-center gap-1 px-2 md:px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 text-xs font-semibold text-brand-700 dark:text-brand-300">
-                                <span class="hidden sm:inline">{{ ucwords(str_replace('_', ' ', $key)) }}:</span>
-                                <span class="truncate max-w-[100px]">{{ $value }}</span>
-                                <a href="{{ request()->fullUrlWithQuery([$key => null]) }}" 
+                                <span class="hidden sm:inline"><?php echo e(ucwords(str_replace('_', ' ', $key))); ?>:</span>
+                                <span class="truncate max-w-[100px]"><?php echo e($value); ?></span>
+                                <a href="<?php echo e(request()->fullUrlWithQuery([$key => null])); ?>" 
                                    class="text-brand-500 hover:text-brand-700 dark:hover:text-brand-200 ml-1">&times;</a>
                             </span>
-                            @endif
-                        @endforeach
-                        <a href="{{ route('datasets.index') }}" class="text-xs text-red-500 hover:text-red-700 font-semibold ml-auto">
+                            <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <a href="<?php echo e(route('datasets.index')); ?>" class="text-xs text-red-500 hover:text-red-700 font-semibold ml-auto">
                             Clear All
                         </a>
                     </div>
                 </div>
-                @endif
+                <?php endif; ?>
                 
                 <!-- Datasets Grid/List -->
-                <div class="{{ request('view') == 'grid' ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4' : 'space-y-3 md:space-y-4' }}" id="datasetsContainer">
-                    @forelse($datasets as $index => $dataset)
+                <div class="<?php echo e(request('view') == 'grid' ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-4' : 'space-y-3 md:space-y-4'); ?>" id="datasetsContainer">
+                    <?php $__empty_1 = true; $__currentLoopData = $datasets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $dataset): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <article class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 dataset-card" 
-                             data-dataset-id="{{ $dataset->dataset_id }}"
-                             style="animation-delay: {{ min($index * 0.05, 0.5) }}s">
+                             data-dataset-id="<?php echo e($dataset->dataset_id); ?>"
+                             style="animation-delay: <?php echo e(min($index * 0.05, 0.5)); ?>s">
                         <div class="p-3 md:p-4">
                             <div class="flex gap-2 md:gap-3">
                                 <!-- Thumbnail -->
                                 <div class="flex-shrink-0">
                                     <div class="w-16 h-16 md:w-20 md:h-20 rounded-lg md:rounded-xl overflow-hidden bg-gradient-to-br from-brand-500 to-sphere-secondary flex items-center justify-center shadow-sm">
-                                        @if($dataset->thumbnail_url)
-                                            <img src="{{ $dataset->thumbnail_url }}" alt="{{ $dataset->display_name ?? $dataset->name }}" class="w-full h-full object-cover">
-                                        @elseif($dataset->large_image_url)
-                                            <img src="{{ $dataset->large_image_url }}" alt="{{ $dataset->display_name ?? $dataset->name }}" class="w-full h-full object-cover">
-                                        @else
+                                        <?php if($dataset->thumbnail_url): ?>
+                                            <img src="<?php echo e($dataset->thumbnail_url); ?>" alt="<?php echo e($dataset->display_name ?? $dataset->name); ?>" class="w-full h-full object-cover">
+                                        <?php elseif($dataset->large_image_url): ?>
+                                            <img src="<?php echo e($dataset->large_image_url); ?>" alt="<?php echo e($dataset->display_name ?? $dataset->name); ?>" class="w-full h-full object-cover">
+                                        <?php else: ?>
                                             <i class="bi bi-database text-xl md:text-2xl text-white"></i>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 
@@ -231,232 +231,241 @@
                                 <div class="flex-1 min-w-0">
                                     <!-- Title -->
                                     <h6 class="font-semibold text-gray-900 dark:text-white mb-1 line-clamp-1 text-sm md:text-base">
-                                        <a href="{{ route('datasets.show', $dataset) }}" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
-                                            {{ $dataset->display_name ?? $dataset->name }}
+                                        <a href="<?php echo e(route('datasets.show', $dataset)); ?>" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                                            <?php echo e($dataset->display_name ?? $dataset->name); ?>
+
                                         </a>
                                     </h6>
                                     
                                     <!-- Badges -->
                                     <div class="flex flex-wrap gap-1 mb-2">
-                                        @if($dataset->data_type)
-                                        <span class="px-1.5 md:px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 text-[10px] md:text-xs font-semibold">{{ $dataset->data_type }}</span>
-                                        @endif
-                                        @if($dataset->task_type)
-                                        <span class="px-1.5 md:px-2 py-0.5 rounded-full bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-[10px] md:text-xs font-semibold">{{ $dataset->task_type }}</span>
-                                        @endif
-                                        @if($dataset->status !== 'available')
-                                        <span class="px-1.5 md:px-2 py-0.5 rounded-full bg-{{ $dataset->status === 'pending' ? 'amber' : 'red' }}-50 dark:bg-{{ $dataset->status === 'pending' ? 'amber' : 'red' }}-900/20 text-{{ $dataset->status === 'pending' ? 'amber' : 'red' }}-700 dark:text-{{ $dataset->status === 'pending' ? 'amber' : 'red' }}-400 text-[10px] md:text-xs font-semibold">
-                                            {{ ucfirst($dataset->status) }}
+                                        <?php if($dataset->data_type): ?>
+                                        <span class="px-1.5 md:px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 text-[10px] md:text-xs font-semibold"><?php echo e($dataset->data_type); ?></span>
+                                        <?php endif; ?>
+                                        <?php if($dataset->task_type): ?>
+                                        <span class="px-1.5 md:px-2 py-0.5 rounded-full bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-[10px] md:text-xs font-semibold"><?php echo e($dataset->task_type); ?></span>
+                                        <?php endif; ?>
+                                        <?php if($dataset->status !== 'available'): ?>
+                                        <span class="px-1.5 md:px-2 py-0.5 rounded-full bg-<?php echo e($dataset->status === 'pending' ? 'amber' : 'red'); ?>-50 dark:bg-<?php echo e($dataset->status === 'pending' ? 'amber' : 'red'); ?>-900/20 text-<?php echo e($dataset->status === 'pending' ? 'amber' : 'red'); ?>-700 dark:text-<?php echo e($dataset->status === 'pending' ? 'amber' : 'red'); ?>-400 text-[10px] md:text-xs font-semibold">
+                                            <?php echo e(ucfirst($dataset->status)); ?>
+
                                         </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     
                                     <!-- Description -->
                                     <p class="text-xs text-gray-600 dark:text-gray-400 mb-2 line-clamp-2 hidden md:block">
-                                        {{ Str::limit($dataset->abstract ?? $dataset->description, request('view') == 'grid' ? 60 : 120) }}
+                                        <?php echo e(Str::limit($dataset->abstract ?? $dataset->description, request('view') == 'grid' ? 60 : 120)); ?>
+
                                     </p>
                                     
                                     <!-- Stats -->
                                     <div class="flex flex-wrap gap-2 md:gap-3 text-[10px] md:text-xs text-gray-500 dark:text-gray-400 mb-2 md:mb-3">
-                                        @if($dataset->num_instances !== null)
+                                        <?php if($dataset->num_instances !== null): ?>
                                         <span class="flex items-center gap-1" title="Instances">
                                             <i class="bi bi-table"></i>
-                                            {{ $dataset->num_instances >= 1000000 ? number_format($dataset->num_instances / 1000000, 1) . 'M' : ($dataset->num_instances >= 1000 ? number_format($dataset->num_instances / 1000, 1) . 'K' : number_format($dataset->num_instances)) }}
+                                            <?php echo e($dataset->num_instances >= 1000000 ? number_format($dataset->num_instances / 1000000, 1) . 'M' : ($dataset->num_instances >= 1000 ? number_format($dataset->num_instances / 1000, 1) . 'K' : number_format($dataset->num_instances))); ?>
+
                                         </span>
-                                        @endif
-                                        @if($dataset->num_features !== null)
+                                        <?php endif; ?>
+                                        <?php if($dataset->num_features !== null): ?>
                                         <span class="flex items-center gap-1" title="Features">
                                             <i class="bi bi-grid-3x3-gap"></i>
-                                            {{ $dataset->num_features >= 1000 ? number_format($dataset->num_features / 1000, 1) . 'K' : number_format($dataset->num_features) }}
+                                            <?php echo e($dataset->num_features >= 1000 ? number_format($dataset->num_features / 1000, 1) . 'K' : number_format($dataset->num_features)); ?>
+
                                         </span>
-                                        @endif
-                                        @if($dataset->view_count)
+                                        <?php endif; ?>
+                                        <?php if($dataset->view_count): ?>
                                         <span class="flex items-center gap-1" title="Views">
                                             <i class="bi bi-eye"></i>
-                                            {{ number_format($dataset->view_count) }}
+                                            <?php echo e(number_format($dataset->view_count)); ?>
+
                                         </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     
                                     <!-- Actions -->
                                     <div class="flex gap-1.5 md:gap-2">
-                                        <a href="{{ route('datasets.show', $dataset) }}" 
+                                        <a href="<?php echo e(route('datasets.show', $dataset)); ?>" 
                                            class="flex-1 inline-flex items-center justify-center gap-1 px-2 md:px-3 py-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 text-[11px] md:text-xs font-semibold hover:bg-brand-100 dark:hover:bg-brand-900/50 transition-colors">
                                             <i class="bi bi-eye"></i>
                                             <span>View</span>
                                         </a>
-                                        @php $defaultFile = $dataset->files->where('pivot.is_default', 1)->first() ?? $dataset->files->first(); @endphp
-                                        @if($defaultFile)
-                                        <a href="{{ asset('storage/' . $defaultFile->file_path) }}" 
+                                        <?php $defaultFile = $dataset->files->where('pivot.is_default', 1)->first() ?? $dataset->files->first(); ?>
+                                        <?php if($defaultFile): ?>
+                                        <a href="<?php echo e(asset('storage/' . $defaultFile->file_path)); ?>" 
                                            class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
                                            download title="Download">
                                             <i class="bi bi-download text-xs md:text-sm"></i>
                                         </a>
-                                        @endif
+                                        <?php endif; ?>
                                         <button class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors toggle-detail-btn" 
-                                                data-target="details-{{ $dataset->dataset_id }}"
+                                                data-target="details-<?php echo e($dataset->dataset_id); ?>"
                                                 title="Toggle Details">
-                                            <i class="bi bi-chevron-down text-xs md:text-sm toggle-icon" id="toggle-icon-{{ $dataset->dataset_id }}"></i>
+                                            <i class="bi bi-chevron-down text-xs md:text-sm toggle-icon" id="toggle-icon-<?php echo e($dataset->dataset_id); ?>"></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                             
                             <!-- Expanded Details -->
-                            <div class="hidden mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-100 dark:border-gray-700" id="details-{{ $dataset->dataset_id }}">
+                            <div class="hidden mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-100 dark:border-gray-700" id="details-<?php echo e($dataset->dataset_id); ?>">
                                 <div class="grid md:grid-cols-2 gap-3 md:gap-4">
-                                    @if($dataset->variables->isNotEmpty())
+                                    <?php if($dataset->variables->isNotEmpty()): ?>
                                     <div>
                                         <h6 class="text-[10px] md:text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1">
                                             <i class="bi bi-list-columns"></i>Variables
                                         </h6>
                                         <div class="space-y-1">
-                                            @foreach($dataset->variables->take(4) as $var)
+                                            <?php $__currentLoopData = $dataset->variables->take(4); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $var): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <div class="flex items-center justify-between text-[11px] md:text-xs">
-                                                <span class="text-gray-700 dark:text-gray-300 truncate mr-2">{{ $var->display_name ?? $var->variable_name }}</span>
-                                                <span class="px-1.5 md:px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex-shrink-0 text-[10px] md:text-xs">{{ $var->variable_type }}</span>
+                                                <span class="text-gray-700 dark:text-gray-300 truncate mr-2"><?php echo e($var->display_name ?? $var->variable_name); ?></span>
+                                                <span class="px-1.5 md:px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex-shrink-0 text-[10px] md:text-xs"><?php echo e($var->variable_type); ?></span>
                                             </div>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
-                                        @if($dataset->variables->count() > 4)
-                                        <p class="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 mt-1">+{{ $dataset->variables->count() - 4 }} more</p>
-                                        @endif
+                                        <?php if($dataset->variables->count() > 4): ?>
+                                        <p class="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 mt-1">+<?php echo e($dataset->variables->count() - 4); ?> more</p>
+                                        <?php endif; ?>
                                     </div>
-                                    @endif
+                                    <?php endif; ?>
                                     
                                     <div>
-                                        @if($dataset->descriptionDetails && $dataset->descriptionDetails->purpose)
+                                        <?php if($dataset->descriptionDetails && $dataset->descriptionDetails->purpose): ?>
                                         <h6 class="text-[10px] md:text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1">
                                             <i class="bi bi-info-circle"></i>Info
                                         </h6>
-                                        <p class="text-[11px] md:text-xs text-gray-600 dark:text-gray-400 mb-2"><strong>Purpose:</strong> {{ Str::limit($dataset->descriptionDetails->purpose, 80) }}</p>
-                                        @endif
+                                        <p class="text-[11px] md:text-xs text-gray-600 dark:text-gray-400 mb-2"><strong>Purpose:</strong> <?php echo e(Str::limit($dataset->descriptionDetails->purpose, 80)); ?></p>
+                                        <?php endif; ?>
                                         
-                                        @if($dataset->keywords->isNotEmpty())
+                                        <?php if($dataset->keywords->isNotEmpty()): ?>
                                         <h6 class="text-[10px] md:text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1">
                                             <i class="bi bi-tags"></i>Keywords
                                         </h6>
                                         <div class="flex flex-wrap gap-1">
-                                            @foreach($dataset->keywords->take(5) as $keyword)
-                                            <a href="{{ route('datasets.index', ['keywords[]' => $keyword->keyword_id]) }}" 
+                                            <?php $__currentLoopData = $dataset->keywords->take(5); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $keyword): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <a href="<?php echo e(route('datasets.index', ['keywords[]' => $keyword->keyword_id])); ?>" 
                                                class="px-1.5 md:px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-[10px] md:text-xs hover:bg-brand-100 dark:hover:bg-brand-900/30 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
-                                                {{ $keyword->keyword_name }}
+                                                <?php echo e($keyword->keyword_name); ?>
+
                                             </a>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 
                                 <!-- Quick Actions -->
                                 <div class="flex gap-1.5 md:gap-2 mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-100 dark:border-gray-700">
                                     <button class="flex-1 inline-flex items-center justify-center gap-1 px-2 md:px-3 py-1.5 rounded-lg bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 text-[11px] md:text-xs font-semibold hover:bg-brand-100 dark:hover:bg-brand-900/50 transition-colors" 
-                                            onclick="importInPython({{ $dataset->dataset_id }})">
+                                            onclick="importInPython(<?php echo e($dataset->dataset_id); ?>)">
                                         <i class="bi bi-code-slash"></i><span>Python</span>
                                     </button>
                                     <button class="flex-1 inline-flex items-center justify-center gap-1 px-2 md:px-3 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-[11px] md:text-xs font-semibold hover:bg-amber-100 dark:hover:bg-amber-900/50 transition-colors" 
-                                            onclick="showCitation({{ $dataset->dataset_id }}, '{{ addslashes($dataset->name) }}')">
+                                            onclick="showCitation(<?php echo e($dataset->dataset_id); ?>, '<?php echo e(addslashes($dataset->name)); ?>')">
                                         <i class="bi bi-quote"></i><span>Cite</span>
                                     </button>
-                                    @if(auth()->check())
+                                    <?php if(auth()->check()): ?>
                                     <button class="flex-1 inline-flex items-center justify-center gap-1 px-2 md:px-3 py-1.5 rounded-lg bg-cyan-50 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400 text-[11px] md:text-xs font-semibold hover:bg-cyan-100 dark:hover:bg-cyan-900/50 transition-colors" 
-                                            onclick="addToCollection({{ $dataset->dataset_id }})">
+                                            onclick="addToCollection(<?php echo e($dataset->dataset_id); ?>)">
                                         <i class="bi bi-bookmark"></i><span>Save</span>
                                     </button>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </article>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <div class="col-span-full bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 md:p-12 text-center">
                         <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 md:mb-6 rounded-full bg-gradient-to-br from-brand-50 to-sphere-secondary/10 dark:from-brand-900/30 dark:to-sphere-secondary/20 flex items-center justify-center">
                             <i class="bi bi-search text-4xl md:text-5xl text-brand-500 dark:text-brand-400"></i>
                         </div>
                         <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 md:mb-3">No datasets found</h3>
                         <p class="text-sm md:text-base text-gray-500 dark:text-gray-400 mb-6 md:mb-8 max-w-md mx-auto">Try adjusting your filters or search terms</p>
-                        <a href="{{ route('datasets.index') }}" 
+                        <a href="<?php echo e(route('datasets.index')); ?>" 
                            class="inline-flex items-center gap-2 px-5 md:px-6 py-2.5 md:py-3 rounded-full bg-gradient-to-r from-brand-600 to-sphere-secondary text-white font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-sm md:text-base">
                             <i class="bi bi-x-circle"></i><span>Clear All Filters</span>
                         </a>
                     </div>
-                    @endforelse
+                    <?php endif; ?>
                 </div>
                 
                 <!-- Pagination Section -->
-                @if($datasets->hasPages())
+                <?php if($datasets->hasPages()): ?>
                 <div class="mt-4 md:mt-6 bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-3 md:p-4">
                     <div class="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
                         
                         <!-- Results Info -->
                         <div class="text-xs md:text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">
-                            <span class="font-semibold text-gray-900 dark:text-white">{{ $datasets->firstItem() ?? 0 }}</span>
+                            <span class="font-semibold text-gray-900 dark:text-white"><?php echo e($datasets->firstItem() ?? 0); ?></span>
                             <span class="mx-1">-</span>
-                            <span class="font-semibold text-gray-900 dark:text-white">{{ $datasets->lastItem() ?? 0 }}</span>
+                            <span class="font-semibold text-gray-900 dark:text-white"><?php echo e($datasets->lastItem() ?? 0); ?></span>
                             <span class="mx-1">of</span>
-                            <span class="font-semibold text-gray-900 dark:text-white">{{ number_format($datasets->total()) }}</span>
+                            <span class="font-semibold text-gray-900 dark:text-white"><?php echo e(number_format($datasets->total())); ?></span>
                         </div>
 
                         <!-- Pagination Controls -->
                         <div class="flex items-center gap-0.5 md:gap-1 flex-wrap justify-center">
-                            @if ($datasets->onFirstPage())
+                            <?php if($datasets->onFirstPage()): ?>
                                 <button disabled class="w-8 h-8 md:w-9 md:h-9 rounded-lg text-gray-400 cursor-not-allowed flex items-center justify-center">
                                     <i class="bi bi-chevron-left text-sm"></i>
                                 </button>
-                            @else
-                                <a href="{{ $datasets->previousPageUrl() }}" 
+                            <?php else: ?>
+                                <a href="<?php echo e($datasets->previousPageUrl()); ?>" 
                                    class="w-8 h-8 md:w-9 md:h-9 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center">
                                     <i class="bi bi-chevron-left text-sm"></i>
                                 </a>
-                            @endif
+                            <?php endif; ?>
 
-                            @php
+                            <?php
                                 $currentPage = $datasets->currentPage();
                                 $lastPage = $datasets->lastPage();
                                 $start = max(1, $currentPage - 2);
                                 $end = min($lastPage, $currentPage + 2);
-                            @endphp
+                            ?>
 
-                            @if($start > 1)
-                                <a href="{{ $datasets->url(1) }}" class="w-8 h-8 md:w-9 md:h-9 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center text-xs md:text-sm">1</a>
-                                @if($start > 2)
+                            <?php if($start > 1): ?>
+                                <a href="<?php echo e($datasets->url(1)); ?>" class="w-8 h-8 md:w-9 md:h-9 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center text-xs md:text-sm">1</a>
+                                <?php if($start > 2): ?>
                                     <span class="w-8 h-8 md:w-9 md:h-9 flex items-center justify-center text-gray-400 text-xs">...</span>
-                                @endif
-                            @endif
+                                <?php endif; ?>
+                            <?php endif; ?>
 
-                            @for ($page = $start; $page <= $end; $page++)
-                                @if ($page == $currentPage)
+                            <?php for($page = $start; $page <= $end; $page++): ?>
+                                <?php if($page == $currentPage): ?>
                                     <span class="w-8 h-8 md:w-9 md:h-9 rounded-lg bg-brand-600 text-white font-semibold flex items-center justify-center text-xs md:text-sm">
-                                        {{ $page }}
+                                        <?php echo e($page); ?>
+
                                     </span>
-                                @else
-                                    <a href="{{ $datasets->url($page) }}" class="w-8 h-8 md:w-9 md:h-9 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center text-xs md:text-sm">
-                                        {{ $page }}
+                                <?php else: ?>
+                                    <a href="<?php echo e($datasets->url($page)); ?>" class="w-8 h-8 md:w-9 md:h-9 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center text-xs md:text-sm">
+                                        <?php echo e($page); ?>
+
                                     </a>
-                                @endif
-                            @endfor
+                                <?php endif; ?>
+                            <?php endfor; ?>
 
-                            @if($end < $lastPage)
-                                @if($end < $lastPage - 1)
+                            <?php if($end < $lastPage): ?>
+                                <?php if($end < $lastPage - 1): ?>
                                     <span class="w-8 h-8 md:w-9 md:h-9 flex items-center justify-center text-gray-400 text-xs">...</span>
-                                @endif
-                                <a href="{{ $datasets->url($lastPage) }}" class="w-8 h-8 md:w-9 md:h-9 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center text-xs md:text-sm">{{ $lastPage }}</a>
-                            @endif
+                                <?php endif; ?>
+                                <a href="<?php echo e($datasets->url($lastPage)); ?>" class="w-8 h-8 md:w-9 md:h-9 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center text-xs md:text-sm"><?php echo e($lastPage); ?></a>
+                            <?php endif; ?>
 
-                            @if ($datasets->hasMorePages())
-                                <a href="{{ $datasets->nextPageUrl() }}" 
+                            <?php if($datasets->hasMorePages()): ?>
+                                <a href="<?php echo e($datasets->nextPageUrl()); ?>" 
                                    class="w-8 h-8 md:w-9 md:h-9 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center">
                                     <i class="bi bi-chevron-right text-sm"></i>
                                 </a>
-                            @else
+                            <?php else: ?>
                                 <button disabled class="w-8 h-8 md:w-9 md:h-9 rounded-lg text-gray-400 cursor-not-allowed flex items-center justify-center">
                                     <i class="bi bi-chevron-right text-sm"></i>
                                 </button>
-                            @endif
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-                @endif
+                <?php endif; ?>
                 
             </div>
         </div>
@@ -485,14 +494,14 @@
         
         <!-- Filter Content -->
         <div class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
-            <form method="GET" action="{{ route('datasets.index') }}" id="mobileFilterForm">
-                @include('partials.filter-form', ['isMobile' => true])
+            <form method="GET" action="<?php echo e(route('datasets.index')); ?>" id="mobileFilterForm">
+                <?php echo $__env->make('partials.filter-form', ['isMobile' => true], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
             </form>
         </div>
         
         <!-- Footer Actions -->
         <div class="p-4 border-t border-gray-200 dark:border-gray-700 flex-shrink-0 bg-gray-50 dark:bg-gray-800/50 space-y-2">
-            <a href="{{ route('datasets.index') }}" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+            <a href="<?php echo e(route('datasets.index')); ?>" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                 <i class="bi bi-x-circle"></i>
                 <span>Clear All Filters</span>
             </a>
@@ -526,7 +535,7 @@
   author = {Dataset Contributors},
   year = {2026},
   url = {https://example.com/dataset},
-  note = {Accessed: {{ date('Y-m-d') }}}
+  note = {Accessed: <?php echo e(date('Y-m-d')); ?>}
 }</code></pre>
                         <button id="copyBtn" class="mt-3 inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-xs md:text-sm font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors" 
                                 onclick="copyCitation()">
@@ -550,9 +559,9 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
     .custom-scrollbar::-webkit-scrollbar { width: 4px; }
     .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
@@ -595,9 +604,9 @@
         box-shadow: 0 2px 6px rgba(99, 102, 241, 0.4);
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <script>
 // ===== MOBILE FILTER DRAWER =====
 function openMobileFilter() {
@@ -628,7 +637,7 @@ function closeMobileFilter() {
 
 function clearAllFilters() {
     if (confirm('Clear all filters?')) {
-        window.location.href = '{{ route("datasets.index") }}';
+        window.location.href = '<?php echo e(route("datasets.index")); ?>';
     }
 }
 
@@ -896,7 +905,7 @@ function addToCollection(datasetId) {
         alert(data.success ? '✓ ' + data.message : data.message);
     })
     .catch(() => {
-        window.location.href = "{{ route('login') }}?redirect=" + encodeURIComponent(window.location.href);
+        window.location.href = "<?php echo e(route('login')); ?>?redirect=" + encodeURIComponent(window.location.href);
     });
 }
 
@@ -921,4 +930,5 @@ function filterList(query, itemClass) {
     });
 }
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH D:\Documents\TB-PWL-K6\resources\views/datasets/index.blade.php ENDPATH**/ ?>

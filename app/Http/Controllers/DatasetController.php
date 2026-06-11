@@ -13,6 +13,7 @@ class DatasetController extends Controller
     {
         $query = Dataset::query();
         
+        // Search - handle both 'q' and 'search' parameters
         if ($request->filled('q') || $request->filled('search')) {
             $searchTerm = $request->input('q') ?? $request->input('search');
             
@@ -30,14 +31,17 @@ class DatasetController extends Controller
             });
         }
         
+        // Data Type filter
         if ($request->filled('data_type')) {
             $query->where('data_type', $request->input('data_type'));
         }
         
+        // Task Type filter
         if ($request->filled('task_type')) {
             $query->where('task_type', $request->input('task_type'));
         }
         
+        // Subject Area filter (array)
         if ($request->filled('subject_area')) {
             $subjectAreas = (array) $request->input('subject_area');
             $query->whereHas('subjectArea', function($q) use ($subjectAreas) {
@@ -45,6 +49,7 @@ class DatasetController extends Controller
             });
         }
         
+        // Keywords filter (array)
         if ($request->filled('keywords')) {
             $keywords = (array) $request->input('keywords');
             $query->whereHas('keywords', function($q) use ($keywords) {
@@ -52,6 +57,7 @@ class DatasetController extends Controller
             });
         }
         
+        // Instances range filter
         if ($request->filled('instances_min')) {
             $query->where('num_instances', '>=', $request->input('instances_min'));
         }
@@ -59,17 +65,20 @@ class DatasetController extends Controller
             $query->where('num_instances', '<=', $request->input('instances_max'));
         }
         
+        // Features range filter
         if ($request->filled('features_min')) {
             $query->where('num_features', '>=', $request->input('features_min'));
         }
         if ($request->filled('features_max')) {
             $query->where('num_features', '<=', $request->input('features_max'));
         }
-        
+
+        // Has Missing Values filter
         if ($request->filled('has_missing') && $request->input('has_missing') == '1') {
             $query->where('has_missing_values', true);
         }
         
+        // Sorting
         $sort = $request->input('sort', 'view_count');
         $order = $request->input('order', 'desc');
         
@@ -80,6 +89,7 @@ class DatasetController extends Controller
         
         $query->orderBy($sort, $order === 'asc' ? 'asc' : 'desc');
         
+        // Get filter options for sidebar
         $keywords = Keyword::select('keywords.*')
             ->selectRaw('(SELECT COUNT(*) FROM dataset_keyword WHERE keyword_id = keywords.keyword_id) as datasets_count')
             ->orderByDesc('datasets_count')
@@ -104,6 +114,7 @@ class DatasetController extends Controller
             ->orderByDesc('count')
             ->get();
         
+        // Stats
         $stats = [
             'total' => Dataset::count(),
             'by_data_type' => $dataTypes->pluck('count', 'data_type'),
@@ -120,10 +131,12 @@ class DatasetController extends Controller
             'data_type_counts' => $dataTypes->pluck('count', 'data_type')->toArray(),
             'task_type_counts' => $taskTypes->pluck('count', 'task_type')->toArray(),
         ];
-        
+
+        // Paginate results
         $perPage = $request->input('per_page', 12);
         $datasets = $query->with(['subjectArea', 'task', 'keywords', 'files'])->paginate($perPage);
-        
+
+        // Popular and new datasets for other sections
         $popularDatasets = Dataset::with(['subjectArea', 'task', 'keywords'])
             ->orderBy('view_count', 'desc')
             ->take(4)
@@ -134,6 +147,7 @@ class DatasetController extends Controller
             ->take(4)
             ->get();
         
+        // Sort labels for UI
         $sortLabels = [
             'view_count' => '# Views',
             'download_count' => '# Downloads',
@@ -142,6 +156,7 @@ class DatasetController extends Controller
             'created_at' => 'Date Added',
         ];
         
+        // Handle AJAX/JSON requests
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([
                 'datasets' => $datasets->map(function($dataset) {
@@ -187,7 +202,7 @@ class DatasetController extends Controller
             $dataset->increment('view_count');
             $request->session()->put("viewed_dataset_{$dataset->dataset_id}", true);
         }
-        
+      
         $dataset->load([
             'descriptionDetails',
             'files',
@@ -296,7 +311,7 @@ class DatasetController extends Controller
             ], 500);
         }
     }
-    
+
     public function preview(Dataset $dataset)
     {
         return response()->json([
